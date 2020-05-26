@@ -1,8 +1,6 @@
 import cv2
 
 class Camera:
-    camera = '/dev/video0'
-    
     def __init__(self, camera):
         self.camera = camera
     
