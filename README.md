@@ -1,2 +1,2 @@
 # auto-brightness
-Auto change screen brightness using webcam on pcs that don't have ambient light sensor.
+Auto change screen brightness using webcam on pc's that don't have ambient light sensor.
