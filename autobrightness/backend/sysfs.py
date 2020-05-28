@@ -1,5 +1,3 @@
-import subprocess
-
 class sysfs:
     def getMaxBrightness(self):
         file = open("/sys/class/backlight/intel_backlight/max_brightness", "r")
