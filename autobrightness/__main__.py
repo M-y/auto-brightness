@@ -12,4 +12,7 @@ while True:
     brightness = round( display.maxBrightness * ambient_brightness / 255 )
 
     display.setBrightness(brightness)
+
+    if ( config.interval < 1 ):
+        break
     time.sleep( config.interval )
