@@ -1,4 +1,4 @@
-from backend import *
+from autobrightness.backend import *
 
 class Display:
     """
