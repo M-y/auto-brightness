@@ -1,8 +1,7 @@
 name: autobrightness-CI
 
 on:
-  push:
-    branches: [ master ]
+  release:
     tags: 
     - '^*.*.*$'
 
