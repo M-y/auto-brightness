@@ -13,7 +13,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: Run a multi-line script
+    - name: Create .deb
       run: |
-        ls
-        ls ~
+        rm -rf .git .gitignore .vscode .github
+        mkdir --parents autobrightness-0.1.0/tmp
+        mv !(autobrightness-0.1.0) autobrightness-0.1.0/tmp
+        mkdir autobrightness-0.1.0/DEBIAN
+        printf "Package: autobrightness\nVersion: 0.1.0\nSection: base\nPriority: optional\nArchitecture: amd64\nDepends: python-pip\nMaintainer: Muhammed YILDIRIM <ben@muhammed.im>\nDescription: Auto change screen brightness using webcam\n" > autobrightness-0.1.0/DEBIAN/control
+        dpkg-deb --build autobrightness-0.1.0
