@@ -24,6 +24,8 @@ jobs:
         name: Download Artifact
         with:
           name: deb
+      - shell: bash
+        run: ls
       - name: Upload
         uses: skx/github-action-publish-binaries@master
         env:
