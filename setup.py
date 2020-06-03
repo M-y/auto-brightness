@@ -1,8 +1,11 @@
 from setuptools import setup, find_packages
 
+with open('autobrightness/VERSION') as version_file:
+    version = version_file.read().strip()
+
 setup(
     name='autobrightness',
-    version='0.1.0',
+    version=version,
     python_requires='>=3.7, <4',
     install_requires=['opencv-python'],
     packages=['autobrightness', 'autobrightness.backend'],

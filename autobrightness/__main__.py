@@ -3,6 +3,9 @@ from autobrightness import brightness
 from autobrightness import config
 import time
 
+with open('autobrightness/VERSION') as version_file:
+    version = version_file.read().strip()
+
 config = config.Config()
 camera = webcam.Camera( config.camera )
 display = brightness.Display( config.backend )
