@@ -11,6 +11,9 @@ jobs:
     - uses: actions/checkout@master
     - name: Create .deb
       run: ./createdeb.sh 1
+    - uses: actions/upload-artifact@master
+      with:
+        path: autobrightness*.deb
   
   publish:
     runs-on: ubuntu-latest
