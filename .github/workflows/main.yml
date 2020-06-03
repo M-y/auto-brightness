@@ -12,6 +12,7 @@ jobs:
     - name: Create .deb
       run: ./createdeb.sh 1
     - uses: actions/upload-artifact@master
+      name: Upload Artifact
       with:
         name: deb
         path: autobrightness*.deb
@@ -20,7 +21,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@master
-      - with:
+        name: Download Artifact
+        with:
           name: deb
       - name: Upload
         uses: skx/github-action-publish-binaries@master
