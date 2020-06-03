@@ -15,6 +15,9 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@master
+      - name: Create .deb
+        run: ./createdeb.sh 1
       - name: Upload
         uses: skx/github-action-publish-binaries@master
         env:
