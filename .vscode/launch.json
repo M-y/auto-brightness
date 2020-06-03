@@ -8,7 +8,7 @@
             "name": "Python: main",
             "type": "python",
             "request": "launch",
-            "program": "autobrightness",
+            "program": "main.py",
             "console": "integratedTerminal",
             "sudo": true
         }

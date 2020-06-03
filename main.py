@@ -1,0 +1,1 @@
+from autobrightness import __main__
