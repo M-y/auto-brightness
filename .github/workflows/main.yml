@@ -22,8 +22,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@master
         name: Download Artifact
-        with:
-          name: deb
+        
       - shell: bash
         run: ls
       - name: Upload
