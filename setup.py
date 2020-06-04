@@ -7,7 +7,7 @@ setup(
     name='autobrightness',
     version=version,
     python_requires='>=3.7, <4',
-    install_requires=['opencv-python'],
+    install_requires=['opencv-python', 'keyboard'],
     packages=['autobrightness', 'autobrightness.backend'],
     entry_points={
     'console_scripts': [
