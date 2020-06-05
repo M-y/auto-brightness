@@ -3,9 +3,9 @@ from autobrightness import brightness
 from autobrightness import config
 import time
 import keyboard
+import pkg_resources
 
-with open('autobrightness/VERSION') as version_file:
-    version = version_file.read().strip()
+version = pkg_resources.require("autobrightness")[0].version
 
 config = config.Config()
 camera = webcam.Camera( config.camera )
