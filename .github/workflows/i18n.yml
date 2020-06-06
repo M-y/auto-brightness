@@ -1,0 +1,27 @@
+name: i18n
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: create .pot
+      run: pygettext -d autobrightness -o autobrightness/locales/autobrightness.pot autobrightness
+      
+    - name: create .mo
+      run: find autobrightness/locales/ -name \*.po -execdir msgfmt autobrightness.po -o autobrightness.mo \;
+      
+    - name: commit
+      run: |
+        git config --global user.name '${GITHUB_ACTOR}'
+        git config --global user.email '${GITHUB_ACTOR}@users.noreply.github.com'
+        git add -A
+        git commit -m 'Auto generate .pot and .mo files'
+        git push
