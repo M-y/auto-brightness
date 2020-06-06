@@ -18,18 +18,20 @@ def autobrightness():
     print("Set brightness to " + str(brightness))
 
 def main():
-    def hotkey(event):
-        if event.scan_code == config.keycode and event.event_type == 'up':
-            autobrightness()
+    def shortcut(e = None):
+        autobrightness()
     
-    if config.keycode > 0:
-        keyboard.hook(hotkey)
+    if not config.shortcut is None:
+        if type(config.shortcut) == str:
+            keyboard.add_hotkey(config.shortcut, shortcut)
+        else:
+            keyboard.on_press_key(config.shortcut, shortcut)
 
     while True:
         if config.interval > 0:
             time.sleep( config.interval )
             autobrightness()
-        elif config.keycode > 0:
+        elif not config.shortcut is None:
             time.sleep(1)
         else:
             break
