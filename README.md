@@ -1,5 +1,5 @@
 # auto-brightness
-![autobrightness-CICD](https://github.com/M-y/auto-brightness/workflows/autobrightness-CICD/badge.svg)
+![CI-CD](https://github.com/M-y/auto-brightness/workflows/CI-CD/badge.svg) ![i18n](https://github.com/M-y/auto-brightness/workflows/i18n/badge.svg)
 
 Auto change screen brightness using webcam on pc's that don't have ambient light sensor.
 
