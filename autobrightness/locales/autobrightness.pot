@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-06-06 19:06+UTC\n"
+"POT-Creation-Date: 2020-06-06 22:05+UTC\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,8 +15,32 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: autobrightness/__main__.py:26
-msgid "Adjust brightness to %d"
+#: autobrightness/__main__.py:27
+msgid "Auto change screen brightness using webcam."
+msgstr ""
+
+#: autobrightness/__main__.py:35
+msgid "Start the daemon"
+msgstr ""
+
+#: autobrightness/__main__.py:36
+msgid "Set brightness and exit"
+msgstr ""
+
+#: autobrightness/__main__.py:51
+msgid "Adjusting brightness to %(percentage)d%% (%(value)d)"
+msgstr ""
+
+#: autobrightness/__main__.py:61
+msgid "Starting daemon..."
+msgstr ""
+
+#: autobrightness/__main__.py:64
+msgid "Shortcut key used."
+msgstr ""
+
+#: autobrightness/__main__.py:80
+msgid "No interval nor shortcut selected. Exiting."
 msgstr ""
 
 #: autobrightness/backend/sysfs.py:10
