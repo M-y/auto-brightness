@@ -1,4 +1,4 @@
-name: autobrightness-CICD
+name: CI-CD
 
 on:
   release:

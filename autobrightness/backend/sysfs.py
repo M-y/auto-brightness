@@ -7,7 +7,7 @@ class sysfs:
             self.sysfs_dir = os.path.join(dirpath, dirname[0])
         
         if not os.access(os.path.join(self.sysfs_dir, "brightness"), os.W_OK):
-            sys.exit(self.sysfs_dir + " is not writable!")
+            sys.exit(self.sysfs_dir + _(" is not writable!"))
 
     def getMaxBrightness(self):
         file = open(os.path.join(self.sysfs_dir, "max_brightness"), "r")
