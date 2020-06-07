@@ -36,6 +36,7 @@ class Config:
         config['shortcut'] = str(self.shortcut)
         config['language'] = str(self.language)
 
+        print(self.fileLocation)
         with open(self.fileLocation, 'w') as IO:
             configfile.write(IO)
     

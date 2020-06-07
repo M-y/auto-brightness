@@ -1,5 +1,4 @@
 from autobrightness.backend import *
-import __main__
 
 class Display:
     """

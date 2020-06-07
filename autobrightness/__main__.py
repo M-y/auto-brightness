@@ -1,6 +1,4 @@
-from autobrightness import webcam
-from autobrightness import brightness
-from autobrightness import config
+from autobrightness import webcam, brightness, config, gui
 import time
 import keyboard
 import pkg_resources
@@ -81,7 +79,7 @@ def main():
         while True:
             if settings.interval > 0:
                 time.sleep( settings.interval )
-                autobrightness()
+                autobrightness(camera, display)
             elif not settings.shortcut is None:
                 time.sleep(1)
             else:
@@ -90,7 +88,7 @@ def main():
     elif args.set:
         autobrightness(camera, display)
     else:
-        print("will show config screen")
+        gui.show(lang, settings)
 
 if __name__ == "__main__":
     main()

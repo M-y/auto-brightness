@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "main.py",
             "console": "integratedTerminal",
-            //"args": ["--set"],
+            // "args": ["--start"],
             "sudo": true
         }
     ]
