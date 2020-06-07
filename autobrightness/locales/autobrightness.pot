@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-06-07 12:32+UTC\n"
+"POT-Creation-Date: 2020-06-07 19:04+UTC\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,23 +15,59 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: autobrightness/__main__.py:44
+#: autobrightness/__main__.py:46
 msgid "Adjusting brightness to %(percentage)d%% (%(value)d)"
 msgstr ""
 
-#: autobrightness/__main__.py:69
+#: autobrightness/__main__.py:71
 msgid "Starting daemon..."
 msgstr ""
 
-#: autobrightness/__main__.py:72
+#: autobrightness/__main__.py:74
 msgid "Shortcut key used."
 msgstr ""
 
-#: autobrightness/__main__.py:88
+#: autobrightness/__main__.py:90
 msgid "No interval nor shortcut selected. Exiting."
 msgstr ""
 
 #: autobrightness/backend/sysfs.py:13
 msgid " is not writable!"
+msgstr ""
+
+#: autobrightness/gui.py:23
+msgid "Language:"
+msgstr ""
+
+#: autobrightness/gui.py:27
+msgid "Backend:"
+msgstr ""
+
+#: autobrightness/gui.py:30
+msgid "Camera:"
+msgstr ""
+
+#: autobrightness/gui.py:33
+msgid "Interval:"
+msgstr ""
+
+#: autobrightness/gui.py:36
+msgid "Shortcut:"
+msgstr ""
+
+#: autobrightness/gui.py:43
+msgid "Capture Shortcut"
+msgstr ""
+
+#: autobrightness/gui.py:45
+msgid "Test Camera"
+msgstr ""
+
+#: autobrightness/gui.py:47
+msgid "Test Backend"
+msgstr ""
+
+#: autobrightness/gui.py:49
+msgid "Save"
 msgstr ""
 
