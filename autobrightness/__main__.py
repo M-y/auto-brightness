@@ -9,22 +9,13 @@ import os
 import argparse
 
 version = pkg_resources.require("autobrightness")[0].version
-config = config.Config()
-
-# select language
-if config.language is None:
-    lang = gettext
-else:
-    lang = gettext.translation("autobrightness", pkg_resources.resource_filename('autobrightness', 'locales'), [config.language])
-_ = lang.gettext
 
 def init_argparse() -> argparse.ArgumentParser:
     """
     init command line arguments
     """
     parser = argparse.ArgumentParser(
-        usage="%(prog)s [OPTION]",
-        description=_("Auto change screen brightness using webcam.")
+        description="Auto change screen brightness using webcam."
     )
 
     parser.add_argument(
@@ -32,8 +23,10 @@ def init_argparse() -> argparse.ArgumentParser:
         version = f"{parser.prog} version {version}"
     )
 
-    parser.add_argument("--start", help=_("Start the daemon"), action='store_true')
-    parser.add_argument("--set", help=_("Set brightness and exit"), action='store_true')
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("--start", help="Start the daemon", action='store_true')
+    group.add_argument("--set", help="Set brightness and exit", action='store_true')
+    parser.add_argument("--config", help="Use alternative config file instead of .autobrightness in home directory.")
 
     return parser
 
@@ -52,11 +45,26 @@ def autobrightness(camera, display):
     display.setBrightness(calculated)
 
 def main():
-    camera = webcam.Camera( config.camera )
-    display = brightness.Display( config.backend )
     parser = init_argparse()
     args = parser.parse_args()
     
+    if args.config:
+        settings = config.Config(args.config)
+        settings.save()
+    else:
+        settings = config.Config()
+
+    # select language
+    if settings.language is None:
+        lang = gettext
+    else:
+        lang = gettext.translation("autobrightness", pkg_resources.resource_filename('autobrightness', 'locales'), [settings.language])
+    global _
+    _ = lang.gettext
+
+    camera = webcam.Camera( settings.camera )
+    display = brightness.Display(settings.backend, lang)
+
     if args.start:
         print(_("Starting daemon..."))
 
@@ -64,17 +72,17 @@ def main():
             print(_("Shortcut key used."))
             autobrightness(camera, display)
 
-        if not config.shortcut is None:
-            if type(config.shortcut) == str:
-                keyboard.add_hotkey(config.shortcut, shortcut)
+        if not settings.shortcut is None:
+            if type(settings.shortcut) == str:
+                keyboard.add_hotkey(settings.shortcut, shortcut)
             else:
-                keyboard.on_press_key(config.shortcut, shortcut)
+                keyboard.on_press_key(settings.shortcut, shortcut)
 
         while True:
-            if config.interval > 0:
-                time.sleep( config.interval )
+            if settings.interval > 0:
+                time.sleep( settings.interval )
                 autobrightness()
-            elif not config.shortcut is None:
+            elif not settings.shortcut is None:
                 time.sleep(1)
             else:
                 print(_("No interval nor shortcut selected. Exiting."))

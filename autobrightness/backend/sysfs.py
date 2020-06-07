@@ -2,7 +2,10 @@ import os
 import sys
 
 class sysfs:
-    def __init__(self):
+    def __init__(self, lang):
+        global _
+        _ = lang.gettext
+        
         for (dirpath, dirname, file) in os.walk("/sys/class/backlight"):
             self.sysfs_dir = os.path.join(dirpath, dirname[0])
         

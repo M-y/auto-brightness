@@ -1,4 +1,5 @@
 from autobrightness.backend import *
+import __main__
 
 class Display:
     """
@@ -9,9 +10,12 @@ class Display:
     """
     maxBrightness = 100
     
-    def __init__(self, backend):
+    def __init__(self, backend, lang):
+        global _
+        _ = lang.gettext
+        
         if backend == 'sysfs':
-            self.backend = sysfs.sysfs()
+            self.backend = sysfs.sysfs(lang)
         
         self.maxBrightness = self.backend.getMaxBrightness()
     
