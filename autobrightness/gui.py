@@ -95,7 +95,15 @@ class controller:
         """
         Camera test button click event
         """
-        camera = webcam.Camera( self._view.cameraEdit.text() )
+        try:
+            camLoc = int(self._view.cameraEdit.text())
+        except:
+            camLoc = self._view.cameraEdit.text()
+
+        camera = webcam.Camera(camLoc)
+        ret, frame = camera.getImage()
+        if ret:
+            camera.showImage(frame)
 
 
     def _backendButtonClick(self):

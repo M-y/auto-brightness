@@ -16,7 +16,6 @@ class Camera:
             ret (bool): false on failure
             frame (array)
         """
-
         cam = cv2.VideoCapture(self.camera)
         ret, frame = cam.read()
         cam.release()
@@ -32,7 +31,6 @@ class Camera:
         Returns: int
             brightness between 0-255
         """
-
         hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
         mean = cv2.mean(hsv)
         brightness = mean[2]
@@ -45,8 +43,10 @@ class Camera:
         Returns: int 
             brightness between 0-255
         """
-
         ret, image = self.getImage()
         if ret:
             return self.__getBrightness(image)
         return 0
+    
+    def showImage(self, frame):
+        cv2.imshow("test", frame)
