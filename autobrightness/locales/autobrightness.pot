@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-06-07 19:04+UTC\n"
+"POT-Creation-Date: 2020-06-07 20:16+UTC\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,39 +35,43 @@ msgstr ""
 msgid " is not writable!"
 msgstr ""
 
-#: autobrightness/gui.py:23
+#: autobrightness/gui.py:24
 msgid "Language:"
 msgstr ""
 
-#: autobrightness/gui.py:27
+#: autobrightness/gui.py:28
 msgid "Backend:"
 msgstr ""
 
-#: autobrightness/gui.py:30
+#: autobrightness/gui.py:31
 msgid "Camera:"
 msgstr ""
 
-#: autobrightness/gui.py:33
+#: autobrightness/gui.py:34
 msgid "Interval:"
 msgstr ""
 
-#: autobrightness/gui.py:36
+#: autobrightness/gui.py:37
 msgid "Shortcut:"
 msgstr ""
 
-#: autobrightness/gui.py:43
+#: autobrightness/gui.py:44
 msgid "Capture Shortcut"
 msgstr ""
 
-#: autobrightness/gui.py:45
+#: autobrightness/gui.py:46
 msgid "Test Camera"
 msgstr ""
 
-#: autobrightness/gui.py:47
+#: autobrightness/gui.py:48
 msgid "Test Backend"
 msgstr ""
 
-#: autobrightness/gui.py:49
+#: autobrightness/gui.py:50
 msgid "Save"
+msgstr ""
+
+#: autobrightness/gui.py:88
+msgid "Run autobrightness --start now."
 msgstr ""
 
