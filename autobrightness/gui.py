@@ -3,6 +3,7 @@ from functools import partial
 import pkg_resources
 from autobrightness import webcam, brightness
 import time
+import keyboard
 
 class window(QMainWindow):
     def __init__(self):
@@ -84,12 +85,19 @@ class controller:
         self._config.shortcut = self._view.shortcutEdit.text()
 
         self._config.save()
+        print(_("Run autobrightness --start now."))
         self._view.close()
 
     def _shortcutButtonClick(self):
         """
         Shortcut button click event
         """
+        key = keyboard.read_hotkey(True)
+        if key == 'unknown':
+            key = keyboard.read_event(True)
+            self._view.shortcutEdit.setText( str(key.scan_code) )
+        else:
+            self._view.shortcutEdit.setText( key )
 
     def _cameraButtonClick(self):
         """
