@@ -1,6 +1,8 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QFormLayout, QLineEdit, QPushButton, QComboBox
 from functools import partial
 import pkg_resources
+from autobrightness import webcam, brightness
+import time
 
 class window(QMainWindow):
     def __init__(self):
@@ -98,11 +100,19 @@ class controller:
         """
         Backend button click event
         """
+        display = brightness.Display(self._view.backendCombo.currentText(), langObj)
+        oldBrightness = display.getBrightness()
+        display.setBrightness(0)
+        time.sleep(1)
+        display.setBrightness(oldBrightness)
+
 
 
 def show(lang, config):
+    global langObj
+    langObj = lang
     global _
-    _ = lang.gettext
+    _ = langObj.gettext
 
     app = QApplication([])
     view = window()
