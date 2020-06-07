@@ -38,6 +38,10 @@ def autobrightness(camera, display):
     """
     ambient_brightness = camera.getBrightness()
     calculated = round( display.maxBrightness * ambient_brightness / 255 )
+    
+    # do not go under 1%
+    if calculated * 100 / display.maxBrightness < 1:
+        calculated = round(display.maxBrightness / 100)
 
     print(_("Adjusting brightness to %(percentage)d%% (%(value)d)") % {'percentage': (calculated * 100 / display.maxBrightness), 'value': calculated})
     display.setBrightness(calculated)

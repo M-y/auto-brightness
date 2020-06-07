@@ -93,16 +93,20 @@ class controller:
 
     def _cameraButtonClick(self):
         """
-        Camera button click event
+        Camera test button click event
         """
+        camera = webcam.Camera( self._view.cameraEdit.text() )
+
 
     def _backendButtonClick(self):
         """
-        Backend button click event
+        Backend test button click event
         """
         display = brightness.Display(self._view.backendCombo.currentText(), langObj)
         oldBrightness = display.getBrightness()
         display.setBrightness(0)
+        time.sleep(1)
+        display.setBrightness(display.maxBrightness)
         time.sleep(1)
         display.setBrightness(oldBrightness)
 
