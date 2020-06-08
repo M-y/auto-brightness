@@ -1,0 +1,86 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2020-06-08 21:58+UTC\n"
+"PO-Revision-Date: 2020-06-09 01:01+0300\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: Poedit 2.2.1\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: en\n"
+
+#: autobrightness/__main__.py:46
+msgid "Adjusting brightness to %(percentage)d%% (%(value)d)"
+msgstr ""
+
+#: autobrightness/__main__.py:71
+msgid "Starting daemon..."
+msgstr ""
+
+#: autobrightness/__main__.py:74
+msgid "Shortcut key used."
+msgstr ""
+
+#: autobrightness/__main__.py:90
+msgid "No interval nor shortcut selected. Exiting."
+msgstr ""
+
+#: autobrightness/backend/sysfs.py:21
+msgid " is not writable!"
+msgstr ""
+
+#: autobrightness/gui.py:30
+msgid "Language:"
+msgstr ""
+
+#: autobrightness/gui.py:36
+msgid "Backend:"
+msgstr ""
+
+#: autobrightness/gui.py:39
+msgid "Camera:"
+msgstr ""
+
+#: autobrightness/gui.py:42
+msgid "Interval:"
+msgstr ""
+
+#: autobrightness/gui.py:45
+msgid "Shortcut:"
+msgstr ""
+
+#: autobrightness/gui.py:52
+msgid "Select Shortcut"
+msgstr ""
+
+#: autobrightness/gui.py:54
+msgid "Test Camera"
+msgstr ""
+
+#: autobrightness/gui.py:56
+msgid "Test Backend"
+msgstr ""
+
+#: autobrightness/gui.py:58
+msgid "Save"
+msgstr ""
+
+#: autobrightness/gui.py:96
+msgid "Run autobrightness --start now."
+msgstr ""
+
+#: autobrightness/gui.py:104
+msgid "Close this message and press a key or key combination. "
+msgstr ""
+
+#: autobrightness/gui.py:133
+msgid "Will test min and max brightness via the selected backend."
+msgstr ""
