@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-06-07 20:16+UTC\n"
+"POT-Creation-Date: 2020-06-08 21:58+UTC\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,47 +31,55 @@ msgstr ""
 msgid "No interval nor shortcut selected. Exiting."
 msgstr ""
 
-#: autobrightness/backend/sysfs.py:13
+#: autobrightness/backend/sysfs.py:21
 msgid " is not writable!"
 msgstr ""
 
-#: autobrightness/gui.py:24
+#: autobrightness/gui.py:30
 msgid "Language:"
 msgstr ""
 
-#: autobrightness/gui.py:28
+#: autobrightness/gui.py:36
 msgid "Backend:"
 msgstr ""
 
-#: autobrightness/gui.py:31
+#: autobrightness/gui.py:39
 msgid "Camera:"
 msgstr ""
 
-#: autobrightness/gui.py:34
+#: autobrightness/gui.py:42
 msgid "Interval:"
 msgstr ""
 
-#: autobrightness/gui.py:37
+#: autobrightness/gui.py:45
 msgid "Shortcut:"
 msgstr ""
 
-#: autobrightness/gui.py:44
-msgid "Capture Shortcut"
+#: autobrightness/gui.py:52
+msgid "Select Shortcut"
 msgstr ""
 
-#: autobrightness/gui.py:46
+#: autobrightness/gui.py:54
 msgid "Test Camera"
 msgstr ""
 
-#: autobrightness/gui.py:48
+#: autobrightness/gui.py:56
 msgid "Test Backend"
 msgstr ""
 
-#: autobrightness/gui.py:50
+#: autobrightness/gui.py:58
 msgid "Save"
 msgstr ""
 
-#: autobrightness/gui.py:88
+#: autobrightness/gui.py:96
 msgid "Run autobrightness --start now."
+msgstr ""
+
+#: autobrightness/gui.py:104
+msgid "Close this message and press a key or key combination. "
+msgstr ""
+
+#: autobrightness/gui.py:133
+msgid "Will test min and max brightness via the selected backend."
 msgstr ""
 
