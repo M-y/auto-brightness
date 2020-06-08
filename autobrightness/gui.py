@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QFormLayout, QLineEdit, QPushButton, QComboBox
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QFormLayout, QLineEdit, QPushButton, QComboBox, QMessageBox
 from functools import partial
 import pkg_resources
 from autobrightness import webcam, brightness
@@ -100,6 +100,10 @@ class controller:
         """
         Shortcut button click event
         """
+        msg = QMessageBox()
+        msg.setText(_("Close this message and press a key or key combination. "))
+        msg.exec()
+
         key = keyboard.read_hotkey(True)
         if key == 'unknown':
             key = keyboard.read_event(True)
@@ -125,6 +129,10 @@ class controller:
         """
         Backend test button click event
         """
+        msg = QMessageBox()
+        msg.setText(_("Will test min and max brightness via the selected backend."))
+        msg.exec()
+
         display = brightness.Display(self._view.backendCombo.currentText(), langObj)
         oldBrightness = display.getBrightness()
         display.setBrightness(0)
