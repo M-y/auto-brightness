@@ -4,6 +4,8 @@ import pkg_resources
 from autobrightness import webcam, brightness
 import time
 import keyboard
+import imp
+import os
 
 class window(QMainWindow):
     def __init__(self):
@@ -19,12 +21,18 @@ class window(QMainWindow):
     
     def _createForm(self):
         form = QFormLayout()
+        x, projectDirectory, y = imp.find_module("autobrightness")
 
         self.languageCombo = QComboBox()
+        for dirname in os.listdir( os.path.join(projectDirectory, "locales") ):
+            if os.path.isdir( os.path.join(projectDirectory, "locales", dirname) ):
+                self.languageCombo.addItem(dirname)
         form.addRow(_('Language:'), self.languageCombo)
 
         self.backendCombo = QComboBox()
-        self.backendCombo.addItem("sysfs")
+        for filename in os.listdir( os.path.join(projectDirectory, "backend") ):
+            if filename != "__init__.py" and filename.endswith(".py"):
+                self.backendCombo.addItem( os.path.splitext(filename)[0] )
         form.addRow(_('Backend:'), self.backendCombo)
 
         self.cameraEdit = QLineEdit()
@@ -112,7 +120,6 @@ class controller:
         ret, frame = camera.getImage()
         if ret:
             camera.showImage(frame)
-
 
     def _backendButtonClick(self):
         """
