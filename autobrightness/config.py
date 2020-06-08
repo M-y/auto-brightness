@@ -16,10 +16,10 @@ class Config:
             self.load()
         else:
             # create default config
-            self.backend = 'sysfs'
+            self.backend = None
             self.camera = 0
             self.interval = 0
-            self.shortcut = "f12"
+            self.shortcut = None
             self.language = None
 
     def save(self):
@@ -48,7 +48,10 @@ class Config:
         configfile.read(self.fileLocation)
         config = configfile['autobrightness']
 
-        self.backend = config['backend']
+        if config['backend'] == 'None':
+            self.backend = None
+        else:
+            self.backend = config['backend']
 
         try:
             self.camera = config.getint('camera')

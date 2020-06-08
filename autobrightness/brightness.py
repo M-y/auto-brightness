@@ -7,6 +7,8 @@ class Display:
     Parameters: 
         backend (string)
     """
+
+    backend = None
     maxBrightness = 100
     
     def __init__(self, backend, lang):
@@ -16,7 +18,8 @@ class Display:
         if backend == 'sysfs':
             self.backend = sysfs.sysfs(lang)
         
-        self.maxBrightness = self.backend.getMaxBrightness()
+        if not self.backend is None:
+            self.maxBrightness = self.backend.getMaxBrightness()
     
     def getBrightness(self):
         """
@@ -30,4 +33,5 @@ class Display:
         Parameters:
             val (int): brightness value
         """
-        self.backend.setBrightness(val)
+        if not self.backend is None:
+            self.backend.setBrightness(val)
