@@ -41,7 +41,7 @@ class window(QMainWindow):
     def _createButtons(self):
         buttons = QHBoxLayout()
 
-        self.shortcutButton = QPushButton(_('Capture Shortcut'))
+        self.shortcutButton = QPushButton(_('Select Shortcut'))
         buttons.addWidget(self.shortcutButton)
         self.cameraButton = QPushButton(_('Test Camera'))
         buttons.addWidget(self.cameraButton)
