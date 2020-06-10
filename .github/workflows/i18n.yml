@@ -25,6 +25,7 @@ jobs:
       run: find autobrightness/locales/ -name \*.po -execdir msgfmt autobrightness.po -o autobrightness.mo \;
       
     - name: commit
+      continue-on-error: true
       run: |
         git config --global user.name 'i18n Bot'
         git config --global user.email github-actions@users.noreply.github.com
