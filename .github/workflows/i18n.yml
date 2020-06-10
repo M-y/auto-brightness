@@ -18,6 +18,9 @@ jobs:
     - name: create .pot
       run: pygettext -d autobrightness -o autobrightness/locales/autobrightness.pot autobrightness
       
+    - name: remove POT-Creation-Date
+      run: sed -i '/POT-Creation-Date/d' autobrightness/locales/autobrightness.pot
+      
     - name: create .mo
       run: find autobrightness/locales/ -name \*.po -execdir msgfmt autobrightness.po -o autobrightness.mo \;
       
