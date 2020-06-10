@@ -12,6 +12,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: install gettext
+      run: apt-get -y install gettext
+      
     - name: create .pot
       run: pygettext -d autobrightness -o autobrightness/locales/autobrightness.pot autobrightness
       
@@ -21,7 +24,7 @@ jobs:
     - name: commit
       run: |
         git config --global user.name 'i18n Bot'
-        git config --global user.email ${GITHUB_ACTOR}@users.noreply.github.com
+        git config --global user.email github-actions@users.noreply.github.com
         git add -A
         git commit -m 'Auto generate .pot and .mo files'
         git push
