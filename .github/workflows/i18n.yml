@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: install gettext
-      run: apt-get -y install gettext
+      run: sudo apt-get -y install gettext
       
     - name: create .pot
       run: pygettext -d autobrightness -o autobrightness/locales/autobrightness.pot autobrightness
