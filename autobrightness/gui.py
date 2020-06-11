@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QFormLayout, QLineEdit, QPushButton, QComboBox, QMessageBox
 from functools import partial
-import pkg_resources
 from autobrightness import webcam, brightness
+import autobrightness
 import time
 import keyboard
 import imp
@@ -10,7 +10,8 @@ import os
 class window(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle('Auto Brightness ' + pkg_resources.require("autobrightness")[0].version)
+        
+        self.setWindowTitle('Auto Brightness ' + autobrightness.__version__)
         self.generalLayout = QVBoxLayout()
         self._centralWidget = QWidget(self)
         self.setCentralWidget(self._centralWidget)

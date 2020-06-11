@@ -1,12 +1,11 @@
 from autobrightness import webcam, brightness, config, gui
+import autobrightness
 import time
 import keyboard
-import pkg_resources
 import gettext
 import os
 import argparse
-
-version = pkg_resources.require("autobrightness")[0].version
+import pkg_resources
 
 def init_argparse() -> argparse.ArgumentParser:
     """
@@ -18,7 +17,7 @@ def init_argparse() -> argparse.ArgumentParser:
 
     parser.add_argument(
         "-v", "--version", action="version",
-        version = f"{parser.prog} version {version}"
+        version = f"{parser.prog} version {autobrightness.__version__}"
     )
 
     group = parser.add_mutually_exclusive_group()
@@ -28,7 +27,7 @@ def init_argparse() -> argparse.ArgumentParser:
 
     return parser
 
-def autobrightness(camera, display):
+def autobrightness_run(camera, display):
     """
     Calculate and sets brightness
 
@@ -72,7 +71,7 @@ def main():
 
         def shortcut(e = None):
             print(_("Shortcut key used."))
-            autobrightness(camera, display)
+            autobrightness_run(camera, display)
 
         if not settings.shortcut is None:
             if type(settings.shortcut) == str:
@@ -83,14 +82,14 @@ def main():
         while True:
             if settings.interval > 0:
                 time.sleep( settings.interval )
-                autobrightness(camera, display)
+                autobrightness_run(camera, display)
             elif not settings.shortcut is None:
                 time.sleep(1)
             else:
                 print(_("No interval nor shortcut selected. Exiting."))
                 break
     elif args.set:
-        autobrightness(camera, display)
+        autobrightness_run(camera, display)
     else:
         gui.show(lang, settings)
 
