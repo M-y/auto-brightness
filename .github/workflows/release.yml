@@ -15,8 +15,7 @@ jobs:
       run: ./createdeb.sh "$VER"
     - name: Create binary
       run: |
-        pip --version
-        pip3 --version
+        pip3 install setuptools
         pip3 install pyinstaller
         pyinstaller --windowed --onefile --name autobrightness autobrightness/__main__.py
         zip --junk-paths autobrightness_$VER-standalone.zip dist/autobrightness README.md
@@ -52,20 +51,21 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@master
-    - name: Create mac
+    - name: Create macos
       run: |
         pip3 install pyinstaller
         pyinstaller --windowed --onefile --name autobrightness autobrightness/__main__.py
-        ls dist
-        zip --junk-paths autobrightness_${GITHUB_REF#refs/*/}-mac.zip dist/autobrightness.app README.md
+        ls -lh dist
+        zip --junk-paths autobrightness_${GITHUB_REF#refs/*/}-macos.zip dist/autobrightness dist/autobrightness.app README.md
       
     - uses: actions/upload-artifact@master
-      name: Upload mac
+      name: Upload macos
       with:
-        name: mac
-        path: autobrightness*-mac.zip
+        name: macos
+        path: autobrightness*-macos.zip
   
   publish:
+    needs: [build-linux, build-windows, build-macos]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@master
