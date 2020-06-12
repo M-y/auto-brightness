@@ -15,7 +15,9 @@ jobs:
       run: ./createdeb.sh "$VER"
     - name: Create binary
       run: |
-        pip install pyinstaller
+        pip --version
+        pip3 --version
+        pip3 install pyinstaller
         pyinstaller --windowed --onefile --name autobrightness autobrightness/__main__.py
         zip --junk-paths autobrightness_$VER-standalone.zip dist/autobrightness README.md
       
@@ -38,7 +40,7 @@ jobs:
       run: |
         pip install pyinstaller
         pyinstaller --windowed --onefile --name autobrightness autobrightness/__main__.py
-        zip --junk-paths autobrightness_${GITHUB_REF#refs/*/}-windows.zip dist/autobrightness.exe README.md
+        Compress-Archive -Path dist\autobrightness.exe,README.md -DestinationPath autobrightness_${GITHUB_REF#refs/*/}-windows.zip
       
     - uses: actions/upload-artifact@master
       name: Upload exe
@@ -52,7 +54,7 @@ jobs:
     - uses: actions/checkout@master
     - name: Create mac
       run: |
-        pip install pyinstaller
+        pip3 install pyinstaller
         pyinstaller --windowed --onefile --name autobrightness autobrightness/__main__.py
         ls dist
         zip --junk-paths autobrightness_${GITHUB_REF#refs/*/}-mac.zip dist/autobrightness.app README.md
