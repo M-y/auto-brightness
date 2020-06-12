@@ -18,6 +18,7 @@ jobs:
         pip3 install wheel
         pip3 install setuptools
         pip3 install pyinstaller
+        find / -name "pyinstaller"
         pyinstaller --windowed --onefile --name autobrightness autobrightness/__main__.py
         zip --junk-paths autobrightness_$VER-standalone.zip dist/autobrightness README.md
       
@@ -56,7 +57,7 @@ jobs:
       run: |
         pip3 install pyinstaller
         pyinstaller --windowed --onefile --name autobrightness autobrightness/__main__.py
-        zip --junk-paths autobrightness_${GITHUB_REF#refs/*/}-macos.zip dist README.md
+        zip autobrightness_${GITHUB_REF#refs/*/}-macos.zip dist/autobrightness dist/autobrightness.app README.md
       
     - uses: actions/upload-artifact@master
       name: Upload macos
