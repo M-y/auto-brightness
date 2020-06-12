@@ -5,7 +5,7 @@ on:
     types: [created]
 
 jobs:
-  build:
+  build-linux:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -13,18 +13,61 @@ jobs:
       run: echo ::set-env name=VER::${GITHUB_REF#refs/*/}
     - name: Create .deb
       run: ./createdeb.sh "$VER"
+    - name: Create binary
+      run: |
+        pip install pyinstaller
+        pyinstaller --windowed --onefile --name autobrightness autobrightness/__main__.py
+        zip --junk-paths autobrightness_$VER-standalone.zip dist/autobrightness README.md
       
     - uses: actions/upload-artifact@master
-      name: Upload Artifact
+      name: Upload deb
       with:
         name: deb
         path: autobrightness*.deb
+    - uses: actions/upload-artifact@master
+      name: Upload standalone
+      with:
+        name: standalone
+        path: autobrightness*-standalone.zip
+  
+  build-windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Create exe
+      run: |
+        pip install pyinstaller
+        pyinstaller --windowed --onefile --name autobrightness autobrightness/__main__.py
+        zip --junk-paths autobrightness_${GITHUB_REF#refs/*/}-windows.zip dist/autobrightness.exe README.md
+      
+    - uses: actions/upload-artifact@master
+      name: Upload exe
+      with:
+        name: exe
+        path: autobrightness*-windows.zip
+  
+  build-macos:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Create mac
+      run: |
+        pip install pyinstaller
+        pyinstaller --windowed --onefile --name autobrightness autobrightness/__main__.py
+        ls dist
+        zip --junk-paths autobrightness_${GITHUB_REF#refs/*/}-mac.zip dist/autobrightness.app README.md
+      
+    - uses: actions/upload-artifact@master
+      name: Upload mac
+      with:
+        name: mac
+        path: autobrightness*-mac.zip
   
   publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@master
-        name: Download Artifact
+        name: Download Artifacts
       
       - uses: skx/github-action-publish-binaries@master
         name: Upload .deb
@@ -32,3 +75,24 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           args: deb/autobrightness*.deb
+
+      - uses: skx/github-action-publish-binaries@master
+        name: Upload standalone
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: standalone/autobrightness*-standalone.zip
+
+      - uses: skx/github-action-publish-binaries@master
+        name: Upload exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: exe/autobrightness*-windows.zip
+      
+      - uses: skx/github-action-publish-binaries@master
+        name: Upload mac
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: mac/autobrightness*-mac.zip
