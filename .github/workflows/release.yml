@@ -15,6 +15,7 @@ jobs:
       run: ./createdeb.sh "$VER"
     - name: Create binary
       run: |
+        pip3 install wheel
         pip3 install setuptools
         pip3 install pyinstaller
         pyinstaller --windowed --onefile --name autobrightness autobrightness/__main__.py
@@ -55,8 +56,7 @@ jobs:
       run: |
         pip3 install pyinstaller
         pyinstaller --windowed --onefile --name autobrightness autobrightness/__main__.py
-        ls -lh dist
-        zip --junk-paths autobrightness_${GITHUB_REF#refs/*/}-macos.zip dist/autobrightness dist/autobrightness.app README.md
+        zip --junk-paths autobrightness_${GITHUB_REF#refs/*/}-macos.zip dist README.md
       
     - uses: actions/upload-artifact@master
       name: Upload macos
