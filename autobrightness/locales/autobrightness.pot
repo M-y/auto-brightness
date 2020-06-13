@@ -14,19 +14,19 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: autobrightness/__main__.py:45
+#: autobrightness/__main__.py:44
 msgid "Adjusting brightness to %(percentage)d%% (%(value)d)"
 msgstr ""
 
-#: autobrightness/__main__.py:70
+#: autobrightness/__main__.py:69
 msgid "Starting daemon..."
 msgstr ""
 
-#: autobrightness/__main__.py:73
+#: autobrightness/__main__.py:72
 msgid "Shortcut key used."
 msgstr ""
 
-#: autobrightness/__main__.py:89
+#: autobrightness/__main__.py:88
 msgid "No interval nor shortcut selected. Exiting."
 msgstr ""
 
@@ -34,51 +34,51 @@ msgstr ""
 msgid " is not writable!"
 msgstr ""
 
-#: autobrightness/gui.py:31
+#: autobrightness/gui.py:30
 msgid "Language:"
 msgstr ""
 
-#: autobrightness/gui.py:37
+#: autobrightness/gui.py:36
 msgid "Backend:"
 msgstr ""
 
-#: autobrightness/gui.py:40
+#: autobrightness/gui.py:39
 msgid "Camera:"
 msgstr ""
 
-#: autobrightness/gui.py:43
+#: autobrightness/gui.py:42
 msgid "Interval:"
 msgstr ""
 
-#: autobrightness/gui.py:46
+#: autobrightness/gui.py:45
 msgid "Shortcut:"
 msgstr ""
 
-#: autobrightness/gui.py:53
+#: autobrightness/gui.py:52
 msgid "Select Shortcut"
 msgstr ""
 
-#: autobrightness/gui.py:55
+#: autobrightness/gui.py:54
 msgid "Test Camera"
 msgstr ""
 
-#: autobrightness/gui.py:57
+#: autobrightness/gui.py:56
 msgid "Test Backend"
 msgstr ""
 
-#: autobrightness/gui.py:59
+#: autobrightness/gui.py:58
 msgid "Save"
 msgstr ""
 
-#: autobrightness/gui.py:97
+#: autobrightness/gui.py:96
 msgid "Run autobrightness --start now."
 msgstr ""
 
-#: autobrightness/gui.py:105
+#: autobrightness/gui.py:104
 msgid "Close this message and press a key or key combination. "
 msgstr ""
 
-#: autobrightness/gui.py:134
+#: autobrightness/gui.py:133
 msgid "Will test min and max brightness via the selected backend."
 msgstr ""
 
