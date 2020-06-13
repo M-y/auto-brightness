@@ -16,6 +16,7 @@ jobs:
         pip3 install wheel
         pip3 install setuptools
         pip3 install pyinstaller
+        pip3 install .
         /home/runner/.local/bin/pyinstaller --add-data 'autobrightness/locales:autobrightness/locales' --add-data 'autobrightness/backend:autobrightness/backend' --windowed --onefile --name autobrightness autobrightness/__main__.py
         zip --junk-paths autobrightness_${{ github.event.release.tag_name }}-standalone.zip dist/autobrightness README.md
       
@@ -37,6 +38,7 @@ jobs:
     - name: Create exe
       run: |
         pip install pyinstaller
+        pip install .
         pyinstaller --add-data 'autobrightness\locales;autobrightness\locales' --add-data 'autobrightness\backend;autobrightness\backend' --windowed --onefile --name autobrightness autobrightness\__main__.py
         Compress-Archive -Path dist\autobrightness.exe,README.md -DestinationPath autobrightness_${{ github.event.release.tag_name }}-windows.zip
       
@@ -53,6 +55,7 @@ jobs:
     - name: Create macos app
       run: |
         pip3 install pyinstaller
+        pip3 install .
         pyinstaller --add-data 'autobrightness/locales:autobrightness/locales' --add-data 'autobrightness/backend:autobrightness/backend' --windowed --onefile --name autobrightness autobrightness/__main__.py
         mv dist/autobrightness.app .
         sed -i.bak 's/0.0.0/${{ github.event.release.tag_name }}/g' autobrightness.app/Contents/Info.plist
