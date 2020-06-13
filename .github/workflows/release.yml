@@ -55,7 +55,7 @@ jobs:
         pip3 install pyinstaller
         pyinstaller --windowed --onefile --name autobrightness autobrightness/__main__.py
         mv dist/autobrightness.app .
-        sed -e 's/0.0.0/${{ github.event.release.tag_name }}/g' autobrightness.app/Contents/Info.plist
+        sed -e 's/0.0.0/${{ github.event.release.tag_name }}/g' autobrightness.app/Contents/Info.plist > autobrightness.app/Contents/Info.plist
         zip --recurse-paths autobrightness_${{ github.event.release.tag_name }}-macos.zip autobrightness.app README.md
       
     - uses: actions/upload-artifact@master
