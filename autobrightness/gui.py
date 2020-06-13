@@ -22,16 +22,15 @@ class window(QMainWindow):
     
     def _createForm(self):
         form = QFormLayout()
-        x, projectDirectory, y = imp.find_module("autobrightness")
 
         self.languageCombo = QComboBox()
-        for dirname in os.listdir( os.path.join(projectDirectory, "locales") ):
-            if os.path.isdir( os.path.join(projectDirectory, "locales", dirname) ):
+        for dirname in os.listdir( os.path.join(autobrightness.ROOT_DIR, "locales") ):
+            if os.path.isdir( os.path.join(autobrightness.ROOT_DIR, "locales", dirname) ):
                 self.languageCombo.addItem(dirname)
         form.addRow(_('Language:'), self.languageCombo)
 
         self.backendCombo = QComboBox()
-        for filename in os.listdir( os.path.join(projectDirectory, "backend") ):
+        for filename in os.listdir( os.path.join(autobrightness.ROOT_DIR, "backend") ):
             if filename != "__init__.py" and filename.endswith(".py"):
                 self.backendCombo.addItem( os.path.splitext(filename)[0] )
         form.addRow(_('Backend:'), self.backendCombo)

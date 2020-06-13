@@ -5,7 +5,6 @@ import keyboard
 import gettext
 import os
 import argparse
-import pkg_resources
 
 def init_argparse() -> argparse.ArgumentParser:
     """
@@ -59,7 +58,7 @@ def main():
     if settings.language is None:
         lang = gettext
     else:
-        lang = gettext.translation("autobrightness", pkg_resources.resource_filename('autobrightness', 'locales'), [settings.language])
+        lang = gettext.translation("autobrightness", os.path.join(autobrightness.ROOT_DIR, 'locales'), [settings.language])
     global _
     _ = lang.gettext
 
