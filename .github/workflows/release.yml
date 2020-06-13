@@ -13,7 +13,7 @@ jobs:
       run: echo ::set-env name=VER::${GITHUB_REF#refs/*/}
     - name: Create .deb
       run: ./createdeb.sh "$VER"
-    - name: Create binary
+    - name: Create standalone binary
       run: |
         pip3 install wheel
         pip3 install setuptools
@@ -22,12 +22,12 @@ jobs:
         zip --junk-paths autobrightness_$VER-standalone.zip dist/autobrightness README.md
       
     - uses: actions/upload-artifact@master
-      name: Upload deb
+      name: Upload deb artifact
       with:
         name: deb
         path: autobrightness*.deb
     - uses: actions/upload-artifact@master
-      name: Upload standalone
+      name: Upload standalone artifact
       with:
         name: standalone
         path: autobrightness*-standalone.zip
@@ -43,7 +43,7 @@ jobs:
         Compress-Archive -Path dist\autobrightness.exe,README.md -DestinationPath autobrightness_${GITHUB_REF#refs/*/}-windows.zip
       
     - uses: actions/upload-artifact@master
-      name: Upload exe
+      name: Upload exe artifact
       with:
         name: exe
         path: autobrightness*-windows.zip
@@ -52,15 +52,14 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@master
-    - name: Create macos
+    - name: Create macos app
       run: |
         pip3 install pyinstaller
         pyinstaller --windowed --onefile --name autobrightness autobrightness/__main__.py
-        ls -lh dist/autobrightness.app/
-        zip --junk-paths autobrightness_${GITHUB_REF#refs/*/}-macos.zip dist/autobrightness dist/autobrightness.app README.md
+        zip --recurse-paths autobrightness_${GITHUB_REF#refs/*/}-macos.zip dist README.md
       
     - uses: actions/upload-artifact@master
-      name: Upload macos
+      name: Upload macos artifact
       with:
         name: macos
         path: autobrightness*-macos.zip
