@@ -1,4 +1,4 @@
-from autobrightness.backend import *
+from autobrightness.backend import sysfs, powercfg
 
 class Display:
     """
@@ -17,6 +17,8 @@ class Display:
         
         if backend == 'sysfs':
             self.backend = sysfs.sysfs(lang)
+        if backend == 'powercfg':
+            self.backend = powercfg.Powercfg(lang)
         
         if not self.backend is None:
             self.maxBrightness = self.backend.getMaxBrightness()
