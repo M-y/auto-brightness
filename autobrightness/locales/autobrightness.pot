@@ -70,15 +70,15 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: autobrightness/gui.py:96
+#: autobrightness/gui.py:98
 msgid "Run autobrightness --start now."
 msgstr ""
 
-#: autobrightness/gui.py:104
+#: autobrightness/gui.py:107
 msgid "Close this message and press a key or key combination. "
 msgstr ""
 
-#: autobrightness/gui.py:133
+#: autobrightness/gui.py:136
 msgid "Will test min and max brightness via the selected backend."
 msgstr ""
 
