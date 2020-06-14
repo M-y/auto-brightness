@@ -82,7 +82,11 @@ msgstr ""
 msgid "Close this message and press a key or key combination. "
 msgstr ""
 
-#: autobrightness/gui.py:157
+#: autobrightness/gui.py:134
+msgid "Press again."
+msgstr ""
+
+#: autobrightness/gui.py:161
 msgid "Will test min and max brightness via the selected backend."
 msgstr ""
 
