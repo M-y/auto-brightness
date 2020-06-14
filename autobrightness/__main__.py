@@ -22,7 +22,7 @@ def init_argparse() -> argparse.ArgumentParser:
     group = parser.add_mutually_exclusive_group()
     group.add_argument("--start", help="Start the daemon", action='store_true')
     group.add_argument("--set", help="Set brightness and exit", action='store_true')
-    parser.add_argument("--config", help="Use alternative config file instead of .autobrightness in home directory.")
+    parser.add_argument("--config", help="Use alternative config file instead of .autobrightness in home directory.", type=str)
 
     return parser
 
@@ -44,11 +44,42 @@ def autobrightness_run(camera, display):
     print(_("Adjusting brightness to %(percentage)d%% (%(value)d)") % {'percentage': (calculated * 100 / display.maxBrightness), 'value': calculated})
     display.setBrightness(calculated)
 
+def daemon(settings, lang):
+    """
+    Parameters:
+        settings (object)
+        lang (object)
+    """
+    print(_("Starting daemon..."))
+    camera = webcam.Camera( settings.camera )
+    display = brightness.Display(settings.backend, lang, settings)
+
+    def shortcut(e = None):
+        print(_("Shortcut key used."))
+        autobrightness_run(camera, display)
+
+    if not settings.shortcut is None:
+        if type(settings.shortcut) == str:
+            keyboard.add_hotkey(settings.shortcut, shortcut)
+        else:
+            keyboard.on_press_key(settings.shortcut, shortcut)
+
+    while True:
+        if settings.interval > 0:
+            time.sleep( settings.interval )
+            autobrightness_run(camera, display)
+        elif not settings.shortcut is None:
+            time.sleep(1)
+        else:
+            print(_("No interval nor shortcut selected. Exiting."))
+            break
+
 def main():
     parser = init_argparse()
     args = parser.parse_args()
     
     if args.config:
+        # if config argument used create file
         settings = config.Config(args.config)
         settings.save()
     else:
@@ -62,32 +93,11 @@ def main():
     global _
     _ = lang.gettext
 
-    camera = webcam.Camera( settings.camera )
-    display = brightness.Display(settings.backend, lang, settings)
-
     if args.start:
-        print(_("Starting daemon..."))
-
-        def shortcut(e = None):
-            print(_("Shortcut key used."))
-            autobrightness_run(camera, display)
-
-        if not settings.shortcut is None:
-            if type(settings.shortcut) == str:
-                keyboard.add_hotkey(settings.shortcut, shortcut)
-            else:
-                keyboard.on_press_key(settings.shortcut, shortcut)
-
-        while True:
-            if settings.interval > 0:
-                time.sleep( settings.interval )
-                autobrightness_run(camera, display)
-            elif not settings.shortcut is None:
-                time.sleep(1)
-            else:
-                print(_("No interval nor shortcut selected. Exiting."))
-                break
+        daemon(settings, lang)
     elif args.set:
+        camera = webcam.Camera( settings.camera )
+        display = brightness.Display(settings.backend, lang, settings)
         autobrightness_run(camera, display)
     else:
         gui.show(lang, settings)
