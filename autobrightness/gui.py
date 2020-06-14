@@ -7,7 +7,7 @@ import keyboard
 import imp
 import os
 
-class window(QMainWindow):
+class Window(QMainWindow):
     def __init__(self):
         super().__init__()
         
@@ -60,7 +60,7 @@ class window(QMainWindow):
 
         self.generalLayout.addLayout(buttons)
 
-class controller:
+class Controller:
     def __init__(self, view, config):
         self._view = view
         self._config = config
@@ -93,7 +93,10 @@ class controller:
         self._config.shortcut = self._view.shortcutEdit.text()
 
         self._config.save()
-        print(_("Run autobrightness --start now."))
+        
+        msg = QMessageBox()
+        msg.setText(_("Run autobrightness --start now."))
+        msg.exec()
         self._view.close()
 
     def _shortcutButtonClick(self):
@@ -117,7 +120,7 @@ class controller:
         """
         try:
             camLoc = int(self._view.cameraEdit.text())
-        except:
+        except ValueError:
             camLoc = self._view.cameraEdit.text()
 
         camera = webcam.Camera(camLoc)
@@ -150,7 +153,7 @@ def show(lang, config):
     _ = langObj.gettext
 
     app = QApplication([])
-    view = window()
+    view = Window()
     view.show()
-    controller(view, config)
+    Controller(view, config)
     app.exec_()
