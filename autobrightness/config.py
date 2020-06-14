@@ -1,22 +1,28 @@
 import configparser
-from os import path
+import os
 
 class Config:
     """
     Parameters:
         configFile (string): config file location. Will use .autobrightness in home directory if not set
     """
+
+    configfile = configparser.ConfigParser()
+
     def __init__(self, configFile = None):
         if configFile is None:
-            self.fileLocation = path.join(path.expanduser("~"), ".autobrightness")
+            self.fileLocation = os.path.join(os.path.expanduser("~"), ".autobrightness")
         else:
             self.fileLocation = configFile
 
-        if path.exists(self.fileLocation):
+        if os.path.exists(self.fileLocation):
             self.load()
         else:
             # create default config
-            self.backend = None
+            if os.name == "nt":
+                self.backend = "powercfg"
+            else:
+                self.backend = "sysfs"
             self.camera = 0
             self.interval = 0
             self.shortcut = None
@@ -26,49 +32,69 @@ class Config:
         """
         Save config to file
         """
-        configfile = configparser.ConfigParser()
-        configfile['autobrightness'] = {}
-        config = configfile['autobrightness']
+        # set main options
+        self.setOption('autobrightness', 'backend', self.backend)
+        self.setOption('autobrightness', 'camera', self.camera)
+        self.setOption('autobrightness', 'interval', self.interval)
+        self.setOption('autobrightness', 'shortcut', self.shortcut)
+        self.setOption('autobrightness', 'language', self.language)
 
-        config['backend'] = str(self.backend)
-        config['camera'] = str(self.camera)
-        config['interval'] = str(self.interval)
-        config['shortcut'] = str(self.shortcut)
-        config['language'] = str(self.language)
-
-        print(self.fileLocation)
         with open(self.fileLocation, 'w') as IO:
-            configfile.write(IO)
+            self.configfile.write(IO)
     
     def load(self):
         """
         Load config from file
         """
-        configfile = configparser.ConfigParser()
-        configfile.read(self.fileLocation)
-        config = configfile['autobrightness']
+        self.configfile.read(self.fileLocation)
 
-        if config['backend'] == 'None':
-            self.backend = None
-        else:
-            self.backend = config['backend']
+        # get main options
+        self.backend = self.getOption('autobrightness', 'backend')
+        self.camera = self.getOption('autobrightness', 'camera')
+        self.interval = self.getOption('autobrightness', 'interval', int)
+        self.shortcut = self.getOption('autobrightness', 'shortcut', int)
+        self.language = self.getOption('autobrightness', 'language')
+    
+    def getOption(self, section, option, type = str):
+        """
+        Get an option
 
-        try:
-            self.camera = config.getint('camera')
-        except:
-            self.camera = config['camera']
+        Parameters:
+            section (str): section name in config file
+            option (str): option name
+            type: option type (default: str)
         
-        self.interval = config.getint('interval')
+        Returns:
+            (defines with type parameter): None if not found
+        """
 
-        if config['shortcut'] == 'None':
-            self.shortcut = None
-        else:
+        if not self.configfile.has_option(section, option):
+            return None
+        
+        value = self.configfile[section][option]
+        
+        if value == 'None':
+            return None
+        
+        if type is int:
             try:
-                self.shortcut = config.getint('shortcut')
+                value = self.configfile[section].getint(option)
             except:
-                self.shortcut = config['shortcut']
+                value = self.configfile[section].get(option)
         
-        if config['language'] == 'None':
-            self.language = None
-        else:
-            self.language = config['language']
+        return value
+    
+    def setOption(self, section, option, value):
+        """
+        Set an option
+
+        Parameters:
+            section (str): section name in config file
+            option (str): option name
+            value (any): option value
+        """
+
+        if not self.configfile.has_section(section):
+            self.configfile[section] = {}
+        
+        self.configfile[section][option] = str(value)
