@@ -35,6 +35,9 @@ class Window(QMainWindow):
                 self.backendCombo.addItem( os.path.splitext(filename)[0] )
         form.addRow(_('Backend:'), self.backendCombo)
 
+        self.backendLayout = QVBoxLayout()
+        form.addRow(self.backendLayout)
+
         self.cameraEdit = QLineEdit()
         form.addRow(_('Camera:'), self.cameraEdit)
 
@@ -71,16 +74,33 @@ class Controller:
         self._view.cameraEdit.setText(str(self._config.camera))
         self._view.intervalEdit.setText(str(self._config.interval))
         self._view.shortcutEdit.setText(str(self._config.shortcut))
+        self._backendComboChange()
 
         # Connect signals and slots
         self._connectSignals()
 
     def _connectSignals(self):
+        self._view.backendCombo.currentIndexChanged.connect(partial(self._backendComboChange))
         self._view.saveButton.clicked.connect(partial(self._saveButtonClick))
         self._view.shortcutButton.clicked.connect(partial(self._shortcutButtonClick))
         self._view.cameraButton.clicked.connect(partial(self._cameraButtonClick))
         self._view.backendButton.clicked.connect(partial(self._backendButtonClick))
     
+    def _backendComboChange(self):
+        def clearLayout(layout):
+            if layout is not None:
+                while layout.count():
+                    item = layout.takeAt(0)
+                    widget = item.widget()
+                    if widget is not None:
+                        widget.deleteLater()
+                    else:
+                        clearLayout(item.layout())
+        
+        clearLayout(self._view.backendLayout)
+        self.backend = brightness.Display(self._view.backendCombo.currentText(), langObj, self._config)
+        self.backend.configWindow(self._view.backendLayout)
+
     def _saveButtonClick(self):
         """
         Save button click event
@@ -92,6 +112,7 @@ class Controller:
         self._config.interval = self._view.intervalEdit.text()
         self._config.shortcut = self._view.shortcutEdit.text()
 
+        self.backend.configSave()
         self._config.save()
         
         msg = QMessageBox()
@@ -136,13 +157,13 @@ class Controller:
         msg.setText(_("Will test min and max brightness via the selected backend."))
         msg.exec()
 
-        display = brightness.Display(self._view.backendCombo.currentText(), langObj)
-        oldBrightness = display.getBrightness()
-        display.setBrightness(0)
+        self.backend.configSave()
+        oldBrightness = self.backend.getBrightness()
+        self.backend.setBrightness(0)
         time.sleep(1)
-        display.setBrightness(display.maxBrightness)
+        self.backend.setBrightness(self.backend.maxBrightness)
         time.sleep(1)
-        display.setBrightness(oldBrightness)
+        self.backend.setBrightness(oldBrightness)
 
 
 
