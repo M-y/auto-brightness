@@ -130,6 +130,10 @@ class Controller:
 
         key = keyboard.read_hotkey(True)
         if key == 'unknown':
+            msg = QMessageBox()
+            msg.setText(_("Press again."))
+            msg.exec()
+
             key = keyboard.read_event(True)
             self._view.shortcutEdit.setText( str(key.scan_code) )
         else:
