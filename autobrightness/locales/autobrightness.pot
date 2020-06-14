@@ -30,6 +30,10 @@ msgstr ""
 msgid "No interval nor shortcut selected. Exiting."
 msgstr ""
 
+#: autobrightness/backend/powercfg.py:109
+msgid "Display Brightness GUID:"
+msgstr ""
+
 #: autobrightness/backend/sysfs.py:21
 msgid " is not writable!"
 msgstr ""
@@ -42,43 +46,43 @@ msgstr ""
 msgid "Backend:"
 msgstr ""
 
-#: autobrightness/gui.py:39
+#: autobrightness/gui.py:42
 msgid "Camera:"
 msgstr ""
 
-#: autobrightness/gui.py:42
+#: autobrightness/gui.py:45
 msgid "Interval:"
 msgstr ""
 
-#: autobrightness/gui.py:45
+#: autobrightness/gui.py:48
 msgid "Shortcut:"
 msgstr ""
 
-#: autobrightness/gui.py:52
+#: autobrightness/gui.py:55
 msgid "Select Shortcut"
 msgstr ""
 
-#: autobrightness/gui.py:54
+#: autobrightness/gui.py:57
 msgid "Test Camera"
 msgstr ""
 
-#: autobrightness/gui.py:56
+#: autobrightness/gui.py:59
 msgid "Test Backend"
 msgstr ""
 
-#: autobrightness/gui.py:58
+#: autobrightness/gui.py:61
 msgid "Save"
 msgstr ""
 
-#: autobrightness/gui.py:98
+#: autobrightness/gui.py:119
 msgid "Run autobrightness --start now."
 msgstr ""
 
-#: autobrightness/gui.py:107
+#: autobrightness/gui.py:128
 msgid "Close this message and press a key or key combination. "
 msgstr ""
 
-#: autobrightness/gui.py:136
+#: autobrightness/gui.py:157
 msgid "Will test min and max brightness via the selected backend."
 msgstr ""
 
