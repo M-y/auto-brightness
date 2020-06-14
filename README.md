@@ -1,5 +1,7 @@
 # auto-brightness
-![i18n](https://github.com/M-y/auto-brightness/workflows/i18n/badge.svg) [![SonarCloud](https://github.com/M-y/auto-brightness/workflows/SonarCloud/badge.svg)](https://sonarcloud.io/dashboard?id=M-y_auto-brightness&branch=master) ![release](https://github.com/M-y/auto-brightness/workflows/release/badge.svg)
+![i18n](https://github.com/M-y/auto-brightness/workflows/i18n/badge.svg)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=M-y_auto-brightness&metric=alert_status)](https://sonarcloud.io/dashboard?id=M-y_auto-brightness)
+![release](https://github.com/M-y/auto-brightness/workflows/release/badge.svg)
 
 Auto change screen brightness using webcam on pc's that don't have ambient light sensor.
 
