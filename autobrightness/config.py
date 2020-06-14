@@ -50,7 +50,7 @@ class Config:
 
         # get main options
         self.backend = self.getOption('autobrightness', 'backend')
-        self.camera = self.getOption('autobrightness', 'camera')
+        self.camera = self.getOption('autobrightness', 'camera', int)
         self.interval = self.getOption('autobrightness', 'interval', int)
         self.shortcut = self.getOption('autobrightness', 'shortcut', int)
         self.language = self.getOption('autobrightness', 'language')
