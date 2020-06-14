@@ -63,7 +63,7 @@ def main():
     _ = lang.gettext
 
     camera = webcam.Camera( settings.camera )
-    display = brightness.Display(settings.backend, lang)
+    display = brightness.Display(settings.backend, lang, settings)
 
     if args.start:
         print(_("Starting daemon..."))
