@@ -18,9 +18,9 @@ jobs:
     
     - name: run coverage
       run: |
-        pip3 install coverage
-        coverage run tests/test_*.py
-        coverage xml
+        sudo pip3 install coverage
+        sudo coverage run tests/test_*.py
+        sudo coverage xml
 
       
     - name: SonarCloud Scan
