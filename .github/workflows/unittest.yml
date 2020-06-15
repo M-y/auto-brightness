@@ -1,0 +1,17 @@
+name: unittest
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+    types: [opened, synchronize, reopened]
+
+jobs:
+  sonar:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: run unittest
+      run: python3 -m unittest discover -s tests
