@@ -18,6 +18,7 @@ jobs:
     
     - name: run coverage
       run: |
+        sudo pip3 install setuptools
         sudo pip3 install .
         sudo pip3 install coverage
         sudo coverage run tests/test_*.py
