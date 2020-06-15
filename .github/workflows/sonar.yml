@@ -15,6 +15,13 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
+    
+    - name: run coverage
+      run: |
+        pip3 install coverage
+        coverage run tests/test_*.py
+        coverage xml
+
       
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@master
