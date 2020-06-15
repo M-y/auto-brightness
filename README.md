@@ -1,5 +1,6 @@
 # auto-brightness
 ![i18n](https://github.com/M-y/auto-brightness/workflows/i18n/badge.svg)
+![unittest](https://github.com/M-y/auto-brightness/workflows/unittest/badge.svg)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=M-y_auto-brightness&metric=alert_status)](https://sonarcloud.io/dashboard?id=M-y_auto-brightness)
 ![release](https://github.com/M-y/auto-brightness/workflows/release/badge.svg)
 
