@@ -79,7 +79,7 @@ class Config:
         if type is int:
             try:
                 value = self.configfile[section].getint(option)
-            except:
+            except ValueError:
                 value = self.configfile[section].get(option)
         
         return value

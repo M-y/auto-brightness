@@ -35,6 +35,7 @@ class ConfigTest(unittest.TestCase):
         configIns = config.Config(self.configfile)
         self.assertEqual(configIns.getOption("test", "value", int), 1)
         self.assertEqual(configIns.getOption("test", "valuestr"), "str")
+        self.assertEqual(configIns.getOption("test", "valuestr", int), "str")
         self.assertIsNone(configIns.getOption("test", "None"))
         self.assertIsNone(configIns.getOption("test", "notexists"))
     
