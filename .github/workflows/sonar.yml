@@ -27,7 +27,7 @@ jobs:
     
     - name: run coverage
       run: |
-        coverage run tests/test_*.py
+        coverage run --source . -m unittest discover -s tests
         coverage xml
         cat coverage.xml
       
