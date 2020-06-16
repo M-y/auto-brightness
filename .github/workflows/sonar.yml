@@ -29,6 +29,7 @@ jobs:
       run: |
         coverage run tests/test_*.py
         coverage xml
+        cat coverage.xml
       
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@master
