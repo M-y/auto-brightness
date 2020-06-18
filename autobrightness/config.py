@@ -73,7 +73,7 @@ class Config:
         
         value = self.configfile[section][option]
         
-        if value == 'None':
+        if value == 'None' or len(value) == 0:
             return None
         
         if type is int:
