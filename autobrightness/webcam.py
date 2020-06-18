@@ -3,10 +3,10 @@ import cv2
 class Camera:
     """
     Parameters:
-        camera (int|string): id or path of camera
+        device (int|string): id or path of camera
     """
-    def __init__(self, camera):
-        self.camera = camera
+    def __init__(self, device):
+        self.device = device
     
     def getImage(self):
         """
@@ -16,7 +16,7 @@ class Camera:
             ret (bool): false on failure
             frame (array)
         """
-        cam = cv2.VideoCapture(self.camera)
+        cam = cv2.VideoCapture(self.device)
         ret, frame = cam.read()
         cam.release()
         return ret, frame
