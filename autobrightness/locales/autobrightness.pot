@@ -14,28 +14,28 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: autobrightness/__main__.py:44
-msgid "Adjusting brightness to %(percentage)d%% (%(value)d)"
-msgstr ""
-
-#: autobrightness/__main__.py:53
-msgid "Starting daemon..."
-msgstr ""
-
-#: autobrightness/__main__.py:58
-msgid "Shortcut key used."
-msgstr ""
-
-#: autobrightness/__main__.py:74
-msgid "No interval nor shortcut selected. Exiting."
-msgstr ""
-
 #: autobrightness/backend/powercfg.py:109
 msgid "Display Brightness GUID:"
 msgstr ""
 
 #: autobrightness/backend/sysfs.py:21
 msgid " is not writable!"
+msgstr ""
+
+#: autobrightness/brightness.py:39
+msgid "Adjusting brightness to %(percentage)d%% (%(value)d)"
+msgstr ""
+
+#: autobrightness/daemon.py:16
+msgid "Starting daemon..."
+msgstr ""
+
+#: autobrightness/daemon.py:25
+msgid "Shortcut key used."
+msgstr ""
+
+#: autobrightness/daemon.py:60
+msgid "No interval nor shortcut selected. Exiting."
 msgstr ""
 
 #: autobrightness/gui.py:30
