@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QFormLayout, QLineEdit, QPushButton, QComboBox, QMessageBox
 from functools import partial
-from autobrightness import webcam, brightness
+from autobrightness import webcam, screen
 import autobrightness
 import time
 import keyboard
@@ -98,7 +98,7 @@ class Controller:
                         clearLayout(item.layout())
         
         clearLayout(self._view.backendLayout)
-        self.backend = brightness.Display(self._view.backendCombo.currentText(), langObj, self._config)
+        self.backend = screen.Screen(self._view.backendCombo.currentText(), langObj, self._config)
         self.backend.configWindow(self._view.backendLayout)
 
     def _saveButtonClick(self):
