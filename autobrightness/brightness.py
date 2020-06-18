@@ -1,58 +1,40 @@
-from autobrightness.backend import sysfs, powercfg
+from autobrightness import webcam, screen
 
-class Display:
+class Brightness:
     """
-    Class for getting and setting display brightness value
+    Class for calculate and set brightness
     
     Parameters: 
-        backend (string)
-        lang: gettext object
         settings: config object
+        lang: gettext object
     """
-
-    backend = None
-    maxBrightness = 100
-    
-    def __init__(self, backend, lang, settings):
+    def __init__(self, settings, lang):
         global _
         _ = lang.gettext
-        
-        if backend == 'sysfs':
-            self.backend = sysfs.sysfs(lang)
-        if backend == 'powercfg':
-            self.backend = powercfg.Powercfg(lang, settings)
-        
-        if not self.backend is None:
-            self.maxBrightness = self.backend.getMaxBrightness()
+        self.camera = webcam.Camera( settings.camera )
+        self.screen = screen.Screen(settings.backend, lang, settings)
     
-    def getBrightness(self):
+    def calculate(self):
         """
-        Returns:
-            int: screen brightness
+        Calculate brightness value
+
+        Returns: int
         """
-        return self.backend.getBrightness()
+        ambient_brightness = self.camera.getBrightness()
+        calculated = round( self.screen.maxBrightness * ambient_brightness / 255 )
         
-    def setBrightness(self, val):
-        """
-        Parameters:
-            val (int): brightness value
-        """
-        if not self.backend is None:
-            self.backend.setBrightness(val)
+        # do not go under 1%
+        if calculated * 100 / self.screen.maxBrightness < 1:
+            calculated = round(self.screen.maxBrightness / 100)
+        
+        return calculated
     
-    def configWindow(self, layout):
+    def set(self, value):
         """
-        Calls draw config window method from backend if available
+        Set screen brightness
 
         Parameters:
-            layout: a QVBoxLayout object
+            value (int): brightness value
         """
-        if "configWindow" in dir(self.backend):
-            self.backend.configWindow(layout)
-    
-    def configSave(self):
-        """
-        Calls configSave method from backend if available
-        """
-        if "configSave" in dir(self.backend):
-            self.backend.configSave()
+        print(_("Adjusting brightness to %(percentage)d%% (%(value)d)") % {'percentage': (value * 100 / self.screen.maxBrightness), 'value': value})
+        self.screen.setBrightness(value)

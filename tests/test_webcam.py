@@ -1,7 +1,7 @@
 import unittest
 from autobrightness import webcam
 
-class ConfigTest(unittest.TestCase):
+class WebcamTest(unittest.TestCase):
 
     def test_image(self):
         camera = webcam.Camera(0)
