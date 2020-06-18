@@ -1,7 +1,5 @@
-from autobrightness import webcam, brightness, config, gui
+from autobrightness import webcam, brightness, config, gui, screen, daemon
 import autobrightness
-import time
-import keyboard
 import gettext
 import os
 import argparse
@@ -26,54 +24,6 @@ def init_argparse() -> argparse.ArgumentParser:
 
     return parser
 
-def autobrightness_run(camera, display):
-    """
-    Calculate and sets brightness
-
-    Parameters:
-        camera (object)
-        display (object)
-    """
-    ambient_brightness = camera.getBrightness()
-    calculated = round( display.maxBrightness * ambient_brightness / 255 )
-    
-    # do not go under 1%
-    if calculated * 100 / display.maxBrightness < 1:
-        calculated = round(display.maxBrightness / 100)
-
-    print(_("Adjusting brightness to %(percentage)d%% (%(value)d)") % {'percentage': (calculated * 100 / display.maxBrightness), 'value': calculated})
-    display.setBrightness(calculated)
-
-def daemon(settings, lang):
-    """
-    Parameters:
-        settings (object)
-        lang (object)
-    """
-    print(_("Starting daemon..."))
-    camera = webcam.Camera( settings.camera )
-    display = brightness.Display(settings.backend, lang, settings)
-
-    def shortcut(e = None):
-        print(_("Shortcut key used."))
-        autobrightness_run(camera, display)
-
-    if not settings.shortcut is None:
-        if type(settings.shortcut) == str:
-            keyboard.add_hotkey(settings.shortcut, shortcut)
-        else:
-            keyboard.on_press_key(settings.shortcut, shortcut)
-
-    while True:
-        if settings.interval > 0:
-            time.sleep( settings.interval )
-            autobrightness_run(camera, display)
-        elif not settings.shortcut is None:
-            time.sleep(1)
-        else:
-            print(_("No interval nor shortcut selected. Exiting."))
-            break
-
 def main():
     parser = init_argparse()
     args = parser.parse_args()
@@ -94,11 +44,11 @@ def main():
     _ = lang.gettext
 
     if args.start:
-        daemon(settings, lang)
+        daemonIns = daemon.Daemon(settings, lang)
+        daemonIns.start()
     elif args.set:
-        camera = webcam.Camera( settings.camera )
-        display = brightness.Display(settings.backend, lang, settings)
-        autobrightness_run(camera, display)
+        brightnessIns = brightness.Brightness(settings, lang)
+        brightnessIns.set( brightnessIns.calculate() )
     else:
         gui.show(lang, settings)
 
