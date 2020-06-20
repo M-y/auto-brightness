@@ -13,13 +13,13 @@ class Screen:
     backend = None
     maxBrightness = 100
     
-    def __init__(self, backend, lang, settings):
+    def __init__(self, settings, lang):
         global _
         _ = lang.gettext
         
-        if backend == 'sysfs':
+        if settings.backend == 'sysfs':
             self.backend = sysfs.sysfs(lang)
-        if backend == 'powercfg':
+        if settings.backend == 'powercfg':
             self.backend = powercfg.Powercfg(lang, settings)
         
         if not self.backend is None:
@@ -30,7 +30,9 @@ class Screen:
         Returns:
             int: screen brightness
         """
-        return self.backend.getBrightness()
+        if not self.backend is None:
+            return self.backend.getBrightness()
+        return 100
         
     def setBrightness(self, val):
         """
