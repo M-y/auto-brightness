@@ -203,8 +203,8 @@ def configWindow(config, service):
     Controller(view, config, service)
 
 def quit(app, service):
-    app.quit()
     service.stop()
+    app.quit()
 
 def exec(config, lang):
     """
