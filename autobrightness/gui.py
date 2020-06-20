@@ -1,4 +1,5 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QFormLayout, QLineEdit, QPushButton, QComboBox, QMessageBox
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QFormLayout, QLineEdit, QPushButton, QComboBox, QMessageBox, QSystemTrayIcon, QMenu, QAction, QStyle
+from PyQt5.QtGui import QIcon
 from functools import partial
 from autobrightness import webcam, screen
 import autobrightness
@@ -6,6 +7,8 @@ import time
 import keyboard
 import imp
 import os
+import subprocess
+import sys
 
 class Window(QMainWindow):
     def __init__(self):
@@ -64,9 +67,10 @@ class Window(QMainWindow):
         self.generalLayout.addLayout(buttons)
 
 class Controller:
-    def __init__(self, view, config):
+    def __init__(self, view, config, service):
         self._view = view
         self._config = config
+        self._service = service
         
         # fill form
         self._view.languageCombo.setCurrentText(str(self._config.language))
@@ -98,7 +102,8 @@ class Controller:
                         clearLayout(item.layout())
         
         clearLayout(self._view.backendLayout)
-        self.backend = screen.Screen(self._view.backendCombo.currentText(), langObj, self._config)
+        self._config.backend = self._view.backendCombo.currentText()
+        self.backend = screen.Screen(self._config, langObj)
         self.backend.configWindow(self._view.backendLayout)
 
     def _saveButtonClick(self):
@@ -115,9 +120,9 @@ class Controller:
         self.backend.configSave()
         self._config.save()
         
-        msg = QMessageBox()
-        msg.setText(_("Run autobrightness --start now."))
-        msg.exec()
+        self._service.stop()
+        self._service.start()
+
         self._view.close()
 
     def _shortcutButtonClick(self):
@@ -169,16 +174,56 @@ class Controller:
         time.sleep(1)
         self.backend.setBrightness(oldBrightness)
 
+class TrayIcon(QSystemTrayIcon):
+    def __init__(self):
+        QSystemTrayIcon.__init__(self)
+        self.setIcon( QApplication.style().standardIcon(QStyle.SP_DialogOkButton) )
+        self.setContextMenu(QMenu())
 
+class Service():
+    """
+    Manages daemon as a subprocess
+    """
+    def __init__(self):
+        self.start()
+    
+    def start(self):
+        self.process = subprocess.Popen(" ".join(sys.argv) + " --start", stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, preexec_fn=os.setsid)
+    
+    def stop(self):
+        os.killpg(os.getpgid(self.process.pid), subprocess.signal.SIGTERM)
+        self.process.terminate()
 
-def show(lang, config):
+def configWindow(config, service):
+    """
+    Shows settings window
+    """
+    view = Window()
+    view.show()
+    Controller(view, config, service)
+
+def quit(app, service):
+    app.quit()
+    service.stop()
+
+def exec(config, lang):
+    """
+    Execute app and show tray icon
+    """
     global langObj
     langObj = lang
     global _
     _ = langObj.gettext
+    service = Service()
 
     app = QApplication([])
-    view = Window()
-    view.show()
-    Controller(view, config)
+    app.setQuitOnLastWindowClosed(False)
+    trayIcon = TrayIcon()
+    
+    settingsAction = trayIcon.contextMenu().addAction(_("Settings"))
+    settingsAction.triggered.connect( partial(configWindow, config, service) )
+    quitAction = trayIcon.contextMenu().addAction(_("Quit"))
+    quitAction.triggered.connect( partial(quit, app, service) )
+
+    trayIcon.show()
     app.exec_()

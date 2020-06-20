@@ -50,7 +50,7 @@ def main():
         brightnessIns = brightness.Brightness(settings, lang)
         brightnessIns.set( brightnessIns.calculate() )
     else:
-        gui.show(lang, settings)
+        gui.exec(settings, lang)
 
 if __name__ == "__main__":
     main()
