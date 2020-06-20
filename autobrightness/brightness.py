@@ -12,7 +12,7 @@ class Brightness:
         global _
         _ = lang.gettext
         self.camera = webcam.Camera( settings.camera )
-        self.screen = screen.Screen(settings.backend, lang, settings)
+        self.screen = screen.Screen(settings, lang)
     
     def calculate(self):
         """
