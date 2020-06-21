@@ -5,7 +5,7 @@ setup(
     name='autobrightness',
     version=autobrightness.__version__,
     python_requires='>=3, <4',
-    install_requires=['opencv-python', 'keyboard', 'PyQt5'],
+    install_requires=['opencv-python', 'keyboard', 'PyQt5', 'psutil'],
     packages=['autobrightness', 'autobrightness.backend'],
     include_package_data=True,
     package_data={
@@ -13,7 +13,7 @@ setup(
     },
     entry_points={
     'console_scripts': [
-        'autobrightness=autobrightness:__main__.main',
+        'autobrightness=autobrightness.__main__:main',
     ],
     }
 )

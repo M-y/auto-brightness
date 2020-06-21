@@ -9,6 +9,7 @@ import imp
 import os
 import subprocess
 import sys
+import psutil
 
 class Window(QMainWindow):
     def __init__(self):
@@ -119,8 +120,6 @@ class Controller:
 
         self.backend.configSave()
         self._config.save()
-        
-        self._service.stop()
         self._service.start()
 
         self._view.close()
@@ -188,16 +187,24 @@ class Service():
         self.start()
     
     def start(self):
-        self.process = subprocess.Popen(" ".join(sys.argv) + " --start", stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True, preexec_fn=os.setsid)
+        self.process = subprocess.Popen(" ".join(sys.argv) + " --start", stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
     
     def stop(self):
-        os.killpg(os.getpgid(self.process.pid), subprocess.signal.SIGTERM)
-        self.process.terminate()
+        if self.running():
+            for child in psutil.Process(self.process.pid).children(True):
+                child.terminate()
+            self.process.terminate()
+
+    def running(self):
+        if self.process.poll() is None:
+            return True
+        return False
 
 def configWindow(config, service):
     """
     Shows settings window
     """
+    service.stop()
     view = Window()
     view.show()
     Controller(view, config, service)
