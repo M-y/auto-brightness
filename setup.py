@@ -6,7 +6,7 @@ setup(
     version=autobrightness.__version__,
     python_requires='>=3, <4',
     install_requires=['opencv-python', 'keyboard', 'PyQt5', 'psutil'],
-    packages=['autobrightness', 'autobrightness.backend'],
+    packages=['autobrightness', 'autobrightness.backend', 'autobrightness.gui'],
     include_package_data=True,
     package_data={
         'autobrightness': ['locales/*/LC_MESSAGES/*.mo'],
