@@ -1,8 +1,11 @@
-from autobrightness import webcam, brightness, config, gui, screen, daemon
+from autobrightness import webcam, brightness, config, screen, daemon
+from autobrightness.gui import trayicon, daemon
 import autobrightness
 import gettext
 import os
+import sys
 import argparse
+from PyQt5.QtWidgets import QApplication
 
 def init_argparse() -> argparse.ArgumentParser:
     """
@@ -50,7 +53,14 @@ def main():
         brightnessIns = brightness.Brightness(settings, lang)
         brightnessIns.set( brightnessIns.calculate() )
     else:
-        gui.exec(settings, lang)
+        service = autobrightness.gui.daemon.Service()
+        service.start()
+
+        app = QApplication([])
+        app.setQuitOnLastWindowClosed(False)
+        trayIcon = autobrightness.gui.trayicon.TrayIcon(settings, service, app, lang)
+        trayIcon.show()
+        app.exec_()
 
 if __name__ == "__main__":
     main()
