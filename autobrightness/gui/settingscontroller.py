@@ -5,7 +5,7 @@ from autobrightness import webcam, screen
 import keyboard
 import time
 
-class Controller:
+class SettingsController:
     def __init__(self, view, config, service, lang):
         self.lang = lang
         global _

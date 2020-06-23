@@ -2,13 +2,13 @@ from PyQt5.QtWidgets import  QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QFo
 import autobrightness
 import os
 
-class Window(QMainWindow):
+class SettingsWindow(QMainWindow):
     def __init__(self, lang):
         global _
         _ = lang.gettext
         super().__init__()
         
-        self.setWindowTitle('Auto Brightness ' + autobrightness.__version__)
+        self.setWindowTitle('Settings')
         self.generalLayout = QVBoxLayout()
         self._centralWidget = QWidget(self)
         self.setCentralWidget(self._centralWidget)
