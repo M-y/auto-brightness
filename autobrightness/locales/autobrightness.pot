@@ -38,59 +38,63 @@ msgstr ""
 msgid "No interval nor shortcut selected. Exiting."
 msgstr ""
 
-#: autobrightness/gui.py:34
-msgid "Language:"
-msgstr ""
-
-#: autobrightness/gui.py:40
-msgid "Backend:"
-msgstr ""
-
-#: autobrightness/gui.py:46
-msgid "Camera:"
-msgstr ""
-
-#: autobrightness/gui.py:49
-msgid "Interval:"
-msgstr ""
-
-#: autobrightness/gui.py:52
-msgid "Shortcut:"
-msgstr ""
-
-#: autobrightness/gui.py:59
-msgid "Select Shortcut"
-msgstr ""
-
-#: autobrightness/gui.py:61
-msgid "Test Camera"
-msgstr ""
-
-#: autobrightness/gui.py:63
-msgid "Test Backend"
-msgstr ""
-
-#: autobrightness/gui.py:65
-msgid "Save"
-msgstr ""
-
-#: autobrightness/gui.py:132
+#: autobrightness/gui/settingscontroller.py:77
 msgid "Close this message and press a key or key combination. "
 msgstr ""
 
-#: autobrightness/gui.py:138
+#: autobrightness/gui/settingscontroller.py:83
 msgid "Press again."
 msgstr ""
 
-#: autobrightness/gui.py:165
+#: autobrightness/gui/settingscontroller.py:110
 msgid "Will test min and max brightness via the selected backend."
 msgstr ""
 
-#: autobrightness/gui.py:230
+#: autobrightness/gui/settingswindow.py:27
+msgid "Language:"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:33
+msgid "Backend:"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:39
+msgid "Camera:"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:42
+msgid "Interval:"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:45
+msgid "Shortcut:"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:52
+msgid "Select Shortcut"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:54
+msgid "Test Camera"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:56
+msgid "Test Backend"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:58
+msgid "Save"
+msgstr ""
+
+#: autobrightness/gui/trayicon.py:19
 msgid "Settings"
 msgstr ""
 
-#: autobrightness/gui.py:232
+#: autobrightness/gui/trayicon.py:22
+msgid "Daemon logs"
+msgstr ""
+
+#: autobrightness/gui/trayicon.py:25
 msgid "Quit"
 msgstr ""
 
