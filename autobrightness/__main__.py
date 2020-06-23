@@ -7,6 +7,18 @@ import sys
 import argparse
 from PyQt5.QtWidgets import QApplication
 
+class Unbuffered(object):
+   def __init__(self, stream):
+       self.stream = stream
+   def write(self, data):
+       self.stream.write(data)
+       self.stream.flush()
+   def writelines(self, datas):
+       self.stream.writelines(datas)
+       self.stream.flush()
+   def __getattr__(self, attr):
+       return getattr(self.stream, attr)
+
 def init_argparse() -> argparse.ArgumentParser:
     """
     init command line arguments
@@ -47,7 +59,8 @@ def main():
     _ = lang.gettext
 
     if args.start:
-        daemonIns = daemon.Daemon(settings, lang)
+        sys.stdout = Unbuffered(sys.stdout)
+        daemonIns = autobrightness.daemon.Daemon(settings, lang)
         daemonIns.start()
     elif args.set:
         brightnessIns = brightness.Brightness(settings, lang)
@@ -57,6 +70,9 @@ def main():
         service.start()
 
         app = QApplication([])
+        app.setApplicationName("Auto Brightness")
+        app.setApplicationDisplayName("Auto Brightness")
+        app.setApplicationVersion(autobrightness.__version__)
         app.setQuitOnLastWindowClosed(False)
         trayIcon = autobrightness.gui.trayicon.TrayIcon(settings, service, app, lang)
         trayIcon.show()
