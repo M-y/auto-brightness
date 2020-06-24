@@ -9,7 +9,7 @@ setup(
     packages=['autobrightness', 'autobrightness.backend', 'autobrightness.gui'],
     include_package_data=True,
     package_data={
-        'autobrightness': ['locales/*/LC_MESSAGES/*.mo'],
+        'autobrightness': ['locales/*/LC_MESSAGES/*.mo', 'icon.png']
     },
     entry_points={
     'console_scripts': [

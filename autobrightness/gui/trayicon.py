@@ -1,6 +1,8 @@
-from PyQt5.QtWidgets import QSystemTrayIcon, QApplication, QStyle, QMenu, QWidget
+from PyQt5.QtWidgets import QSystemTrayIcon, QMenu
 from PyQt5.QtCore import QTimer, Qt
+from PyQt5.QtGui import QIcon
 from autobrightness.gui import settingswindow, settingscontroller, logwindow
+import autobrightness
 from functools import partial
 
 class TrayIcon(QSystemTrayIcon):
@@ -13,7 +15,7 @@ class TrayIcon(QSystemTrayIcon):
         self.config = config
         self.service = service
         self.app = app
-        self.setIcon( QApplication.style().standardIcon(QStyle.SP_DialogOkButton) )
+        self.setIcon( QIcon(autobrightness.ICON) )
         self.setContextMenu(QMenu())
 
         settingsAction = self.contextMenu().addAction(_("Settings"))
@@ -39,7 +41,7 @@ class TrayIcon(QSystemTrayIcon):
         """
         Shows daemon logs
         """
-        self.logWindow_view = logwindow.LogWindow()
+        self.logWindow_view = logwindow.LogWindow(self.lang)
         self.logWindow_view.setWindowModality(Qt.ApplicationModal)
         self.logWindow_view.showMaximized()
 

@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import  QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QFormLayout, QLineEdit, QPushButton, QComboBox
+from PyQt5.QtGui import QIcon
 import autobrightness
 import os
 
@@ -8,7 +9,8 @@ class SettingsWindow(QMainWindow):
         _ = lang.gettext
         super().__init__()
         
-        self.setWindowTitle('Settings')
+        self.setWindowTitle(_('Settings'))
+        self.setWindowIcon( QIcon(autobrightness.ICON) )
         self.generalLayout = QVBoxLayout()
         self._centralWidget = QWidget(self)
         self.setCentralWidget(self._centralWidget)
