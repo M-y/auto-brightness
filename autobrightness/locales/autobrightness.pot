@@ -38,6 +38,10 @@ msgstr ""
 msgid "No interval nor shortcut selected. Exiting."
 msgstr ""
 
+#: autobrightness/gui/logwindow.py:11
+msgid "Daemon Logs"
+msgstr ""
+
 #: autobrightness/gui/settingscontroller.py:77
 msgid "Close this message and press a key or key combination. "
 msgstr ""
@@ -50,51 +54,51 @@ msgstr ""
 msgid "Will test min and max brightness via the selected backend."
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:27
-msgid "Language:"
-msgstr ""
-
-#: autobrightness/gui/settingswindow.py:33
-msgid "Backend:"
-msgstr ""
-
-#: autobrightness/gui/settingswindow.py:39
-msgid "Camera:"
-msgstr ""
-
-#: autobrightness/gui/settingswindow.py:42
-msgid "Interval:"
-msgstr ""
-
-#: autobrightness/gui/settingswindow.py:45
-msgid "Shortcut:"
-msgstr ""
-
-#: autobrightness/gui/settingswindow.py:52
-msgid "Select Shortcut"
-msgstr ""
-
-#: autobrightness/gui/settingswindow.py:54
-msgid "Test Camera"
-msgstr ""
-
-#: autobrightness/gui/settingswindow.py:56
-msgid "Test Backend"
-msgstr ""
-
-#: autobrightness/gui/settingswindow.py:58
-msgid "Save"
-msgstr ""
-
-#: autobrightness/gui/trayicon.py:19
+#: autobrightness/gui/settingswindow.py:12 autobrightness/gui/trayicon.py:21
 msgid "Settings"
 msgstr ""
 
-#: autobrightness/gui/trayicon.py:22
+#: autobrightness/gui/settingswindow.py:29
+msgid "Language:"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:35
+msgid "Backend:"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:41
+msgid "Camera:"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:44
+msgid "Interval:"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:47
+msgid "Shortcut:"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:54
+msgid "Select Shortcut"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:56
+msgid "Test Camera"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:58
+msgid "Test Backend"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:60
+msgid "Save"
+msgstr ""
+
+#: autobrightness/gui/trayicon.py:24
 msgid "Daemon logs"
 msgstr ""
 
-#: autobrightness/gui/trayicon.py:25
+#: autobrightness/gui/trayicon.py:27
 msgid "Quit"
 msgstr ""
 
