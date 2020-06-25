@@ -14,7 +14,11 @@ class Powercfg():
         
         self.settings = settings
         self.guid = settings.getOption("powercfg", "guid")
-        self.cp = self._getcodepage()
+        
+        if os.name == "nt":
+            self.cp = self._getcodepage()
+        else:
+            print(_("powercfg is only for Windows!"))
 
     def _subprocess_args(self, encoding = None):
         """
@@ -89,29 +93,31 @@ class Powercfg():
         subprocess.call(["POWERCFG", "/S", "SCHEME_CURRENT"])
     
     def configWindow(self, layout):
-        form = QFormLayout()
-        self.guidCombo = QComboBox()
+        if hasattr(self, "cp"):
+            form = QFormLayout()
+            self.guidCombo = QComboBox()
 
-        result = subprocess.check_output(["POWERCFG", "/Q"], **self._subprocess_args(self.cp))
-        currentIndex = 0
-        for line in result.split("\n"):
-            line = line.rstrip()
+            result = subprocess.check_output(["POWERCFG", "/Q"], **self._subprocess_args(self.cp))
+            currentIndex = 0
+            for line in result.split("\n"):
+                line = line.rstrip()
 
-            # search for GUIDs and add them to combo box
-            if re.search("Power Setting GUID:", line):
-                self.guidCombo.addItem(line)
-                # select item if a GUID is available from settings
-                if not self.guid is None and re.search(self.guid, line):
-                    currentIndex = self.guidCombo.count() - 1
+                # search for GUIDs and add them to combo box
+                if re.search("Power Setting GUID:", line):
+                    self.guidCombo.addItem(line)
+                    # select item if a GUID is available from settings
+                    if not self.guid is None and re.search(self.guid, line):
+                        currentIndex = self.guidCombo.count() - 1
 
-        self.guidCombo.setCurrentIndex(currentIndex)
+            self.guidCombo.setCurrentIndex(currentIndex)
 
-        form.addRow(_('Display Brightness GUID:'), self.guidCombo)
-        layout.addLayout(form)
+            form.addRow(_('Display Brightness GUID:'), self.guidCombo)
+            layout.addLayout(form)
     
     def configSave(self):
-        # get GUID from combo box selected item
-        guid = re.search("Power Setting GUID: (.*?) ", self.guidCombo.currentText())
-        guid = guid.group(1)
-        self.guid = guid
-        self.settings.setOption("powercfg", "guid", guid)
+        if hasattr(self, "cp"):
+            # get GUID from combo box selected item
+            guid = re.search("Power Setting GUID: (.*?) ", self.guidCombo.currentText())
+            guid = guid.group(1)
+            self.guid = guid
+            self.settings.setOption("powercfg", "guid", guid)
