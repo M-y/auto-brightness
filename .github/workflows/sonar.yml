@@ -33,6 +33,7 @@ jobs:
     - name: Upload coverage.xml
       uses: actions/upload-artifact@master
       with:
+        name: coverage
         path: coverage.xml
       
   sonar:
