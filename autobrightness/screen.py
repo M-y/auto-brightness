@@ -18,7 +18,7 @@ class Screen:
         _ = lang.gettext
         
         if settings.backend == 'sysfs':
-            self.backend = sysfs.sysfs(lang)
+            self.backend = sysfs.sysfs(lang, settings)
         if settings.backend == 'powercfg':
             self.backend = powercfg.Powercfg(lang, settings)
         

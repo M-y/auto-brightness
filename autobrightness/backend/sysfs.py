@@ -1,5 +1,6 @@
 import os
 import sys
+from PyQt5.QtWidgets import QComboBox, QFormLayout
 
 class sysfs:
     """
@@ -9,20 +10,20 @@ class sysfs:
 
     sysfs_dir = "/sys/class/backlight"
 
-    def __init__(self, lang):
+    def __init__(self, lang, settings):
         global _
         _ = lang.gettext
+        self.settings = settings
+        self.interface = settings.getOption("sysfs", "interface")
+        if self.interface is None:
+            self.interface = '.'
         
-        # find directory for backlight
-        for (dirpath, dirname, file) in os.walk("/sys/class/backlight"):
-            self.sysfs_dir = os.path.join(dirpath, dirname[0])
-        
-        if not os.access(os.path.join(self.sysfs_dir, "brightness"), os.W_OK):
+        if not os.access(os.path.join(self.sysfs_dir, self.interface, "brightness"), os.W_OK):
             print(self.sysfs_dir + _(" is not writable!"))
 
     def getMaxBrightness(self):
         try:
-            file = open(os.path.join(self.sysfs_dir, "max_brightness"), "r")
+            file = open(os.path.join(self.sysfs_dir, self.interface, "max_brightness"), "r")
         except OSError as identifier:
             print(identifier)
         else:
@@ -32,7 +33,7 @@ class sysfs:
     
     def getBrightness(self):
         try:
-            file = open(os.path.join(self.sysfs_dir, "actual_brightness"), "r")
+            file = open(os.path.join(self.sysfs_dir, self.interface, "actual_brightness"), "r")
         except OSError as identifier:
             print(identifier)
         else:
@@ -42,10 +43,42 @@ class sysfs:
     
     def setBrightness(self, val):
         try:
-            file = open(os.path.join(self.sysfs_dir, "brightness"), "w")
+            file = open(os.path.join(self.sysfs_dir, self.interface, "brightness"), "w")
         except OSError as identifier:
             print(identifier)
         else:
             file.write( str(val) )
             file.close()
-        
+    
+    def interfaces(self):
+        """
+        Get interfaces from sysfs_dir
+
+        Returns: array
+        """
+        interfaces = []
+        for (x, dirnames, y) in os.walk(self.sysfs_dir):
+            if len(dirnames) > 0:
+                for dirname in dirnames:
+                    interfaces.append(dirname)
+        return interfaces
+    
+    def configWindow(self, layout):
+        interfaces = self.interfaces()
+        form = QFormLayout()
+        self.interfaceCombo = QComboBox()
+
+        currentIndex = 0
+        for interface in interfaces:
+            self.interfaceCombo.addItem(interface)
+            if self.interface == interface:
+                currentIndex = self.interfaceCombo.count() - 1
+
+        self.interfaceCombo.setCurrentIndex(currentIndex)
+
+        form.addRow(_('Interface:'), self.interfaceCombo)
+        layout.addLayout(form)
+    
+    def configSave(self):
+        self.interface = self.interfaceCombo.currentText()
+        self.settings.setOption("sysfs", "interface", self.interface)
