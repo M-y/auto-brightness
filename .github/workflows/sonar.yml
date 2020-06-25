@@ -8,7 +8,7 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  sonar:
+  coverage:
     runs-on: windows-latest
 
     steps:
@@ -29,8 +29,19 @@ jobs:
       run: |
         coverage run --source . -m unittest discover -s tests
         coverage xml
-        cat coverage.xml
+    
+    - uses: actions/upload-artifact@master
+      name: Upload coverage.xml
+      with:
+        path: coverage.xml
       
+  sonar:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/download-artifact@master
+      name: Download Artifacts
+
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@master
       env:
