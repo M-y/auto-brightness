@@ -37,6 +37,7 @@ jobs:
         path: coverage.xml
       
   sonar:
+    needs: [coverage]
     runs-on: ubuntu-latest
     
     steps:
