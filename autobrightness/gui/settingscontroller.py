@@ -37,7 +37,7 @@ class SettingsController:
         controller._service.start()
     
     def _backendComboChange(self):
-        def clearLayout(layout):
+        def clearlayout(layout):
             if layout is not None:
                 while layout.count():
                     item = layout.takeAt(0)
@@ -45,9 +45,9 @@ class SettingsController:
                     if widget is not None:
                         widget.deleteLater()
                     else:
-                        clearLayout(item.layout())
+                        clearlayout(item.layout())
         
-        clearLayout(self._view.backendLayout)
+        clearlayout(self._view.backendLayout)
         self._config.backend = self._view.backendCombo.currentText()
         self.backend = screen.Screen(self._config, self.lang)
         self.backend.configWindow(self._view.backendLayout)
