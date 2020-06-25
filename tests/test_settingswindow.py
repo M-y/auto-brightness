@@ -52,3 +52,8 @@ class SettingswindowTest(unittest.TestCase):
         configIns.load()
         self.checkConfig(configIns)
 
+    def test_cameraButton(self):
+        configIns = config.Config()
+        configIns.camera = 0
+        self.createWindow(configIns)
+        QTest.mouseClick(self.view.cameraButton, Qt.LeftButton)
