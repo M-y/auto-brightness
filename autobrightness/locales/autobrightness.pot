@@ -14,12 +14,20 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: autobrightness/backend/powercfg.py:109
+#: autobrightness/backend/powercfg.py:21
+msgid "powercfg is only for Windows!"
+msgstr ""
+
+#: autobrightness/backend/powercfg.py:114
 msgid "Display Brightness GUID:"
 msgstr ""
 
-#: autobrightness/backend/sysfs.py:21
+#: autobrightness/backend/sysfs.py:22
 msgid " is not writable!"
+msgstr ""
+
+#: autobrightness/backend/sysfs.py:79
+msgid "Interface:"
 msgstr ""
 
 #: autobrightness/brightness.py:39
