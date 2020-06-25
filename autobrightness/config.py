@@ -26,7 +26,7 @@ class Config:
             self.camera = 0
             self.interval = 0
             self.shortcut = None
-            self.language = None
+            self.language = "en"
 
     def save(self):
         """
