@@ -14,14 +14,17 @@ class TrayIcon(QSystemTrayIcon):
         QSystemTrayIcon.__init__(self)
         self.config = config
         self.service = service
+        self.service.start()
         self.app = app
         self.setIcon( QIcon(autobrightness.ICON) )
         self.setContextMenu(QMenu())
 
         settingsAction = self.contextMenu().addAction(_("Settings"))
+        settingsAction.setObjectName("settings")
         settingsAction.triggered.connect(self.configWindow)
 
         logAction = self.contextMenu().addAction(_("Daemon logs"))
+        logAction.setObjectName("logs")
         logAction.triggered.connect(self.logWindow)
 
         quitAction = self.contextMenu().addAction(_("Quit"))

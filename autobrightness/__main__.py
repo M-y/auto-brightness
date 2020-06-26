@@ -66,15 +66,12 @@ def main():
         brightnessIns = brightness.Brightness(settings, lang)
         brightnessIns.set( brightnessIns.calculate() )
     else:
-        service = autobrightness.gui.daemon.Service()
-        service.start()
-
         app = QApplication([])
         app.setApplicationName("Auto Brightness")
         app.setApplicationDisplayName("Auto Brightness")
         app.setApplicationVersion(autobrightness.__version__)
         app.setQuitOnLastWindowClosed(False)
-        trayIcon = autobrightness.gui.trayicon.TrayIcon(settings, service, app, lang)
+        trayIcon = autobrightness.gui.trayicon.TrayIcon(settings, autobrightness.gui.daemon.Service(), app, lang)
         trayIcon.show()
         app.exec_()
 
