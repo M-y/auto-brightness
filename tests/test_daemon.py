@@ -30,7 +30,7 @@ class DaemonTest(unittest.TestCase):
     def test_interval_shortcut(self, x):
         settings = config.Config()
         settings.interval = 1
-        settings.shortcut = "f12"
+        settings.shortcut = 88
         daemonIns = daemon.Daemon(settings, gettext)
         with self.assertRaises(InterruptedError):
             daemonIns.start()
