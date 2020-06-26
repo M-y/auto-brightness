@@ -62,7 +62,7 @@ msgstr ""
 msgid "Will test min and max brightness via the selected backend."
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:12 autobrightness/gui/trayicon.py:21
+#: autobrightness/gui/settingswindow.py:12 autobrightness/gui/trayicon.py:22
 msgid "Settings"
 msgstr ""
 
@@ -102,11 +102,11 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: autobrightness/gui/trayicon.py:24
+#: autobrightness/gui/trayicon.py:26
 msgid "Daemon logs"
 msgstr ""
 
-#: autobrightness/gui/trayicon.py:27
+#: autobrightness/gui/trayicon.py:30
 msgid "Quit"
 msgstr ""
 
