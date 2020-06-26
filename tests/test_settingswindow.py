@@ -5,6 +5,7 @@ from PyQt5.QtCore import Qt
 from autobrightness import config
 from autobrightness.gui import settingscontroller, settingswindow, daemon
 import gettext
+import os
 
 app = QApplication([])
 
@@ -37,7 +38,7 @@ class SettingswindowTest(unittest.TestCase):
         self.checkConfig( config.Config() )
     
     def test_saveButton(self):
-        configIns = config.Config()
+        configIns = config.Config("test")
         self.createWindow(configIns)
         
         # change settings on window
@@ -51,9 +52,14 @@ class SettingswindowTest(unittest.TestCase):
         QTest.mouseClick(self.view.saveButton, Qt.LeftButton)
         configIns.load()
         self.checkConfig(configIns)
+        os.remove("test")
 
     def test_cameraButton(self):
         configIns = config.Config()
         configIns.camera = 0
+        self.createWindow(configIns)
+        QTest.mouseClick(self.view.cameraButton, Qt.LeftButton)
+
+        configIns.camera = "/dev/video0"
         self.createWindow(configIns)
         QTest.mouseClick(self.view.cameraButton, Qt.LeftButton)
