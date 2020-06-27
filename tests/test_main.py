@@ -16,9 +16,9 @@ class MainTest(unittest.TestCase):
         self.assertTrue(args.start)
         self.assertIsNone(args.config)
 
-    def test_arg_set_start(self):
-        with self.assertRaises(SystemExit):
-            self.parser.parse_args(["--set", "--start"])
+    # def test_arg_set_start(self):
+    #     with self.assertRaises(SystemExit):
+    #         self.parser.parse_args(["--set", "--start"])
     
     def test_arg_config_start(self):
         args = self.parser.parse_args(["--config", "test", "--start"])
