@@ -1,3 +1,4 @@
+from autobrightness import subprocess_args
 import subprocess
 import psutil
 import sys
@@ -8,14 +9,14 @@ class Service():
     """
     
     def start(self):
-        self._process = subprocess.Popen(
-            " ".join(sys.argv) + " --start", 
-            stdin=subprocess.PIPE, 
-            stdout=subprocess.PIPE, 
-            stderr=subprocess.STDOUT, 
-            shell=True,
-            encoding='UTF-8'
-        )
+        args = subprocess_args.get_args()
+        args.update({
+            'stdin': subprocess.PIPE,
+            'stdout': subprocess.PIPE,
+            'stderr': subprocess.STDOUT
+        })
+
+        self._process = subprocess.Popen(" ".join(sys.argv) + " --start",  **args)
     
     def stop(self):
         if self.running():

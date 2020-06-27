@@ -2,6 +2,7 @@ import subprocess
 import re
 import os
 from PyQt5.QtWidgets import QComboBox, QFormLayout
+from autobrightness import subprocess_args
 
 class Powercfg():
     """
@@ -16,40 +17,9 @@ class Powercfg():
         self.guid = settings.getOption("powercfg", "guid")
         
         if os.name == "nt":
-            self.cp = self._getcodepage()
+            self.args = subprocess_args.get_args()
         else:
             print(_("powercfg is only for Windows!"))
-
-    def _subprocess_args(self, encoding = None):
-        """
-        Builds and returns extra arguments for subprocess
-        """
-
-        si = subprocess.STARTUPINFO()
-        si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-        args = {    
-            'stdin': subprocess.PIPE,
-            'stderr': subprocess.PIPE,
-            'startupinfo': si,
-            'shell':True,
-            'env': os.environ
-        }
-
-        if not encoding is None:
-            args.update({'encoding':encoding})
-
-        return args
-
-    def _getcodepage(self):
-        """
-        Returns active code page
-        """
-
-        cp = subprocess.check_output("chcp", **self._subprocess_args())
-        cp = re.search("Active code page: (.*?)$", cp.decode())
-        cp = cp.group(1)
-
-        return "cp" + cp
 
     def _subprocess(self, regex):
         """
@@ -64,7 +34,7 @@ class Powercfg():
 
         if self.guid is None:
             return None
-        result = subprocess.check_output(["POWERCFG", "/Q"], **self._subprocess_args(self.cp))
+        result = subprocess.check_output(["POWERCFG", "/Q"], **self.args)
         foundguid = False
         
         for line in result.split("\n"):
@@ -93,11 +63,11 @@ class Powercfg():
         subprocess.call(["POWERCFG", "/S", "SCHEME_CURRENT"])
     
     def configWindow(self, layout):
-        if hasattr(self, "cp"):
+        if hasattr(self, "args"):
             form = QFormLayout()
             self.guidCombo = QComboBox()
 
-            result = subprocess.check_output(["POWERCFG", "/Q"], **self._subprocess_args(self.cp))
+            result = subprocess.check_output(["POWERCFG", "/Q"], **self.args)
             currentIndex = 0
             for line in result.split("\n"):
                 line = line.rstrip()
@@ -115,7 +85,7 @@ class Powercfg():
             layout.addLayout(form)
     
     def configSave(self):
-        if hasattr(self, "cp"):
+        if hasattr(self, "args"):
             # get GUID from combo box selected item
             guid = re.search("Power Setting GUID: (.*?) ", self.guidCombo.currentText())
             guid = guid.group(1)
