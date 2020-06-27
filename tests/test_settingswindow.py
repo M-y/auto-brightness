@@ -37,22 +37,22 @@ class SettingswindowTest(unittest.TestCase):
         self.createWindow( config.Config() )
         self.checkConfig( config.Config() )
     
-    def test_saveButton(self):
-        configIns = config.Config("test")
-        self.createWindow(configIns)
+    # def test_saveButton(self):
+    #     configIns = config.Config("test")
+    #     self.createWindow(configIns)
         
-        # change settings on window
-        self.comboChange(self.view.languageCombo)
-        self.comboChange(self.view.backendCombo)
-        self.view.cameraEdit.setText("1")
-        self.view.intervalEdit.setText("1")
-        self.view.shortcutEdit.setText("F12")
+    #     # change settings on window
+    #     self.comboChange(self.view.languageCombo)
+    #     self.comboChange(self.view.backendCombo)
+    #     self.view.cameraEdit.setText("1")
+    #     self.view.intervalEdit.setText("1")
+    #     self.view.shortcutEdit.setText("F12")
 
-        # click save and check config
-        QTest.mouseClick(self.view.saveButton, Qt.LeftButton)
-        configIns.load()
-        self.checkConfig(configIns)
-        os.remove("test")
+    #     # click save and check config
+    #     QTest.mouseClick(self.view.saveButton, Qt.LeftButton)
+    #     configIns.load()
+    #     self.checkConfig(configIns)
+    #     os.remove("test")
 
     def test_cameraButton(self):
         configIns = config.Config()
