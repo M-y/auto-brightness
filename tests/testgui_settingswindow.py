@@ -36,6 +36,7 @@ class SettingswindowTest(unittest.TestCase):
     def test_defaultConfig(self):
         self.createWindow( config.Config() )
         self.checkConfig( config.Config() )
+        self.view.close()
     
     def test_saveButton(self):
         configIns = config.Config("test")
@@ -52,6 +53,7 @@ class SettingswindowTest(unittest.TestCase):
         QTest.mouseClick(self.view.saveButton, Qt.LeftButton)
         configIns.load()
         self.checkConfig(configIns)
+        self.view.close()
         os.remove("test")
 
     def test_cameraButton(self):
@@ -59,7 +61,9 @@ class SettingswindowTest(unittest.TestCase):
         configIns.camera = 0
         self.createWindow(configIns)
         QTest.mouseClick(self.view.cameraButton, Qt.LeftButton)
+        self.view.close()
 
         configIns.camera = "/dev/video0"
         self.createWindow(configIns)
         QTest.mouseClick(self.view.cameraButton, Qt.LeftButton)
+        self.view.close()
