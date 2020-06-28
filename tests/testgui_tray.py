@@ -10,8 +10,8 @@ app = QApplication([])
 
 class TrayiconTest(unittest.TestCase):
     def test_settingsaction(self):
-        trayIcon = trayicon.TrayIcon(config.Config(), daemon.Service(), app, gettext)
         print(1)
+        trayIcon = trayicon.TrayIcon(config.Config(), daemon.Service(), app, gettext)
         for action in trayIcon.contextMenu().actions():
             if action.objectName() == "settings":
                 action.trigger()
