@@ -20,6 +20,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo -H python3 -m pip install --upgrade pip
+        sudo -H pip3 install setuptools
         sudo -H pip3 install .
     - name: run unittest
       run: sudo -H python3 -m unittest discover -s tests -p test_*.py -v -f
