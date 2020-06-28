@@ -2,6 +2,7 @@ from autobrightness import subprocess_args
 import subprocess
 import psutil
 import sys
+import re
 
 class Service():
     """
@@ -16,7 +17,11 @@ class Service():
             'stderr': subprocess.STDOUT
         })
 
-        self._process = subprocess.Popen(" ".join(sys.argv) + " --start",  **args)
+        if not re.search("unittest", sys.argv[0]):
+            autobrightness_args = ["autobrightness"]
+            for i in range(1, len(sys.argv)):
+                autobrightness_args.append(sys.argv[i])
+            self._process = subprocess.Popen(" ".join(autobrightness_args) + " --start",  **args)
     
     def stop(self):
         if self.running():
@@ -25,7 +30,7 @@ class Service():
             self._process.terminate()
 
     def running(self):
-        if self._process.poll() is None:
+        if hasattr(self, "_process") and self._process.poll() is None:
             return True
         return False
     
