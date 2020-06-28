@@ -122,8 +122,6 @@ jobs:
       run: sips -s format icns autobrightness/icon.png --out icon.icns
     - name: Create macos app
       run: |
-        ls -l autobrightness/icon.png
-        ls -l icon.icns
         pip3 install pyinstaller
         pip3 install .
         pyinstaller --add-data 'autobrightness/locales:autobrightness/locales' --add-data 'autobrightness/backend:autobrightness/backend' --add-data 'autobrightness/icon.png:autobrightness' --icon icon.icns --windowed --onefile --name autobrightness autobrightness/__main__.py
