@@ -15,7 +15,7 @@ jobs:
       run: |
         sudo pip3 install pyinstaller
         sudo pip3 install .
-        sudo pyinstaller --add-data 'autobrightness/locales:autobrightness/locales' --add-data 'autobrightness/backend:autobrightness/backend' --add-binary 'autobrightness/icon.png:autobrightness' --windowed --onefile --name autobrightness autobrightness/__main__.py
+        sudo pyinstaller --add-data 'autobrightness/locales:autobrightness/locales' --add-data 'autobrightness/backend:autobrightness/backend' --add-data 'autobrightness/icon.png:autobrightness' --windowed --onefile --name autobrightness autobrightness/__main__.py
         zip --junk-paths autobrightness_${{ github.event.release.tag_name }}-standalone.zip dist/autobrightness README.md
       
     - uses: actions/upload-artifact@master
@@ -105,7 +105,7 @@ jobs:
       run: |
         pip install pyinstaller
         pip install .
-        pyinstaller --add-data 'autobrightness\locales;autobrightness\locales' --add-data 'autobrightness\backend;autobrightness\backend' --add-binary 'autobrightness\icon.png;autobrightness' --icon icon.ico --windowed --onefile --name autobrightness autobrightness\__main__.py
+        pyinstaller --add-data 'autobrightness\locales;autobrightness\locales' --add-data 'autobrightness\backend;autobrightness\backend' --add-data 'autobrightness\icon.png;autobrightness' --icon icon.ico --windowed --onefile --name autobrightness autobrightness\__main__.py
         Compress-Archive -Path dist\autobrightness.exe,README.md -DestinationPath autobrightness_${{ github.event.release.tag_name }}-windows.zip
       
     - uses: actions/upload-artifact@master
@@ -122,9 +122,11 @@ jobs:
       run: sips -s format icns autobrightness/icon.png --out icon.icns
     - name: Create macos app
       run: |
+        ls -l autobrightness/icon.png
+        ls -l icon.icns
         pip3 install pyinstaller
         pip3 install .
-        pyinstaller --add-data 'autobrightness/locales:autobrightness/locales' --add-data 'autobrightness/backend:autobrightness/backend' --add-binary 'autobrightness/icon.png:autobrightness' --icon icon.icns --windowed --onefile --name autobrightness autobrightness/__main__.py
+        pyinstaller --add-data 'autobrightness/locales:autobrightness/locales' --add-data 'autobrightness/backend:autobrightness/backend' --add-data 'autobrightness/icon.png:autobrightness' --icon icon.icns --windowed --onefile --name autobrightness autobrightness/__main__.py
         mv dist/autobrightness.app .
         sed -i.bak 's/0.0.0/${{ github.event.release.tag_name }}/g' autobrightness.app/Contents/Info.plist
         rm autobrightness.app/Contents/Info.plist.bak
