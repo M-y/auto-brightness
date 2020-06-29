@@ -1,5 +1,5 @@
 import os
 
-__version__ = "1.3.2"
+__version__ = "1.3.3"
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 ICON = os.path.join(ROOT_DIR, "icon.png")
