@@ -18,6 +18,10 @@ class Powercfg():
         
         if os.name == "nt":
             self.args = subprocess_args.get_args()
+            self.args.update({
+                'stdin': subprocess.PIPE,
+                'stderr': subprocess.PIPE
+            })
         else:
             print(_("powercfg is only for Windows!"))
 
