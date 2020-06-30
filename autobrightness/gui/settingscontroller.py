@@ -114,6 +114,6 @@ class SettingsController:
         oldBrightness = self.backend.getBrightness()
         self.backend.setBrightness(0)
         time.sleep(1)
-        self.backend.setBrightness(self.backend.maxBrightness)
+        self.backend.setBrightness(self.backend.backend.getMaxBrightness())
         time.sleep(1)
         self.backend.setBrightness(oldBrightness)
