@@ -30,6 +30,9 @@ class TrayIcon(QSystemTrayIcon):
         quitAction = self.contextMenu().addAction(_("Quit"))
         quitAction.triggered.connect(self.quit)
 
+        if not config.configFileExists():
+            self.configWindow()
+
     def configWindow(self):
         """
         Shows settings window

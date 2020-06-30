@@ -15,7 +15,7 @@ class Config:
         else:
             self.fileLocation = configFile
 
-        if os.path.exists(self.fileLocation):
+        if self.configFileExists():
             self.load()
         else:
             # create default config
@@ -27,6 +27,9 @@ class Config:
             self.interval = 0
             self.shortcut = None
             self.language = "en"
+
+    def configFileExists(self):
+        return os.path.exists(self.fileLocation)
 
     def save(self):
         """
