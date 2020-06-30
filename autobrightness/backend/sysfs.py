@@ -26,6 +26,7 @@ class sysfs:
             file = open(os.path.join(self.sysfs_dir, self.interface, "max_brightness"), "r")
         except OSError as identifier:
             print(identifier)
+            return 100
         else:
             maxBrightness = int( file.read() )
             file.close()
@@ -36,6 +37,7 @@ class sysfs:
             file = open(os.path.join(self.sysfs_dir, self.interface, "actual_brightness"), "r")
         except OSError as identifier:
             print(identifier)
+            return 0
         else:
             brightness = int( file.read() )
             file.close()
