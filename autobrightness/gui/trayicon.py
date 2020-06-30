@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QSystemTrayIcon, QMenu
 from PyQt5.QtCore import QTimer, Qt
 from PyQt5.QtGui import QIcon
-from autobrightness.gui import settingswindow, settingscontroller, logwindow
+from autobrightness.gui import settingswindow, settingscontroller, logwindow, aboutwindow
 import autobrightness
 from functools import partial
 
@@ -26,6 +26,10 @@ class TrayIcon(QSystemTrayIcon):
         logAction = self.contextMenu().addAction(_("Daemon logs"))
         logAction.setObjectName("logs")
         logAction.triggered.connect(self.logWindow)
+
+        aboutAction = self.contextMenu().addAction(_("About"))
+        aboutAction.setObjectName("about")
+        aboutAction.triggered.connect(self.aboutWindow)
 
         quitAction = self.contextMenu().addAction(_("Quit"))
         quitAction.triggered.connect(self.quit)
@@ -72,3 +76,11 @@ class TrayIcon(QSystemTrayIcon):
     def quit(self):
         self.service.stop()
         self.app.quit()
+    
+    def aboutWindow(self):
+        """
+        Shows about window
+        """
+        self.aboutWindow_view = aboutwindow.AboutWindow(self.lang)
+        self.aboutWindow_view.setWindowModality(Qt.ApplicationModal)
+        self.aboutWindow_view.show()
