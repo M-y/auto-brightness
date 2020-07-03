@@ -50,19 +50,43 @@ msgstr ""
 msgid "About"
 msgstr ""
 
+#: autobrightness/gui/camerawindow.py:11
+msgid "Camera Test"
+msgstr ""
+
+#: autobrightness/gui/camerawindow.py:30
+msgid "Image Brightness"
+msgstr ""
+
+#: autobrightness/gui/camerawindow.py:31
+msgid "Backend"
+msgstr ""
+
+#: autobrightness/gui/camerawindow.py:32
+msgid "Properties"
+msgstr ""
+
+#: autobrightness/gui/camerawindow.py:33
+msgid "OpenCV Build Information"
+msgstr ""
+
 #: autobrightness/gui/logwindow.py:11
 msgid "Daemon Logs"
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:77
+#: autobrightness/gui/settingscontroller.py:79
 msgid "Close this message and press a key or key combination. "
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:83
+#: autobrightness/gui/settingscontroller.py:85
 msgid "Press again."
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:110
+#: autobrightness/gui/settingscontroller.py:119
+msgid "Can't get frame from camera."
+msgstr ""
+
+#: autobrightness/gui/settingscontroller.py:127
 msgid "Will test min and max brightness via the selected backend."
 msgstr ""
 
