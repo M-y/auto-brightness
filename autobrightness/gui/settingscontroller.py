@@ -1,7 +1,9 @@
 from functools import partial
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtGui import QCloseEvent
+from PyQt5.QtCore import Qt
 from autobrightness import webcam, screen
+from autobrightness.gui import camerawindow
 import keyboard
 import time
 
@@ -33,8 +35,8 @@ class SettingsController:
         self._view.backendButton.clicked.connect(partial(self._backendButtonClick))
         self._view.closeEvent = partial(self.closeEvent, self._view)
     
-    def closeEvent(controller, window, event):
-        controller._service.start()
+    def closeEvent(self, window, event):
+        self._service.start()
     
     def _backendComboChange(self):
         def clearlayout(layout):
@@ -98,9 +100,24 @@ class SettingsController:
             camLoc = self._view.cameraEdit.text()
 
         camera = webcam.Camera(camLoc)
-        ret, frame = camera.getImage()
+        ret, frame = camera.getFrame()
         if ret:
-            camera.showImage(frame)
+            rgb = camera.rgbColor(frame)
+            hsv = camera.hsvColor(frame)
+            backendName = camera.backendName()
+            bInfo = camera.cv_buildInformation()
+            properties = camera.properties()
+
+            brightness = camera.getBrightness()
+            brightness = round( 100 * brightness / 255 )
+
+            self.camera_view = camerawindow.CameraWindow(self.lang, rgb, hsv, backendName, bInfo, properties, brightness)
+            self.camera_view.setWindowModality(Qt.ApplicationModal)
+            self.camera_view.show()
+        else:
+            msg = QMessageBox()
+            msg.setText(_("Can't get frame from camera."))
+            msg.exec()
 
     def _backendButtonClick(self):
         """
