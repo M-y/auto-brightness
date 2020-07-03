@@ -26,7 +26,7 @@ msgstr ""
 msgid " is not writable!"
 msgstr ""
 
-#: autobrightness/backend/sysfs.py:79
+#: autobrightness/backend/sysfs.py:81
 msgid "Interface:"
 msgstr ""
 
@@ -44,6 +44,10 @@ msgstr ""
 
 #: autobrightness/daemon.py:60
 msgid "No interval nor shortcut selected. Exiting."
+msgstr ""
+
+#: autobrightness/gui/aboutwindow.py:12 autobrightness/gui/trayicon.py:30
+msgid "About"
 msgstr ""
 
 #: autobrightness/gui/logwindow.py:11
@@ -106,7 +110,7 @@ msgstr ""
 msgid "Daemon logs"
 msgstr ""
 
-#: autobrightness/gui/trayicon.py:30
+#: autobrightness/gui/trayicon.py:34
 msgid "Quit"
 msgstr ""
 
