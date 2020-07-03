@@ -5,7 +5,7 @@ class WebcamTest(unittest.TestCase):
 
     def test_image(self):
         camera = webcam.Camera(0)
-        ret, frame = camera.getImage()
+        ret, frame = camera.getFrame()
 
         if ret:
             self.assertGreater(len(frame), 0)

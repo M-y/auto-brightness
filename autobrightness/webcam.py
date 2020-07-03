@@ -8,7 +8,7 @@ class Camera:
     def __init__(self, device):
         self.device = device
     
-    def getImage(self):
+    def getFrame(self):
         """
         Capture a frame from camera
 
@@ -21,32 +21,68 @@ class Camera:
         cam.release()
         return ret, frame
     
-    def __getBrightness(self, image):
+    def __getBrightness(self, hsv):
         """
-        Change color model of the image to HSV (Hue, Saturation, Value) and calculate brightness
+        Calculate brightness of the frame
 
         Parameters:
-            param image (array)
+            param hsv (array): frame in hsv color
 
         Returns: int
             brightness between 0-255
         """
-        hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
         mean = cv2.mean(hsv)
         brightness = mean[2]
         return brightness
     
     def getBrightness(self):
         """
-        Get ambient light from camera
+        Get ambient light level from camera
 
         Returns: int 
             brightness between 0-255
         """
-        ret, image = self.getImage()
+        ret, frame = self.getFrame()
         if ret:
-            return self.__getBrightness(image)
+            return self.__getBrightness( self.hsvColor(frame) )
         return 0
     
+    def rgbColor(self, frame):
+        """
+        Change color model of the frame to RGB
+        """
+        return cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+    def hsvColor(self, frame):
+        """
+        Change color model of the frame to HSV (Hue, Saturation, Value)
+        """
+        return cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    
+    def backendName(self):
+        """
+        Get backend name of capture device
+        """
+        return cv2.VideoCapture(self.device).getBackendName()
+    
+    def cv_buildInformation(self):
+        """
+        Get OpenCV build information
+        """
+        return cv2.getBuildInformation()
+    
+    def properties(self):
+        """
+        Return device properties
+
+        Returns: dict
+        """
+        cam = cv2.VideoCapture(self.device)
+        props = dict()
+        for attr in dir(cv2):
+            if attr.startswith('CAP_PROP'):
+                props[attr] = cam.get(getattr(cv2, attr))
+        return props
+
     def showImage(self, frame):
         cv2.imshow("test", frame)
