@@ -20,7 +20,12 @@ class Brightness:
 
         Returns: int
         """
+        self.camera.open()
+        if not self.camera.deviceOpened():
+            print(_("Can't open video device"))
+        
         ambient_brightness = self.camera.getBrightness()
+        self.camera.close()
         calculated = round( self.screen.maxBrightness * ambient_brightness / 255 )
         
         # do not go under 1%

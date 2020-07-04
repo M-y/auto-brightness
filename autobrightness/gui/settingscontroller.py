@@ -100,6 +100,7 @@ class SettingsController:
             camLoc = self._view.cameraEdit.text()
 
         camera = webcam.Camera(camLoc)
+        camera.open()
         ret, frame = camera.getFrame()
         if ret:
             rgb = camera.rgbColor(frame)
@@ -118,6 +119,7 @@ class SettingsController:
             msg = QMessageBox()
             msg.setText(_("Can't get frame from camera."))
             msg.exec()
+        camera.close()
 
     def _backendButtonClick(self):
         """

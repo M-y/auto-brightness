@@ -6,8 +6,21 @@ class Camera:
         device (int|string): id or path of camera
     """
     def __init__(self, device):
-        self.device = cv2.VideoCapture(device)
+        self.deviceId = device
+        self.device = cv2.VideoCapture()
     
+    def open(self):
+        """
+        Open device
+        """
+        self.device.open(self.deviceId)
+    
+    def close(self):
+        """
+        Close device
+        """
+        self.device.release()
+
     def deviceOpened(self):
         """
         Returns: bool
