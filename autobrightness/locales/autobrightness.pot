@@ -30,7 +30,11 @@ msgstr ""
 msgid "Interface:"
 msgstr ""
 
-#: autobrightness/brightness.py:39
+#: autobrightness/brightness.py:25
+msgid "Can't open video device"
+msgstr ""
+
+#: autobrightness/brightness.py:44
 msgid "Adjusting brightness to %(percentage)d%% (%(value)d)"
 msgstr ""
 
@@ -82,11 +86,11 @@ msgstr ""
 msgid "Press again."
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:119
+#: autobrightness/gui/settingscontroller.py:120
 msgid "Can't get frame from camera."
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:127
+#: autobrightness/gui/settingscontroller.py:129
 msgid "Will test min and max brightness via the selected backend."
 msgstr ""
 
