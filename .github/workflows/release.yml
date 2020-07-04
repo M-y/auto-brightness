@@ -105,7 +105,7 @@ jobs:
       run: |
         pip install pyinstaller
         pip install .
-        pyinstaller --add-data 'autobrightness\locales;autobrightness\locales' --add-data 'autobrightness\backend;autobrightness\backend' --add-data 'autobrightness\icon.png;autobrightness' --icon icon.ico --windowed --onefile --name autobrightness autobrightness\__main__.py
+        pyinstaller --add-data 'autobrightness\locales;autobrightness\locales' --add-data 'autobrightness\backend;autobrightness\backend' --add-data 'autobrightness\icon.png;autobrightness' --hidden-import=pkg_resources.py2_warn --icon icon.ico --windowed --onefile --name autobrightness autobrightness\__main__.py
         Compress-Archive -Path dist\autobrightness.exe,README.md -DestinationPath autobrightness_${{ github.event.release.tag_name }}-windows.zip
       
     - uses: actions/upload-artifact@master
