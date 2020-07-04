@@ -1,7 +1,7 @@
 import unittest
 from PyQt5.QtTest import QTest
-from PyQt5.QtWidgets import QApplication
-from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QMessageBox
+from PyQt5.QtCore import Qt, QTimer
 from autobrightness import config
 from autobrightness.gui import settingscontroller, settingswindow, daemon
 import gettext
@@ -33,6 +33,14 @@ class SettingswindowTest(unittest.TestCase):
             if i != comboBox.currentIndex():
                 comboBox.setCurrentIndex(i)
 
+    def pressEnter(self):
+        """
+        Presses enter key on QMessageBox
+        """
+        for widget in app.allWidgets():
+            if type(widget) == QMessageBox:
+                QTest.keyClick(widget, Qt.Key_Enter)
+
     def test_defaultConfig(self):
         self.createWindow( config.Config() )
         self.checkConfig( config.Config() )
@@ -60,10 +68,12 @@ class SettingswindowTest(unittest.TestCase):
         configIns = config.Config()
         configIns.camera = 0
         self.createWindow(configIns)
+        QTimer.singleShot(1000, self.pressEnter)
         QTest.mouseClick(self.view.cameraButton, Qt.LeftButton)
         self.view.close()
 
         configIns.camera = "/dev/video0"
         self.createWindow(configIns)
+        QTimer.singleShot(1000, self.pressEnter)
         QTest.mouseClick(self.view.cameraButton, Qt.LeftButton)
         self.view.close()

@@ -6,8 +6,16 @@ class Camera:
         device (int|string): id or path of camera
     """
     def __init__(self, device):
-        self.device = device
+        self.device = cv2.VideoCapture(device)
     
+    def deviceOpened(self):
+        """
+        Returns: bool
+        """
+        if self.device is None or not self.device.isOpened():
+            return False
+        return True
+
     def getFrame(self):
         """
         Capture a frame from camera
@@ -16,9 +24,7 @@ class Camera:
             ret (bool): false on failure
             frame (array)
         """
-        cam = cv2.VideoCapture(self.device)
-        ret, frame = cam.read()
-        cam.release()
+        ret, frame = self.device.read()
         return ret, frame
     
     def __getBrightness(self, hsv):
@@ -63,7 +69,7 @@ class Camera:
         """
         Get backend name of capture device
         """
-        return cv2.VideoCapture(self.device).getBackendName()
+        return self.device.getBackendName()
     
     def cv_buildInformation(self):
         """
@@ -77,12 +83,31 @@ class Camera:
 
         Returns: dict
         """
-        cam = cv2.VideoCapture(self.device)
         props = dict()
         for attr in dir(cv2):
             if attr.startswith('CAP_PROP'):
-                props[attr] = cam.get(getattr(cv2, attr))
+                props[attr] = self.getProp(getattr(cv2, attr))
         return props
+    
+    def getProp(self, property):
+        """
+        Get device property
+
+        Parameters:
+            property: Property identifier
+        """
+        return self.device.get(property)
+
+    def setProp(self, property, value):
+        """
+        Set device property
+
+        Parameters:
+            property: Property identifier
+            value:
+        Returns: bool
+        """
+        return self.device.set(property, value)
 
     def showImage(self, frame):
         cv2.imshow("test", frame)
