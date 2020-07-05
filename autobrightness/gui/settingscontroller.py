@@ -6,6 +6,7 @@ from autobrightness import webcam, screen
 from autobrightness.gui import camerawindow
 import keyboard
 import time
+import cv2
 
 class SettingsController:
     def __init__(self, view, config, service, lang):
@@ -101,6 +102,7 @@ class SettingsController:
 
         camera = webcam.Camera(camLoc)
         camera.open()
+        camera.disable_autoExposure()
         ret, frame = camera.getFrame()
         if ret:
             rgb = camera.rgbColor(frame)
@@ -108,17 +110,22 @@ class SettingsController:
             backendName = camera.backendName()
             bInfo = camera.cv_buildInformation()
             properties = camera.properties()
+            if camera._oldval_autoExposure  == camera.getProp(cv2.CAP_PROP_AUTO_EXPOSURE):
+                exposure_available = False
+            else:
+                exposure_available = True
 
             brightness = camera.getBrightness()
             brightness = round( 100 * brightness / 255 )
 
-            self.camera_view = camerawindow.CameraWindow(self.lang, rgb, hsv, backendName, bInfo, properties, brightness)
+            self.camera_view = camerawindow.CameraWindow(self.lang, rgb, hsv, backendName, bInfo, properties, brightness, exposure_available)
             self.camera_view.setWindowModality(Qt.ApplicationModal)
             self.camera_view.show()
         else:
             msg = QMessageBox()
             msg.setText(_("Can't get frame from camera."))
             msg.exec()
+        camera.enable_autoExposure()
         camera.close()
 
     def _backendButtonClick(self):

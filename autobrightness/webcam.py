@@ -29,6 +29,28 @@ class Camera:
             return False
         return True
 
+    def disable_autoExposure(self):
+        """
+        Need to disable auto exposure for determining the image brightness correctly
+
+        @note Call after open()
+        """
+        self._oldval_autoExposure = self.getProp(cv2.CAP_PROP_AUTO_EXPOSURE)
+        self._oldval_exposure = self.getProp(cv2.CAP_PROP_EXPOSURE)
+
+        self.setProp(cv2.CAP_PROP_AUTO_EXPOSURE, False)
+        self.setProp(cv2.CAP_PROP_EXPOSURE, 4)
+    
+    def enable_autoExposure(self):
+        """
+        @note Call before close()
+        """
+        if hasattr(self, "_oldval_autoExposure"):
+            self.setProp(cv2.CAP_PROP_AUTO_EXPOSURE, self._oldval_autoExposure)
+            self.setProp(cv2.CAP_PROP_EXPOSURE, self._oldval_exposure)
+        else:
+            self.setProp(cv2.CAP_PROP_AUTO_EXPOSURE, True)
+
     def getFrame(self):
         """
         Capture a frame from camera

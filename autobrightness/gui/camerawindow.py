@@ -3,7 +3,7 @@ from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtCore import Qt
 
 class CameraWindow(QMainWindow):
-    def __init__(self, lang, rgb, hsv, backendName, bInfo, properties, brightness):
+    def __init__(self, lang, rgb, hsv, backendName, bInfo, properties, brightness, exposure_available):
         global _
         _ = lang.gettext
         super().__init__()
@@ -29,6 +29,7 @@ class CameraWindow(QMainWindow):
         details.setText(
             "<h2>" + _("Image Brightness") + "</h2>" + _("%s%%" % brightness)
             + "<h2>" + _("Backend") + "</h2>" + backendName
+            + "<h2>" + _("Disable Auto Exposure") + "</h2>" + (_("supported") if exposure_available else _("not supported"))
             + "<h2>" + _("Properties") + "</h2>" + propText
             + "<h2>" + _("OpenCV Build Information") + "</h2>" + bInfo.replace("\n", "<br>")
         )
