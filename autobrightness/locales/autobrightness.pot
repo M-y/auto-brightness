@@ -30,11 +30,11 @@ msgstr ""
 msgid "Interface:"
 msgstr ""
 
-#: autobrightness/brightness.py:25
+#: autobrightness/brightness.py:26
 msgid "Can't open video device"
 msgstr ""
 
-#: autobrightness/brightness.py:44
+#: autobrightness/brightness.py:46
 msgid "Adjusting brightness to %(percentage)d%% (%(value)d)"
 msgstr ""
 
@@ -67,10 +67,22 @@ msgid "Backend"
 msgstr ""
 
 #: autobrightness/gui/camerawindow.py:32
-msgid "Properties"
+msgid "Disable Auto Exposure"
+msgstr ""
+
+#: autobrightness/gui/camerawindow.py:32
+msgid "not supported"
+msgstr ""
+
+#: autobrightness/gui/camerawindow.py:32
+msgid "supported"
 msgstr ""
 
 #: autobrightness/gui/camerawindow.py:33
+msgid "Properties"
+msgstr ""
+
+#: autobrightness/gui/camerawindow.py:34
 msgid "OpenCV Build Information"
 msgstr ""
 
@@ -78,19 +90,19 @@ msgstr ""
 msgid "Daemon Logs"
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:79
+#: autobrightness/gui/settingscontroller.py:80
 msgid "Close this message and press a key or key combination. "
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:85
+#: autobrightness/gui/settingscontroller.py:86
 msgid "Press again."
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:120
+#: autobrightness/gui/settingscontroller.py:126
 msgid "Can't get frame from camera."
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:129
+#: autobrightness/gui/settingscontroller.py:136
 msgid "Will test min and max brightness via the selected backend."
 msgstr ""
 
