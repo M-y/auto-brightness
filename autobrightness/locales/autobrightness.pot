@@ -58,31 +58,31 @@ msgstr ""
 msgid "Camera Test"
 msgstr ""
 
-#: autobrightness/gui/camerawindow.py:30
+#: autobrightness/gui/camerawindow.py:57
 msgid "Image Brightness"
 msgstr ""
 
-#: autobrightness/gui/camerawindow.py:31
+#: autobrightness/gui/camerawindow.py:58
 msgid "Backend"
 msgstr ""
 
-#: autobrightness/gui/camerawindow.py:32
+#: autobrightness/gui/camerawindow.py:59
 msgid "Disable Auto Exposure"
 msgstr ""
 
-#: autobrightness/gui/camerawindow.py:32
+#: autobrightness/gui/camerawindow.py:59
 msgid "not supported"
 msgstr ""
 
-#: autobrightness/gui/camerawindow.py:32
+#: autobrightness/gui/camerawindow.py:59
 msgid "supported"
 msgstr ""
 
-#: autobrightness/gui/camerawindow.py:33
+#: autobrightness/gui/camerawindow.py:60
 msgid "Properties"
 msgstr ""
 
-#: autobrightness/gui/camerawindow.py:34
+#: autobrightness/gui/camerawindow.py:61
 msgid "OpenCV Build Information"
 msgstr ""
 
@@ -98,11 +98,11 @@ msgstr ""
 msgid "Press again."
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:126
+#: autobrightness/gui/settingscontroller.py:130
 msgid "Can't get frame from camera."
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:136
+#: autobrightness/gui/settingscontroller.py:140
 msgid "Will test min and max brightness via the selected backend."
 msgstr ""
 
