@@ -37,12 +37,11 @@ class WebcamTest(unittest.TestCase):
     def test_property(self):
         camera = webcam.Camera(0)
         camera.open()
-        if camera.deviceOpened():
-            if "CAP_PROP_FRAME_WIDTH" in camera.properties():
-                camera.setProp(cv2.CAP_PROP_FRAME_WIDTH, 320)
-                camera.setProp(cv2.CAP_PROP_FRAME_HEIGHT, 240)
-                self.assertEqual(camera.getProp(cv2.CAP_PROP_FRAME_HEIGHT), 240)
-                ret, frame = camera.getFrame()
-                if ret:
-                    self.assertEqual(len(frame), 240)
+        if camera.deviceOpened() and "CAP_PROP_FRAME_WIDTH" in camera.properties():
+            camera.setProp(cv2.CAP_PROP_FRAME_WIDTH, 320)
+            camera.setProp(cv2.CAP_PROP_FRAME_HEIGHT, 240)
+            self.assertEqual(camera.getProp(cv2.CAP_PROP_FRAME_HEIGHT), 240)
+            ret, frame = camera.getFrame()
+            if ret:
+                self.assertEqual(len(frame), 240)
         camera.close()

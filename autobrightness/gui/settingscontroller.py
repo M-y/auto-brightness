@@ -105,20 +105,24 @@ class SettingsController:
         camera.disable_autoExposure()
         ret, frame = camera.getFrame()
         if ret:
+            self.camera_view = camerawindow.CameraWindow(self.lang)
+
             rgb = camera.rgbColor(frame)
             hsv = camera.hsvColor(frame)
-            backendName = camera.backendName()
-            bInfo = camera.cv_buildInformation()
-            properties = camera.properties()
+            self.camera_view.createImages(rgb, hsv)
+
+            details = dict()
+            details["backendName"] = camera.backendName()
+            details["bInfo"] = camera.cv_buildInformation()
+            details["properties"] = camera.properties()
             if camera._oldval_autoExposure  == camera.getProp(cv2.CAP_PROP_AUTO_EXPOSURE):
-                exposure_available = False
+                details["exposure_available"] = False
             else:
-                exposure_available = True
+                details["exposure_available"] = True
 
-            brightness = camera.getBrightness()
-            brightness = round( 100 * brightness / 255 )
+            details["brightness"] = round( 100 * camera.getBrightness() / 255 )
+            self.camera_view.createDetails(details)
 
-            self.camera_view = camerawindow.CameraWindow(self.lang, rgb, hsv, backendName, bInfo, properties, brightness, exposure_available)
             self.camera_view.setWindowModality(Qt.ApplicationModal)
             self.camera_view.show()
         else:
