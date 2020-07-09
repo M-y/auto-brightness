@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import  QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QFormLayout, QLineEdit, QPushButton, QComboBox
+from PyQt5.QtWidgets import  QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QFormLayout, QLineEdit, QPushButton, QComboBox, QFrame
 from PyQt5.QtGui import QIcon
 import autobrightness
 import os
@@ -16,10 +16,23 @@ class SettingsWindow(QMainWindow):
         self.setCentralWidget(self._centralWidget)
         self._centralWidget.setLayout(self.generalLayout)
 
-        self._createForm()
-        self._createButtons()
+        layout = QVBoxLayout()
+        layout.addWidget( self._language() )
+        layout.addWidget( self._backend() )
+        layout.addWidget( self._camera() )
+        layout.addWidget( self._interval() )
+        layout.addWidget( self._shortcut() )
+        self.generalLayout.addLayout(layout)
+        
+        self.saveButton = QPushButton(_('Save'))
+        self.generalLayout.addWidget(self.saveButton)
+
+    def _frame(self):
+        frame = QFrame()
+        frame.setFrameShape(QFrame.Box | QFrame.Sunken)
+        return frame
     
-    def _createForm(self):
+    def _language(self):
         form = QFormLayout()
 
         self.languageCombo = QComboBox()
@@ -27,6 +40,13 @@ class SettingsWindow(QMainWindow):
             if os.path.isdir( os.path.join(autobrightness.ROOT_DIR, "locales", dirname) ):
                 self.languageCombo.addItem(dirname)
         form.addRow(_('Language:'), self.languageCombo)
+
+        frame = self._frame()
+        frame.setLayout(form)
+        return frame
+    
+    def _backend(self):
+        form = QFormLayout()
 
         self.backendCombo = QComboBox()
         for filename in os.listdir( os.path.join(autobrightness.ROOT_DIR, "backend") ):
@@ -37,27 +57,48 @@ class SettingsWindow(QMainWindow):
         self.backendLayout = QVBoxLayout()
         form.addRow(self.backendLayout)
 
+        self.backendButton = QPushButton(_('Test Backend'))
+        form.addRow(self.backendButton)
+
+        frame = self._frame()
+        frame.setLayout(form)
+        return frame
+    
+    def _camera(self):
+        form = QFormLayout()
+
+        layout = QHBoxLayout()
         self.cameraEdit = QLineEdit()
-        form.addRow(_('Camera:'), self.cameraEdit)
+        self.cameraButton = QPushButton(_('Test Camera'))
+        layout.addWidget(self.cameraEdit)
+        layout.addWidget(self.cameraButton)
+        form.addRow(_('Camera:'), layout)
+
+        frame = self._frame()
+        frame.setLayout(form)
+        return frame
+
+    def _interval(self):
+        form = QFormLayout()
 
         self.intervalEdit = QLineEdit()
         form.addRow(_('Interval:'), self.intervalEdit)
 
+        frame = self._frame()
+        frame.setLayout(form)
+        return frame
+
+    def _shortcut(self):
+        form = QFormLayout()
+
+        layout = QHBoxLayout()
         self.shortcutEdit = QLineEdit()
-        form.addRow(_('Shortcut:'), self.shortcutEdit)
-
-        self.generalLayout.addLayout(form)
-    
-    def _createButtons(self):
-        buttons = QHBoxLayout()
-
         self.shortcutButton = QPushButton(_('Select Shortcut'))
-        buttons.addWidget(self.shortcutButton)
-        self.cameraButton = QPushButton(_('Test Camera'))
-        buttons.addWidget(self.cameraButton)
-        self.backendButton = QPushButton(_('Test Backend'))
-        buttons.addWidget(self.backendButton)
-        self.saveButton = QPushButton(_('Save'))
-        buttons.addWidget(self.saveButton)
+        layout.addWidget(self.shortcutEdit)
+        layout.addWidget(self.shortcutButton)
 
-        self.generalLayout.addLayout(buttons)
+        form.addRow(_('Shortcut:'), layout)
+        frame = self._frame()
+        frame.setLayout(form)
+        return frame
+    
