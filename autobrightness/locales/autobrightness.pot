@@ -110,40 +110,40 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:29
+#: autobrightness/gui/settingswindow.py:27
+msgid "Save"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:42
 msgid "Language:"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:35
+#: autobrightness/gui/settingswindow.py:55
 msgid "Backend:"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:41
-msgid "Camera:"
-msgstr ""
-
-#: autobrightness/gui/settingswindow.py:44
-msgid "Interval:"
-msgstr ""
-
-#: autobrightness/gui/settingswindow.py:47
-msgid "Shortcut:"
-msgstr ""
-
-#: autobrightness/gui/settingswindow.py:54
-msgid "Select Shortcut"
-msgstr ""
-
-#: autobrightness/gui/settingswindow.py:56
-msgid "Test Camera"
-msgstr ""
-
-#: autobrightness/gui/settingswindow.py:58
+#: autobrightness/gui/settingswindow.py:60
 msgid "Test Backend"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:60
-msgid "Save"
+#: autobrightness/gui/settingswindow.py:72
+msgid "Test Camera"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:75
+msgid "Camera:"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:85
+msgid "Interval:"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:96
+msgid "Select Shortcut"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:100
+msgid "Shortcut:"
 msgstr ""
 
 #: autobrightness/gui/trayicon.py:26
