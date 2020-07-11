@@ -1,8 +1,8 @@
-from PyQt5.QtWidgets import QMainWindow, QWidget, QHBoxLayout, QVBoxLayout, QLabel, QTextEdit
+from PyQt5.QtWidgets import QDialog, QWidget, QHBoxLayout, QVBoxLayout, QLabel, QTextEdit
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtCore import Qt
 
-class CameraWindow(QMainWindow):
+class CameraWindow(QDialog):
     def __init__(self, lang):
         global _
         _ = lang.gettext
@@ -11,9 +11,7 @@ class CameraWindow(QMainWindow):
         self.setWindowTitle(_('Camera Test'))
 
         self.generalLayout = QHBoxLayout()
-        self._centralWidget = QWidget(self)
-        self.setCentralWidget(self._centralWidget)
-        self._centralWidget.setLayout(self.generalLayout)
+        self.setLayout(self.generalLayout)
     
     def _frame_tolabel(self, frame):
         """

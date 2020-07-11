@@ -1,9 +1,9 @@
-from PyQt5.QtWidgets import  QMainWindow, QWidget, QHBoxLayout, QVBoxLayout, QLabel, QSpacerItem
+from PyQt5.QtWidgets import  QDialog, QWidget, QHBoxLayout, QVBoxLayout, QLabel, QSpacerItem
 from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtCore import Qt
 import autobrightness
 
-class AboutWindow(QMainWindow):
+class AboutWindow(QDialog):
     def __init__(self, lang):
         global _
         _ = lang.gettext
@@ -13,9 +13,7 @@ class AboutWindow(QMainWindow):
         self.setWindowIcon( QIcon(autobrightness.ICON) )
 
         self.generalLayout = QHBoxLayout()
-        self._centralWidget = QWidget(self)
-        self.setCentralWidget(self._centralWidget)
-        self._centralWidget.setLayout(self.generalLayout)
+        self.setLayout(self.generalLayout)
 
         logo = QLabel()
         pixmap = QPixmap(autobrightness.ICON)
