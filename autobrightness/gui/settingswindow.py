@@ -1,9 +1,10 @@
-from PyQt5.QtWidgets import  QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QFormLayout, QLineEdit, QPushButton, QComboBox, QFrame
+from PyQt5.QtWidgets import  QDialog, QWidget, QVBoxLayout, QHBoxLayout, QFormLayout, QLineEdit, QPushButton, QComboBox, QFrame, QSpinBox, QLabel
 from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import Qt
 import autobrightness
 import os
 
-class SettingsWindow(QMainWindow):
+class SettingsWindow(QDialog):
     def __init__(self, lang):
         global _
         _ = lang.gettext
@@ -11,10 +12,9 @@ class SettingsWindow(QMainWindow):
         
         self.setWindowTitle(_('Settings'))
         self.setWindowIcon( QIcon(autobrightness.ICON) )
+
         self.generalLayout = QVBoxLayout()
-        self._centralWidget = QWidget(self)
-        self.setCentralWidget(self._centralWidget)
-        self._centralWidget.setLayout(self.generalLayout)
+        self.setLayout(self.generalLayout)
 
         layout = QVBoxLayout()
         layout.addWidget( self._language() )
@@ -81,9 +81,14 @@ class SettingsWindow(QMainWindow):
     def _interval(self):
         form = QFormLayout()
 
-        self.intervalEdit = QLineEdit()
-        form.addRow(_('Interval:'), self.intervalEdit)
+        layout = QHBoxLayout()
+        self.intervalEdit = QSpinBox()
+        self.intervalEdit.setMaximum(60)
+        self.intervalLabel = QLabel()
+        layout.addWidget(self.intervalEdit)
+        layout.addWidget(self.intervalLabel)
 
+        form.addRow(_('Interval:'), layout)
         frame = self._frame()
         frame.setLayout(form)
         return frame

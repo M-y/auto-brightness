@@ -22,7 +22,7 @@ class SettingswindowTest(unittest.TestCase):
         self.assertEqual(self.view.languageCombo.currentText(), configIns.language)
         self.assertEqual(self.view.backendCombo.currentText(), configIns.backend)
         self.assertEqual(self.view.cameraEdit.text(), str(configIns.camera))
-        self.assertEqual(self.view.intervalEdit.text(), str(configIns.interval))
+        self.assertEqual(self.view.intervalEdit.value(), configIns.interval)
         self.assertEqual(self.view.shortcutEdit.text(), str(configIns.shortcut))
     
     def comboChange(self, comboBox):
@@ -54,7 +54,7 @@ class SettingswindowTest(unittest.TestCase):
         self.comboChange(self.view.languageCombo)
         self.comboChange(self.view.backendCombo)
         self.view.cameraEdit.setText("1")
-        self.view.intervalEdit.setText("1")
+        self.view.intervalEdit.setValue(1)
         self.view.shortcutEdit.setText("F12")
 
         # click save and check config

@@ -7,6 +7,7 @@ from autobrightness.gui import camerawindow
 import keyboard
 import time
 import cv2
+import math
 
 class SettingsController:
     def __init__(self, view, config, service, lang):
@@ -21,7 +22,8 @@ class SettingsController:
         self._view.languageCombo.setCurrentText(str(self._config.language))
         self._view.backendCombo.setCurrentText(str(self._config.backend))
         self._view.cameraEdit.setText(str(self._config.camera))
-        self._view.intervalEdit.setText(str(self._config.interval))
+        self._view.intervalEdit.setValue(self._config.interval)
+        self._intervalChange(self._config.interval)
         self._view.shortcutEdit.setText(str(self._config.shortcut))
         self._backendComboChange()
 
@@ -34,6 +36,7 @@ class SettingsController:
         self._view.shortcutButton.clicked.connect(partial(self._shortcutButtonClick))
         self._view.cameraButton.clicked.connect(partial(self._cameraButtonClick))
         self._view.backendButton.clicked.connect(partial(self._backendButtonClick))
+        self._view.intervalEdit.valueChanged.connect(partial(self._intervalChange))
         self._view.closeEvent = partial(self.closeEvent, self._view)
     
     def closeEvent(self, window, event):
@@ -63,7 +66,7 @@ class SettingsController:
             self._config.language = self._view.languageCombo.currentText()
         self._config.backend = self._view.backendCombo.currentText()
         self._config.camera = self._view.cameraEdit.text()
-        self._config.interval = self._view.intervalEdit.text()
+        self._config.interval = self._view.intervalEdit.value()
         self._config.shortcut = self._view.shortcutEdit.text()
 
         self.backend.configSave()
@@ -147,3 +150,26 @@ class SettingsController:
         self.backend.setBrightness(self.backend.backend.getMaxBrightness())
         time.sleep(1)
         self.backend.setBrightness(oldBrightness)
+
+    def _intervalChange(self, value):
+        """
+        Interval change event
+        """
+        modes = [
+            _("disabled"),
+            _("seconds"),
+            _("minutes")
+        ]
+
+        if self._view.intervalLabel.text() == modes[2]:
+            value *= 60
+        if value > 59:
+            self._view.intervalEdit.setValue( math.ceil(value / 60) )
+
+        # update label
+        if value > 59:
+            self._view.intervalLabel.setText(modes[2])
+        elif value > 0:
+            self._view.intervalLabel.setText(modes[1])
+        else:
+            self._view.intervalLabel.setText(modes[0])
