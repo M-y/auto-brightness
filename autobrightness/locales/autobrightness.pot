@@ -58,31 +58,31 @@ msgstr ""
 msgid "Camera Test"
 msgstr ""
 
-#: autobrightness/gui/camerawindow.py:57
+#: autobrightness/gui/camerawindow.py:55
 msgid "Image Brightness"
 msgstr ""
 
-#: autobrightness/gui/camerawindow.py:58
+#: autobrightness/gui/camerawindow.py:56
 msgid "Backend"
 msgstr ""
 
-#: autobrightness/gui/camerawindow.py:59
+#: autobrightness/gui/camerawindow.py:57
 msgid "Disable Auto Exposure"
 msgstr ""
 
-#: autobrightness/gui/camerawindow.py:59
+#: autobrightness/gui/camerawindow.py:57
 msgid "not supported"
 msgstr ""
 
-#: autobrightness/gui/camerawindow.py:59
+#: autobrightness/gui/camerawindow.py:57
 msgid "supported"
 msgstr ""
 
-#: autobrightness/gui/camerawindow.py:60
+#: autobrightness/gui/camerawindow.py:58
 msgid "Properties"
 msgstr ""
 
-#: autobrightness/gui/camerawindow.py:61
+#: autobrightness/gui/camerawindow.py:59
 msgid "OpenCV Build Information"
 msgstr ""
 
@@ -90,23 +90,35 @@ msgstr ""
 msgid "Daemon Logs"
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:80
+#: autobrightness/gui/settingscontroller.py:83
 msgid "Close this message and press a key or key combination. "
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:86
+#: autobrightness/gui/settingscontroller.py:89
 msgid "Press again."
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:130
+#: autobrightness/gui/settingscontroller.py:133
 msgid "Can't get frame from camera."
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:140
+#: autobrightness/gui/settingscontroller.py:143
 msgid "Will test min and max brightness via the selected backend."
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:12 autobrightness/gui/trayicon.py:22
+#: autobrightness/gui/settingscontroller.py:159
+msgid "disabled"
+msgstr ""
+
+#: autobrightness/gui/settingscontroller.py:160
+msgid "seconds"
+msgstr ""
+
+#: autobrightness/gui/settingscontroller.py:161
+msgid "minutes"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:13 autobrightness/gui/trayicon.py:22
 msgid "Settings"
 msgstr ""
 
@@ -134,15 +146,15 @@ msgstr ""
 msgid "Camera:"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:85
+#: autobrightness/gui/settingswindow.py:91
 msgid "Interval:"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:96
+#: autobrightness/gui/settingswindow.py:101
 msgid "Select Shortcut"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:100
+#: autobrightness/gui/settingswindow.py:105
 msgid "Shortcut:"
 msgstr ""
 
