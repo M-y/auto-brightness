@@ -10,6 +10,7 @@ import cv2
 import math
 
 class SettingsController:
+
     def __init__(self, view, config, service, lang):
         self.lang = lang
         global _
@@ -18,6 +19,11 @@ class SettingsController:
         self._config = config
         self._service = service
         
+        self.interval_modes = [
+            _("disabled"),
+            _("seconds"),
+            _("minutes")
+        ]
         # fill form
         self._view.languageCombo.setCurrentText(str(self._config.language))
         self._view.backendCombo.setCurrentText(str(self._config.backend))
@@ -66,8 +72,11 @@ class SettingsController:
             self._config.language = self._view.languageCombo.currentText()
         self._config.backend = self._view.backendCombo.currentText()
         self._config.camera = self._view.cameraEdit.text()
-        self._config.interval = self._view.intervalEdit.value()
         self._config.shortcut = self._view.shortcutEdit.text()
+
+        self._config.interval = self._view.intervalEdit.value()
+        if self._view.intervalLabel.text() == self.interval_modes[2]:
+            self._config.interval *= 60
 
         self.backend.configSave()
         self._config.save()
@@ -155,21 +164,15 @@ class SettingsController:
         """
         Interval change event
         """
-        modes = [
-            _("disabled"),
-            _("seconds"),
-            _("minutes")
-        ]
-
-        if self._view.intervalLabel.text() == modes[2]:
+        if self._view.intervalLabel.text() == self.interval_modes[2]:
             value *= 60
         if value > 59:
             self._view.intervalEdit.setValue( math.ceil(value / 60) )
 
         # update label
         if value > 59:
-            self._view.intervalLabel.setText(modes[2])
+            self._view.intervalLabel.setText(self.interval_modes[2])
         elif value > 0:
-            self._view.intervalLabel.setText(modes[1])
+            self._view.intervalLabel.setText(self.interval_modes[1])
         else:
-            self._view.intervalLabel.setText(modes[0])
+            self._view.intervalLabel.setText(self.interval_modes[0])
