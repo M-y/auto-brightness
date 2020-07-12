@@ -90,32 +90,32 @@ msgstr ""
 msgid "Daemon Logs"
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:83
-msgid "Close this message and press a key or key combination. "
-msgstr ""
-
-#: autobrightness/gui/settingscontroller.py:89
-msgid "Press again."
-msgstr ""
-
-#: autobrightness/gui/settingscontroller.py:133
-msgid "Can't get frame from camera."
-msgstr ""
-
-#: autobrightness/gui/settingscontroller.py:143
-msgid "Will test min and max brightness via the selected backend."
-msgstr ""
-
-#: autobrightness/gui/settingscontroller.py:159
+#: autobrightness/gui/settingscontroller.py:23
 msgid "disabled"
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:160
+#: autobrightness/gui/settingscontroller.py:24
 msgid "seconds"
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:161
+#: autobrightness/gui/settingscontroller.py:25
 msgid "minutes"
+msgstr ""
+
+#: autobrightness/gui/settingscontroller.py:91
+msgid "Close this message and press a key or key combination. "
+msgstr ""
+
+#: autobrightness/gui/settingscontroller.py:97
+msgid "Press again."
+msgstr ""
+
+#: autobrightness/gui/settingscontroller.py:141
+msgid "Can't get frame from camera."
+msgstr ""
+
+#: autobrightness/gui/settingscontroller.py:151
+msgid "Will test min and max brightness via the selected backend."
 msgstr ""
 
 #: autobrightness/gui/settingswindow.py:13 autobrightness/gui/trayicon.py:22
