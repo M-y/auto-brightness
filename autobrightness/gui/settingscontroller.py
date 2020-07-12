@@ -80,7 +80,6 @@ class SettingsController:
 
         self.backend.configSave()
         self._config.save()
-        self._service.start()
 
         self._view.close()
 
