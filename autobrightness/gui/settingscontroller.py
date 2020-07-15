@@ -91,15 +91,11 @@ class SettingsController:
         """
         Shortcut button click event
         """
-        msg = QMessageBox()
-        msg.setText(_("Close this message and press a key or key combination. "))
-        msg.exec()
+        QMessageBox.information(self._view, "", _("Close this message and press a key or key combination. "))
 
         key = keyboard.read_hotkey(True)
         if key == 'unknown':
-            msg = QMessageBox()
-            msg.setText(_("Press again."))
-            msg.exec()
+            QMessageBox.information(self._view, "", _("Press again."))
 
             key = keyboard.read_event(True)
             self._view.shortcutEdit.setText( str(key.scan_code) )
@@ -117,45 +113,43 @@ class SettingsController:
 
         camera = webcam.Camera(camLoc)
         camera.open()
+        if camera.deviceOpened():
+            details = dict()
+            details["backendName"] = camera.backendName()
+            details["bInfo"] = camera.cv_buildInformation()
+            details["properties"] = camera.properties()
+            
+            camera.disable_autoExposure()
+            ret, frame = camera.getFrame()
+            if ret:
+                self.camera_view = camerawindow.CameraWindow(self.lang)
 
-        details = dict()
-        details["backendName"] = camera.backendName()
-        details["bInfo"] = camera.cv_buildInformation()
-        details["properties"] = camera.properties()
-        
-        camera.disable_autoExposure()
-        ret, frame = camera.getFrame()
-        if ret:
-            self.camera_view = camerawindow.CameraWindow(self.lang)
+                rgb = camera.rgbColor(frame)
+                hsv = camera.hsvColor(frame)
+                self.camera_view.createImages(rgb, hsv)
 
-            rgb = camera.rgbColor(frame)
-            hsv = camera.hsvColor(frame)
-            self.camera_view.createImages(rgb, hsv)
+                if camera._oldval_autoExposure != float(0) and camera._oldval_autoExposure  == camera.getProp(cv2.CAP_PROP_AUTO_EXPOSURE):
+                    details["exposure_available"] = False
+                else:
+                    details["exposure_available"] = True
 
-            if camera._oldval_autoExposure != float(0) and camera._oldval_autoExposure  == camera.getProp(cv2.CAP_PROP_AUTO_EXPOSURE):
-                details["exposure_available"] = False
+                details["brightness"] = round( 100 * camera.getBrightness() / 255 )
+                self.camera_view.createDetails(details)
+
+                self.camera_view.setWindowModality(Qt.ApplicationModal)
+                self.camera_view.showMaximized()
             else:
-                details["exposure_available"] = True
-
-            details["brightness"] = round( 100 * camera.getBrightness() / 255 )
-            self.camera_view.createDetails(details)
-
-            self.camera_view.setWindowModality(Qt.ApplicationModal)
-            self.camera_view.showMaximized()
+                QMessageBox().warning(self._view, "", _("Can't get frame from camera."))
+            camera.enable_autoExposure()
         else:
-            msg = QMessageBox()
-            msg.setText(_("Can't get frame from camera."))
-            msg.exec()
-        camera.enable_autoExposure()
+            QMessageBox().warning(self._view, "", _("Can't open device."))
         camera.close()
 
     def _backendButtonClick(self):
         """
         Backend test button click event
         """
-        msg = QMessageBox()
-        msg.setText(_("Will test min and max brightness via the selected backend."))
-        msg.exec()
+        QMessageBox.information(self._view, "", _("Will test min and max brightness via the selected backend."))
 
         self.backend.configSave()
         oldBrightness = self.backend.getBrightness()
