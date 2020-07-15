@@ -38,8 +38,8 @@ class Camera:
         self._oldval_autoExposure = self.getProp(cv2.CAP_PROP_AUTO_EXPOSURE)
         self._oldval_exposure = self.getProp(cv2.CAP_PROP_EXPOSURE)
 
-        self.setProp(cv2.CAP_PROP_AUTO_EXPOSURE, 0)
-        self.setProp(cv2.CAP_PROP_EXPOSURE, 4)
+        self.setProp(cv2.CAP_PROP_AUTO_EXPOSURE, float(0))
+        self.setProp(cv2.CAP_PROP_EXPOSURE, float(1))
     
     def enable_autoExposure(self):
         """
@@ -49,7 +49,7 @@ class Camera:
             self.setProp(cv2.CAP_PROP_AUTO_EXPOSURE, self._oldval_autoExposure)
             self.setProp(cv2.CAP_PROP_EXPOSURE, self._oldval_exposure)
         else:
-            self.setProp(cv2.CAP_PROP_AUTO_EXPOSURE, 1)
+            self.setProp(cv2.CAP_PROP_AUTO_EXPOSURE, float(1.0))
 
     def getFrame(self):
         """
