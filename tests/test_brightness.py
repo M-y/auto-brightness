@@ -9,6 +9,19 @@ class BrightnessTest(unittest.TestCase):
         brightnessIns = brightness.Brightness(settings, gettext)
         self.assertGreater(brightnessIns.calculate(), 0)
 
+        settings.gain = -100
+        brightnessIns = brightness.Brightness(settings, gettext)
+        self.assertGreater(brightnessIns.calculate(), 0)
+
+        settings.gain = 100
+        brightnessIns = brightness.Brightness(settings, gettext)
+        self.assertLessEqual(brightnessIns.calculate(), 100)
+
+        settings.camera = 999
+        settings.gain = 0
+        brightnessIns = brightness.Brightness(settings, gettext)
+        self.assertGreater(brightnessIns.calculate(), 0)
+
     def test_set(self):
         settings = config.Config()
         settings.backend = None
