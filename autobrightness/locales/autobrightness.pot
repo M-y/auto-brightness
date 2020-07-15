@@ -102,19 +102,23 @@ msgstr ""
 msgid "minutes"
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:95
+#: autobrightness/gui/settingscontroller.py:94
 msgid "Close this message and press a key or key combination. "
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:101
+#: autobrightness/gui/settingscontroller.py:98
 msgid "Press again."
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:147
+#: autobrightness/gui/settingscontroller.py:142
 msgid "Can't get frame from camera."
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:157
+#: autobrightness/gui/settingscontroller.py:145
+msgid "Can't open device."
+msgstr ""
+
+#: autobrightness/gui/settingscontroller.py:152
 msgid "Will test min and max brightness via the selected backend."
 msgstr ""
 
