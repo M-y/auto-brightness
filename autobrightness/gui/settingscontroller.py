@@ -32,6 +32,8 @@ class SettingsController:
         self._intervalChange(self._config.interval)
         self._view.shortcutEdit.setText(str(self._config.shortcut))
         self._backendComboChange()
+        self._view.gainSlider.setValue(self._config.gain)
+        self._gainChange(self._config.gain)
 
         # Connect signals and slots
         self._connectSignals()
@@ -43,6 +45,7 @@ class SettingsController:
         self._view.cameraButton.clicked.connect(partial(self._cameraButtonClick))
         self._view.backendButton.clicked.connect(partial(self._backendButtonClick))
         self._view.intervalEdit.valueChanged.connect(partial(self._intervalChange))
+        self._view.gainSlider.valueChanged.connect(partial(self._gainChange))
         self._view.closeEvent = partial(self.closeEvent, self._view)
     
     def closeEvent(self, window, event):
@@ -71,6 +74,7 @@ class SettingsController:
         if len(self._view.languageCombo.currentText()) > 0:
             self._config.language = self._view.languageCombo.currentText()
         self._config.backend = self._view.backendCombo.currentText()
+        self._config.gain = self._view.gainSlider.value()
         self._config.camera = self._view.cameraEdit.text()
         self._config.shortcut = self._view.shortcutEdit.text()
 
@@ -177,3 +181,6 @@ class SettingsController:
             self._view.intervalLabel.setText(self.interval_modes[1])
         else:
             self._view.intervalLabel.setText(self.interval_modes[0])
+
+    def _gainChange(self, value):
+        self._view.gainLabel.setText( _("%s%%" % self._view.gainSlider.value()) )

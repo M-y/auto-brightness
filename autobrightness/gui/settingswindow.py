@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import  QDialog, QWidget, QVBoxLayout, QHBoxLayout, QFormLayout, QLineEdit, QPushButton, QComboBox, QFrame, QSpinBox, QLabel
+from PyQt5.QtWidgets import  QDialog, QWidget, QVBoxLayout, QHBoxLayout, QFormLayout, QLineEdit, QPushButton, QComboBox, QFrame, QSpinBox, QLabel, QSlider
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 import autobrightness
@@ -59,6 +59,17 @@ class SettingsWindow(QDialog):
 
         self.backendButton = QPushButton(_('Test Backend'))
         form.addRow(self.backendButton)
+
+        layout = QVBoxLayout()
+        self.gainSlider = QSlider(Qt.Horizontal)
+        self.gainSlider.setMinimum(-50)
+        self.gainSlider.setMaximum(50)
+        self.gainLabel = QLabel()
+        self.gainLabel.setAlignment(Qt.AlignCenter)
+
+        layout.addWidget(self.gainLabel)
+        layout.addWidget(self.gainSlider)
+        form.addRow(_("Gain"), layout)
 
         frame = self._frame()
         frame.setLayout(form)
