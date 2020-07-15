@@ -51,6 +51,7 @@ class CameraWindow(QDialog):
 
         textEdit = QTextEdit()
         textEdit.setReadOnly(True)
+        textEdit.setLineWrapMode(QTextEdit.NoWrap)
         textEdit.setText(
             "<h2>" + _("Image Brightness") + "</h2>" + _("%s%%" % details["brightness"])
             + "<h2>" + _("Backend") + "</h2>" + details["backendName"]

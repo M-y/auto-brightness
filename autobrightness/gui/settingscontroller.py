@@ -113,6 +113,12 @@ class SettingsController:
 
         camera = webcam.Camera(camLoc)
         camera.open()
+
+        details = dict()
+        details["backendName"] = camera.backendName()
+        details["bInfo"] = camera.cv_buildInformation()
+        details["properties"] = camera.properties()
+        
         camera.disable_autoExposure()
         ret, frame = camera.getFrame()
         if ret:
@@ -122,10 +128,6 @@ class SettingsController:
             hsv = camera.hsvColor(frame)
             self.camera_view.createImages(rgb, hsv)
 
-            details = dict()
-            details["backendName"] = camera.backendName()
-            details["bInfo"] = camera.cv_buildInformation()
-            details["properties"] = camera.properties()
             if camera._oldval_autoExposure != float(0) and camera._oldval_autoExposure  == camera.getProp(cv2.CAP_PROP_AUTO_EXPOSURE):
                 details["exposure_available"] = False
             else:
@@ -135,7 +137,7 @@ class SettingsController:
             self.camera_view.createDetails(details)
 
             self.camera_view.setWindowModality(Qt.ApplicationModal)
-            self.camera_view.show()
+            self.camera_view.showMaximized()
         else:
             msg = QMessageBox()
             msg.setText(_("Can't get frame from camera."))
