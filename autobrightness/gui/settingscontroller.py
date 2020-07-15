@@ -126,7 +126,7 @@ class SettingsController:
             details["backendName"] = camera.backendName()
             details["bInfo"] = camera.cv_buildInformation()
             details["properties"] = camera.properties()
-            if camera._oldval_autoExposure  == camera.getProp(cv2.CAP_PROP_AUTO_EXPOSURE):
+            if camera._oldval_autoExposure == 0 or camera._oldval_autoExposure  == camera.getProp(cv2.CAP_PROP_AUTO_EXPOSURE):
                 details["exposure_available"] = False
             else:
                 details["exposure_available"] = True
