@@ -27,6 +27,7 @@ class Config:
             self.interval = 0
             self.shortcut = None
             self.language = "en"
+            self.gain = 0
 
     def configFileExists(self):
         return os.path.exists(self.fileLocation)
@@ -41,6 +42,7 @@ class Config:
         self.setOption('autobrightness', 'interval', self.interval)
         self.setOption('autobrightness', 'shortcut', self.shortcut)
         self.setOption('autobrightness', 'language', self.language)
+        self.setOption('autobrightness', 'gain', self.gain)
 
         with open(self.fileLocation, 'w') as IO:
             self.configfile.write(IO)
@@ -57,6 +59,7 @@ class Config:
         self.interval = self.getOption('autobrightness', 'interval', int)
         self.shortcut = self.getOption('autobrightness', 'shortcut', int)
         self.language = self.getOption('autobrightness', 'language')
+        self.gain = self.getOption('autobrightness', 'gain', int)
     
     def getOption(self, section, option, type = str):
         """

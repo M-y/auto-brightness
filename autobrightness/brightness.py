@@ -13,6 +13,7 @@ class Brightness:
         _ = lang.gettext
         self.camera = webcam.Camera( settings.camera )
         self.screen = screen.Screen(settings, lang)
+        self.gain = settings.gain
     
     def calculate(self):
         """
@@ -29,10 +30,17 @@ class Brightness:
         self.camera.enable_autoExposure()
         self.camera.close()
         calculated = round( self.screen.maxBrightness * ambient_brightness / 255 )
+
+        # apply gain
+        calculated += round(self.screen.maxBrightness * self.gain / 100)
         
         # do not go under 1%
         if calculated * 100 / self.screen.maxBrightness < 1:
             calculated = round(self.screen.maxBrightness / 100)
+        
+        # do not go over 100%
+        if calculated > self.screen.maxBrightness:
+            calculated = self.screen.maxBrightness
         
         return calculated
     
