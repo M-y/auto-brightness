@@ -38,16 +38,28 @@ msgstr ""
 msgid "Adjusting brightness to %(percentage)d%% (%(value)d)"
 msgstr ""
 
-#: autobrightness/daemon.py:16
+#: autobrightness/daemon.py:18
 msgid "Starting daemon..."
 msgstr ""
 
-#: autobrightness/daemon.py:25
+#: autobrightness/daemon.py:32
 msgid "Shortcut key used."
 msgstr ""
 
-#: autobrightness/daemon.py:60
+#: autobrightness/daemon.py:71
 msgid "No interval nor shortcut selected. Exiting."
+msgstr ""
+
+#: autobrightness/daemon.py:97
+msgid "Full screen check activated."
+msgstr ""
+
+#: autobrightness/daemon.py:108
+msgid "Detected full screen mode"
+msgstr ""
+
+#: autobrightness/daemon.py:113
+msgid "Exited from full screen"
 msgstr ""
 
 #: autobrightness/gui/aboutwindow.py:12 autobrightness/gui/trayicon.py:30
