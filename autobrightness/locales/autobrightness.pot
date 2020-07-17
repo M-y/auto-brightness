@@ -42,23 +42,23 @@ msgstr ""
 msgid "Starting daemon..."
 msgstr ""
 
-#: autobrightness/daemon.py:32
+#: autobrightness/daemon.py:35
 msgid "Shortcut key used."
 msgstr ""
 
-#: autobrightness/daemon.py:71
+#: autobrightness/daemon.py:77
 msgid "No interval nor shortcut selected. Exiting."
 msgstr ""
 
-#: autobrightness/daemon.py:97
+#: autobrightness/daemon.py:103
 msgid "Full screen check activated."
 msgstr ""
 
-#: autobrightness/daemon.py:108
+#: autobrightness/daemon.py:114
 msgid "Detected full screen mode"
 msgstr ""
 
-#: autobrightness/daemon.py:113
+#: autobrightness/daemon.py:119
 msgid "Exited from full screen"
 msgstr ""
 
@@ -114,23 +114,23 @@ msgstr ""
 msgid "minutes"
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:94
+#: autobrightness/gui/settingscontroller.py:105
 msgid "Close this message and press a key or key combination. "
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:98
+#: autobrightness/gui/settingscontroller.py:109
 msgid "Press again."
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:142
+#: autobrightness/gui/settingscontroller.py:153
 msgid "Can't get frame from camera."
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:145
+#: autobrightness/gui/settingscontroller.py:156
 msgid "Can't open device."
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:152
+#: autobrightness/gui/settingscontroller.py:163
 msgid "Will test min and max brightness via the selected backend."
 msgstr ""
 
@@ -138,44 +138,52 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:27
+#: autobrightness/gui/settingswindow.py:29
 msgid "Save"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:42
+#: autobrightness/gui/settingswindow.py:44
 msgid "Language:"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:55
+#: autobrightness/gui/settingswindow.py:57
 msgid "Backend:"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:60
+#: autobrightness/gui/settingswindow.py:62
 msgid "Test Backend"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:72
+#: autobrightness/gui/settingswindow.py:74
 msgid "Gain"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:83
+#: autobrightness/gui/settingswindow.py:85
 msgid "Test Camera"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:86
+#: autobrightness/gui/settingswindow.py:88
 msgid "Camera:"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:102
+#: autobrightness/gui/settingswindow.py:104
 msgid "Interval:"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:112
+#: autobrightness/gui/settingswindow.py:114
 msgid "Select Shortcut"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:116
+#: autobrightness/gui/settingswindow.py:118
 msgid "Shortcut:"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:124
+msgid "Max brightness on full screen"
+msgstr ""
+
+#: autobrightness/gui/settingswindow.py:128
+msgid "Set brightness on startup"
 msgstr ""
 
 #: autobrightness/gui/trayicon.py:26
