@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import  QDialog, QWidget, QVBoxLayout, QHBoxLayout, QFormLayout, QLineEdit, QPushButton, QComboBox, QFrame, QSpinBox, QLabel, QSlider
+from PyQt5.QtWidgets import  QDialog, QWidget, QVBoxLayout, QHBoxLayout, QFormLayout, QLineEdit, QPushButton, QComboBox, QFrame, QSpinBox, QLabel, QSlider, QCheckBox
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 import autobrightness
@@ -22,6 +22,8 @@ class SettingsWindow(QDialog):
         layout.addWidget( self._camera() )
         layout.addWidget( self._interval() )
         layout.addWidget( self._shortcut() )
+        layout.addWidget( self._fullscreen() )
+        layout.addWidget( self._startup() )
         self.generalLayout.addLayout(layout)
         
         self.saveButton = QPushButton(_('Save'))
@@ -118,3 +120,10 @@ class SettingsWindow(QDialog):
         frame.setLayout(form)
         return frame
     
+    def _fullscreen(self):
+        self.fullscreenCheck = QCheckBox(_("Max brightness on full screen"))
+        return self.fullscreenCheck
+
+    def _startup(self):
+        self.startupCheck = QCheckBox(_("Set brightness on startup"))
+        return self.startupCheck

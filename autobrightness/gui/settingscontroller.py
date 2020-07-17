@@ -34,6 +34,10 @@ class SettingsController:
         self._backendComboChange()
         self._view.gainSlider.setValue(self._config.gain)
         self._gainChange(self._config.gain)
+        if self._config.fullscreen == 1:
+            self._view.fullscreenCheck.setChecked(True)
+        if self._config.startup == 1:
+            self._view.startupCheck.setChecked(True)
 
         # Connect signals and slots
         self._connectSignals()
@@ -81,6 +85,13 @@ class SettingsController:
         self._config.interval = self._view.intervalEdit.value()
         if self._view.intervalLabel.text() == self.interval_modes[2]:
             self._config.interval *= 60
+
+        self._config.fullscreen = 0
+        if self._view.fullscreenCheck.isChecked():
+            self._config.fullscreen = 1
+        self._config.startup = 0
+        if self._view.startupCheck.isChecked():
+            self._config.startup = 1
 
         self.backend.configSave()
         self._config.save()
