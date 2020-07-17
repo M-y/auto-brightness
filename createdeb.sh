@@ -11,7 +11,13 @@ Maintainer: Muhammed YILDIRIM <ben@muhammed.im>
 Description: Auto change screen brightness using webcam" > deb/DEBIAN/control
 echo "#!/bin/bash
 pip install /tmp/autobrightness-$VER
-rm -rf /tmp/autobrightness-$VER" > deb/DEBIAN/postinst
+rm -rf /tmp/autobrightness-$VER
+echo \"[Desktop Entry]
+Name=autobrightness
+Type=Application
+Exec=sudo autobrightness
+Terminal=false\" > /etc/xdg/autostart/autobrightness.desktop
+echo \"%sudo   ALL=(ALL:ALL) NOPASSWD: $(which autobrightness)\" > /etc/sudoers.d/autobrightness" > deb/DEBIAN/postinst
 chmod +x deb/DEBIAN/postinst
 dpkg-deb --build deb "autobrightness-$VER.deb"
 rm -rf deb
