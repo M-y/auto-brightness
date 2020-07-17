@@ -17,7 +17,7 @@ Name=autobrightness
 Type=Application
 Exec=sudo autobrightness
 Terminal=false\" > /etc/xdg/autostart/autobrightness.desktop
-echo \"%sudo   ALL=(ALL:ALL) NOPASSWD: $(which autobrightness)\" > /etc/sudoers.d/autobrightness" > deb/DEBIAN/postinst
+echo \"%sudo   ALL=(ALL:ALL) NOPASSWD: \$(which autobrightness)\" > /etc/sudoers.d/autobrightness" > deb/DEBIAN/postinst
 chmod +x deb/DEBIAN/postinst
 dpkg-deb --build deb "autobrightness-$VER.deb"
 rm -rf deb
