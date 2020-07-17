@@ -29,6 +29,7 @@ class Config:
             self.language = "en"
             self.gain = 0
             self.fullscreen = 0
+            self.startup = 0
 
     def configFileExists(self):
         return os.path.exists(self.fileLocation)
@@ -45,6 +46,7 @@ class Config:
         self.setOption('autobrightness', 'language', self.language)
         self.setOption('autobrightness', 'gain', self.gain)
         self.setOption('autobrightness', 'fullscreen', self.fullscreen)
+        self.setOption('autobrightness', 'startup', self.startup)
 
         with open(self.fileLocation, 'w') as IO:
             self.configfile.write(IO)
@@ -63,6 +65,7 @@ class Config:
         self.language = self.getOption('autobrightness', 'language')
         self.gain = self.getOption('autobrightness', 'gain', int)
         self.fullscreen = self.getOption('autobrightness', 'fullscreen', int)
+        self.startup = self.getOption('autobrightness', 'startup', int)
     
     def getOption(self, section, option, type = str):
         """

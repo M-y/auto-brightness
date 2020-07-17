@@ -24,6 +24,9 @@ class Daemon:
         self.fullscreen = False
         if settings.fullscreen == 1:
             self.fullscreen = True
+        self.startup = False
+        if settings.startup == 1:
+            self.startup = True
     
     def shortcutEvent(self, e = None):
         """
@@ -57,6 +60,9 @@ class Daemon:
         if self.fullscreen:
             fullscreenThread = Thread(target=self._fullScreenCheck)
             fullscreenThread.start()
+        
+        if self.startup:
+            self.setBrightness()
 
         if not self.shortcut is None:
             self.addSchortcut(self.shortcut)
