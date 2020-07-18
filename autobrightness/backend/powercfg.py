@@ -65,7 +65,7 @@ class Powercfg():
                     return True
             except Exception:
                 pass
-        return false
+        return False
 
     def getMaxBrightness(self):
         maxBrightness = self._subprocess("Maximum Possible Setting: (.*?)$")
