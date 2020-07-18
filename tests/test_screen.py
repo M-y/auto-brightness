@@ -3,7 +3,6 @@ from autobrightness import screen, config
 import gettext
 from PyQt5.QtWidgets import QVBoxLayout, QApplication
 
-app = QApplication([])
 class ScreenTest(unittest.TestCase):
     def test_none(self):
         settings = config.Config()
