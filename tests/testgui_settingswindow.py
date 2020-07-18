@@ -77,3 +77,13 @@ class SettingswindowTest(unittest.TestCase):
         QTimer.singleShot(1000, self.pressEnter)
         QTest.mouseClick(self.view.cameraButton, Qt.LeftButton)
         self.view.close()
+    
+    def test_backend(self):
+        configIns = config.Config("test")
+        self.createWindow(configIns)
+
+        for i in range( self.view.backendCombo.count() ):
+            self.view.backendCombo.setCurrentIndex(i)
+            QTest.mouseClick(self.view.saveButton, Qt.LeftButton)
+        self.view.close()
+        os.remove("test")
