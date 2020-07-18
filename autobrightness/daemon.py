@@ -74,7 +74,7 @@ class Daemon:
             elif not self.shortcut is None:
                 time.sleep(1)
             else:
-                print(_("No interval nor shortcut selected. Exiting."))
+                print(_("No interval nor shortcut selected. "))
                 break
     
     def _fullscreenCount(self):
@@ -103,20 +103,21 @@ class Daemon:
         print(_("Full screen check activated."))
         fullscreenCount = self._fullscreenCount()
 
-        oldBrightness = self.brightness.screen.getBrightness()
+        fullscreenMode = False
         while True:
-            # update oldBrightness if changed while we are in the loop
-            if self.brightness.screen.getBrightness() != self.brightness.screen.maxBrightness:
+            if not fullscreenMode:
                 oldBrightness = self.brightness.screen.getBrightness()
             
             # full screen window count increase means a full screen window is on screen
             if self._fullscreenCount() > fullscreenCount and self.brightness.screen.getBrightness() != self.brightness.screen.maxBrightness:
                 print(_("Detected full screen mode"))
+                fullscreenMode = True
                 self.brightness.set( self.brightness.screen.maxBrightness )
             
             # get back to old brightness value
-            if self._fullscreenCount() == fullscreenCount and oldBrightness != self.brightness.screen.getBrightness():
-                print(_("Exited from full screen"))
+            if self._fullscreenCount() == fullscreenCount and fullscreenMode:
+                print(_("Exiting from full screen mode"))
+                fullscreenMode = False
                 self.brightness.set(oldBrightness)
             
             time.sleep(.5)
