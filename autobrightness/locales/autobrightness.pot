@@ -47,19 +47,19 @@ msgid "Shortcut key used."
 msgstr ""
 
 #: autobrightness/daemon.py:77
-msgid "No interval nor shortcut selected. Exiting."
+msgid "No interval nor shortcut selected. "
 msgstr ""
 
 #: autobrightness/daemon.py:103
 msgid "Full screen check activated."
 msgstr ""
 
-#: autobrightness/daemon.py:114
+#: autobrightness/daemon.py:113
 msgid "Detected full screen mode"
 msgstr ""
 
 #: autobrightness/daemon.py:119
-msgid "Exited from full screen"
+msgid "Exiting from full screen mode"
 msgstr ""
 
 #: autobrightness/gui/aboutwindow.py:12 autobrightness/gui/trayicon.py:30
