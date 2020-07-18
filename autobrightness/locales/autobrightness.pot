@@ -18,7 +18,7 @@ msgstr ""
 msgid "powercfg is only for Windows!"
 msgstr ""
 
-#: autobrightness/backend/powercfg.py:88
+#: autobrightness/backend/powercfg.py:107
 msgid "Display Brightness GUID:"
 msgstr ""
 
