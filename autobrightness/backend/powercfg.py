@@ -52,6 +52,20 @@ class Powercfg():
                 ret = re.search(regex, line)
                 if ret:
                     return ret.group(1)
+    
+    def _isAC(self):
+        """
+        Is computer plugged to AC power?
+        """
+        result = subprocess.check_output(["wmic", "path", "Win32_Battery", "Get", "BatteryStatus"], **self.args)
+        for line in result.split("\n"):
+            line = line.rstrip()
+            try:
+                if int(line) == 2:
+                    return True
+            except Exception:
+                pass
+        return false
 
     def getMaxBrightness(self):
         maxBrightness = self._subprocess("Maximum Possible Setting: (.*?)$")
@@ -60,10 +74,15 @@ class Powercfg():
         return int(maxBrightness, 16)
 
     def getBrightness(self):
-        return int(self._subprocess("Current AC Power Setting Index: (.*?)$"), 16)
+        if self._isAC():
+            return int(self._subprocess("Current AC Power Setting Index: (.*?)$"), 16)
+        return int(self._subprocess("Current DC Power Setting Index: (.*?)$"), 16)
 
     def setBrightness(self, val):
-        subprocess.call(["POWERCFG", "/SETACVALUEINDEX", "SCHEME_CURRENT", "SUB_VIDEO", self.guid, str(val)])
+        if self._isAC():
+            subprocess.call(["POWERCFG", "/SETACVALUEINDEX", "SCHEME_CURRENT", "SUB_VIDEO", self.guid, str(val)])
+        else:
+            subprocess.call(["POWERCFG", "/SETDCVALUEINDEX", "SCHEME_CURRENT", "SUB_VIDEO", self.guid, str(val)])
         subprocess.call(["POWERCFG", "/S", "SCHEME_CURRENT"])
     
     def configWindow(self, layout):
