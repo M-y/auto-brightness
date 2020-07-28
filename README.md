@@ -57,7 +57,7 @@ Technology to reach screen brightness.
 * __powercfg__: Default backend for Windows. You have to select GUID of Display Brightness.
 
 ### Gain
-Adds the value you selected from here to calculated brightness. For example; if you select 5%, brightness of you screen will be 5% more.
+Adds the value you selected from here to calculated brightness. For example; if you select 5%, brightness of your screen will be 5% more.
 
 ### Camera
 Camera number or path. If you have 1 camera only, just type 0.
