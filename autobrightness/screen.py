@@ -1,4 +1,6 @@
-from autobrightness.backend import sysfs, powercfg
+import autobrightness.backend
+import inspect
+import importlib
 
 class Screen:
     """
@@ -17,13 +19,16 @@ class Screen:
         global _
         _ = lang.gettext
         
-        if settings.backend == 'sysfs':
-            self.backend = sysfs.sysfs(lang, settings)
-        if settings.backend == 'powercfg':
-            self.backend = powercfg.Powercfg(lang, settings)
-        
-        if not self.backend is None:
+        if not settings.backend is None:
+            # find backend class
+            module = importlib.import_module('autobrightness.backend.' + settings.backend)
+            x, backendClass = inspect.getmembers(module, self._isBackend)[0]
+            # implement backend class
+            self.backend = backendClass(lang, settings)
             self.maxBrightness = self.backend.getMaxBrightness()
+    
+    def _isBackend(self, backendClass) -> bool:
+        return inspect.isclass(backendClass) and backendClass != autobrightness.backend.ibackend.IBackend and issubclass(backendClass, autobrightness.backend.ibackend.IBackend)
     
     def getBrightness(self):
         """

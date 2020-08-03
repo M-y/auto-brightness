@@ -1,8 +1,9 @@
+from autobrightness.backend.ibackend import IBackend
 import os
 import sys
 from PyQt5.QtWidgets import QComboBox, QFormLayout
 
-class sysfs:
+class Sysfs(IBackend):
     """
     This backend uses /sys/class/backlight directory in sysfs.
     https://www.kernel.org/doc/Documentation/ABI/stable/sysfs-class-backlight
@@ -11,10 +12,11 @@ class sysfs:
     sysfs_dir = "/sys/class/backlight"
 
     def __init__(self, lang, settings):
+        super().__init__(lang, settings)
+
         global _
         _ = lang.gettext
-        self.settings = settings
-        self.interface = settings.getOption("sysfs", "interface")
+        self.interface = self.settings.getOption("sysfs", "interface")
         if self.interface is None:
             self.interface = '.'
         

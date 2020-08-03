@@ -1,20 +1,21 @@
+from autobrightness.backend.ibackend import IBackend
 import subprocess
 import re
 import os
 from PyQt5.QtWidgets import QComboBox, QFormLayout
 from autobrightness import subprocess_args
 
-class Powercfg():
+class Powercfg(IBackend):
     """
     This backend uses windows powercfg utility
     """
 
     def __init__(self, lang, settings):
+        super().__init__(lang, settings)
+        
         global _
         _ = lang.gettext
-        
-        self.settings = settings
-        self.guid = settings.getOption("powercfg", "guid")
+        self.guid = self.settings.getOption("powercfg", "guid")
         
         if os.name == "nt":
             self.args = subprocess_args.get_args()
