@@ -114,23 +114,23 @@ msgstr ""
 msgid "minutes"
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:105
+#: autobrightness/gui/settingscontroller.py:109
 msgid "Close this message and press a key or key combination. "
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:109
+#: autobrightness/gui/settingscontroller.py:113
 msgid "Press again."
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:153
+#: autobrightness/gui/settingscontroller.py:157
 msgid "Can't get frame from camera."
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:156
+#: autobrightness/gui/settingscontroller.py:160
 msgid "Can't open device."
 msgstr ""
 
-#: autobrightness/gui/settingscontroller.py:163
+#: autobrightness/gui/settingscontroller.py:167
 msgid "Will test min and max brightness via the selected backend."
 msgstr ""
 
@@ -146,43 +146,43 @@ msgstr ""
 msgid "Language:"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:57
+#: autobrightness/gui/settingswindow.py:54
 msgid "Backend:"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:62
+#: autobrightness/gui/settingswindow.py:59
 msgid "Test Backend"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:74
+#: autobrightness/gui/settingswindow.py:71
 msgid "Gain"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:85
+#: autobrightness/gui/settingswindow.py:82
 msgid "Test Camera"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:88
+#: autobrightness/gui/settingswindow.py:85
 msgid "Camera:"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:104
+#: autobrightness/gui/settingswindow.py:101
 msgid "Interval:"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:114
+#: autobrightness/gui/settingswindow.py:111
 msgid "Select Shortcut"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:118
+#: autobrightness/gui/settingswindow.py:115
 msgid "Shortcut:"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:124
+#: autobrightness/gui/settingswindow.py:121
 msgid "Max brightness on full screen"
 msgstr ""
 
-#: autobrightness/gui/settingswindow.py:128
+#: autobrightness/gui/settingswindow.py:125
 msgid "Set brightness on startup"
 msgstr ""
 
