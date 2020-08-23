@@ -1,6 +1,7 @@
 import autobrightness.backend
 import inspect
 import importlib
+import pkgutil
 
 class Screen:
     """
@@ -29,6 +30,14 @@ class Screen:
     
     def _isBackend(self, backendClass) -> bool:
         return inspect.isclass(backendClass) and backendClass != autobrightness.backend.ibackend.IBackend and issubclass(backendClass, autobrightness.backend.ibackend.IBackend)
+    
+    @staticmethod
+    def getBackends():
+        backends = []
+        for x, moduleName, isPackage in pkgutil.iter_modules(autobrightness.backend.__path__):
+            if not isPackage and moduleName != 'ibackend':
+                backends.append(moduleName)
+        return backends
     
     def getBrightness(self):
         """

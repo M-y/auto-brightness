@@ -26,12 +26,16 @@ class SettingsController:
         ]
         # fill form
         self._view.languageCombo.setCurrentText(str(self._config.language))
+        
+        for backendName in screen.Screen.getBackends():
+            self._view.backendCombo.addItem(backendName)
         self._view.backendCombo.setCurrentText(str(self._config.backend))
+        self._backendComboChange()
+        
         self._view.cameraEdit.setText(str(self._config.camera))
         self._view.intervalEdit.setValue(self._config.interval)
         self._intervalChange(self._config.interval)
         self._view.shortcutEdit.setText(str(self._config.shortcut))
-        self._backendComboChange()
         self._view.gainSlider.setValue(self._config.gain)
         self._gainChange(self._config.gain)
         if self._config.fullscreen == 1:

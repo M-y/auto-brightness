@@ -51,9 +51,6 @@ class SettingsWindow(QDialog):
         form = QFormLayout()
 
         self.backendCombo = QComboBox()
-        for filename in os.listdir( os.path.join(autobrightness.ROOT_DIR, "backend") ):
-            if filename != "__init__.py" and filename.endswith(".py"):
-                self.backendCombo.addItem( os.path.splitext(filename)[0] )
         form.addRow(_('Backend:'), self.backendCombo)
 
         self.backendLayout = QVBoxLayout()
