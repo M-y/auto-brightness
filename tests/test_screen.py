@@ -13,15 +13,25 @@ class ScreenTest(unittest.TestCase):
         screenIns.setBrightness(0)
         screenIns.setBrightness(currentBrightness)
         screenIns.configSave()
-    
-    def test_sysfs(self):
+
+    def test_each_backend(self):
         settings = config.Config()
-        settings.backend = 'sysfs'
-        settings.setOption("sysfs", "interface", "intel_backlight")
-        screenIns = screen.Screen(settings, gettext)
 
-        currentBrightness = screenIns.getBrightness()
-        self.assertGreaterEqual(currentBrightness, 0)
+        for backend in screen.Screen.getBackends():
+            if backend == "powercfg":
+                continue
 
-        # screenIns.setBrightness( screenIns.maxBrightness )
-        # self.assertEqual(screenIns.getBrightness(), screenIns.maxBrightness)
+            settings.backend = backend
+            screenIns = screen.Screen(settings, gettext)
+
+            if backend == "sysfs":
+                interfaces = screenIns.backend.interfaces()
+                if len(interfaces) < 1:
+                    continue
+                settings.setOption("sysfs", "interface", interfaces[0])
+
+            currentBrightness = screenIns.getBrightness()
+            self.assertGreaterEqual(currentBrightness, 0)
+
+            screenIns.setBrightness( screenIns.maxBrightness )
+            self.assertEqual(screenIns.getBrightness(), screenIns.maxBrightness)
