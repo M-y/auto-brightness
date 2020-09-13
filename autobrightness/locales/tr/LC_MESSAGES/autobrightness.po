@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2020-09-13 14:05+0300\n"
+"PO-Revision-Date: 2020-09-13 13:59+0300\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,184 +15,184 @@ msgstr ""
 "X-Generator: Poedit 2.2.1\n"
 "Last-Translator: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: en\n"
+"Language: tr\n"
 
 #: autobrightness/backend/powercfg.py:27
 msgid "powercfg is only for Windows!"
-msgstr ""
+msgstr "powercfg sadece Windows içindir!"
 
 #: autobrightness/backend/powercfg.py:108
 msgid "Display Brightness GUID:"
-msgstr ""
+msgstr "Ekran Parlaklağı GUID:"
 
 #: autobrightness/backend/sysfs.py:24
 msgid " is not writable!"
-msgstr ""
+msgstr " yazılabilir değil!"
 
 #: autobrightness/backend/sysfs.py:83
 msgid "Interface:"
-msgstr ""
+msgstr "Arayüz:"
 
 #: autobrightness/brightness.py:27
 msgid "Can't open video device"
-msgstr ""
+msgstr "Video cihazı açılamıyor"
 
 #: autobrightness/brightness.py:54
 msgid "Adjusting brightness to %(percentage)d%% (%(value)d)"
-msgstr ""
+msgstr "Parlaklık %%%(percentage)d (%(value)d)olarak ayarlanıyor"
 
 #: autobrightness/daemon.py:18
 msgid "Starting daemon..."
-msgstr ""
+msgstr "Arka plan aracı başlatılıyor..."
 
 #: autobrightness/daemon.py:35
 msgid "Shortcut key used."
-msgstr ""
+msgstr "Kısayol tuşuna basıldı."
 
 #: autobrightness/daemon.py:77
 msgid "No interval nor shortcut selected. "
-msgstr ""
+msgstr "Ne aralık ne de kısayol seçildi. "
 
 #: autobrightness/daemon.py:103
 msgid "Full screen check activated."
-msgstr ""
+msgstr "Tam ekran kontrolü aktifleştirildi."
 
 #: autobrightness/daemon.py:113
 msgid "Detected full screen mode"
-msgstr ""
+msgstr "Tam ekran modu tespit edildi"
 
 #: autobrightness/daemon.py:119
 msgid "Exiting from full screen mode"
-msgstr ""
+msgstr "Tam ekran modundan çıkılıyor"
 
 #: autobrightness/gui/aboutwindow.py:12 autobrightness/gui/trayicon.py:30
 msgid "About"
-msgstr ""
+msgstr "Hakkında"
 
 #: autobrightness/gui/camerawindow.py:11
 msgid "Camera Test"
-msgstr ""
+msgstr "Kamerayı test et"
 
 #: autobrightness/gui/camerawindow.py:56
 msgid "Image Brightness"
-msgstr ""
+msgstr "Görsel Parlaklığı"
 
 #: autobrightness/gui/camerawindow.py:57
 msgid "Backend"
-msgstr ""
+msgstr "Arka uç"
 
 #: autobrightness/gui/camerawindow.py:58
 msgid "Disable Auto Exposure"
-msgstr ""
+msgstr "Otomatik Pozlamayı Devre Dışı Bırak"
 
 #: autobrightness/gui/camerawindow.py:58
 msgid "not supported"
-msgstr ""
+msgstr "desteklenmiyor"
 
 #: autobrightness/gui/camerawindow.py:58
 msgid "supported"
-msgstr ""
+msgstr "destekleniyor"
 
 #: autobrightness/gui/camerawindow.py:59
 msgid "Properties"
-msgstr ""
+msgstr "Özellikler"
 
 #: autobrightness/gui/camerawindow.py:60
 msgid "OpenCV Build Information"
-msgstr ""
+msgstr "OpenCV Derleme Bilgileri"
 
 #: autobrightness/gui/logwindow.py:11
 msgid "Daemon Logs"
-msgstr ""
+msgstr "Arka Plan Aracı Günlükleri"
 
 #: autobrightness/gui/settingscontroller.py:25
 msgid "disabled"
-msgstr ""
+msgstr "devre dışı"
 
 #: autobrightness/gui/settingscontroller.py:26
 msgid "seconds"
-msgstr ""
+msgstr "saniye"
 
 #: autobrightness/gui/settingscontroller.py:27
 msgid "minutes"
-msgstr ""
+msgstr "dakika"
 
 #: autobrightness/gui/settingscontroller.py:114
 msgid "Close this message and press a key or key combination. "
-msgstr ""
+msgstr "Bu mesajı kapatın ve bir tuş veya tuş kombinasyonuna basın. "
 
 #: autobrightness/gui/settingscontroller.py:118
 msgid "Press again."
-msgstr ""
+msgstr "Tekrar basın."
 
 #: autobrightness/gui/settingscontroller.py:162
 msgid "Can't get frame from camera."
-msgstr ""
+msgstr "Kameradan kare alınamıyor."
 
 #: autobrightness/gui/settingscontroller.py:165
 msgid "Can't open device."
-msgstr ""
+msgstr "Cihaz açılamıyor."
 
 #: autobrightness/gui/settingscontroller.py:172
 msgid "Will test min and max brightness via the selected backend."
-msgstr ""
+msgstr "Seçilen arka uç ile minimum ve maksimum parlaklık denenecek."
 
 #: autobrightness/gui/settingswindow.py:12 autobrightness/gui/trayicon.py:22
 msgid "Settings"
-msgstr ""
+msgstr "Ayarlar"
 
 #: autobrightness/gui/settingswindow.py:28
 msgid "Save"
-msgstr ""
+msgstr "Kaydet"
 
 #: autobrightness/gui/settingswindow.py:40
 msgid "Language:"
-msgstr ""
+msgstr "Dil:"
 
 #: autobrightness/gui/settingswindow.py:50
 msgid "Backend:"
-msgstr ""
+msgstr "Arka Uç:"
 
 #: autobrightness/gui/settingswindow.py:55
 msgid "Test Backend"
-msgstr ""
+msgstr "Arka Ucu Dene"
 
 #: autobrightness/gui/settingswindow.py:67
 msgid "Gain"
-msgstr ""
+msgstr "Kazanç"
 
 #: autobrightness/gui/settingswindow.py:78
 msgid "Test Camera"
-msgstr ""
+msgstr "Kamerayı Dene"
 
 #: autobrightness/gui/settingswindow.py:81
 msgid "Camera:"
-msgstr ""
+msgstr "Kamera:"
 
 #: autobrightness/gui/settingswindow.py:97
 msgid "Interval:"
-msgstr ""
+msgstr "Aralık:"
 
 #: autobrightness/gui/settingswindow.py:107
 msgid "Select Shortcut"
-msgstr ""
+msgstr "Kısayol Seç"
 
 #: autobrightness/gui/settingswindow.py:111
 msgid "Shortcut:"
-msgstr ""
+msgstr "Kısayol:"
 
 #: autobrightness/gui/settingswindow.py:117
 msgid "Max brightness on full screen"
-msgstr ""
+msgstr "Tam ekrandayken maks parlaklık"
 
 #: autobrightness/gui/settingswindow.py:121
 msgid "Set brightness on startup"
-msgstr ""
+msgstr "Başlangıçta parlaklığı ayarla"
 
 #: autobrightness/gui/trayicon.py:26
 msgid "Daemon logs"
-msgstr ""
+msgstr "Arka Plan Aracı Günlükleri"
 
 #: autobrightness/gui/trayicon.py:34
 msgid "Quit"
-msgstr ""
+msgstr "Çıkış"
