@@ -4,10 +4,12 @@ from PyQt5.QtGui import QCloseEvent
 from PyQt5.QtCore import Qt
 from autobrightness import webcam, screen
 from autobrightness.gui import camerawindow
+import autobrightness
 import keyboard
 import time
 import cv2
 import math
+import os
 
 class SettingsController:
 
@@ -25,6 +27,9 @@ class SettingsController:
             _("minutes")
         ]
         # fill form
+        for dirname in os.listdir( os.path.join(autobrightness.ROOT_DIR, "locales") ):
+            if os.path.isdir( os.path.join(autobrightness.ROOT_DIR, "locales", dirname) ):
+                self._view.languageCombo.addItem(dirname)
         self._view.languageCombo.setCurrentText(str(self._config.language))
         
         for backendName in screen.Screen.getBackends():

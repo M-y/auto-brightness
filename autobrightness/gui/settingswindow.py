@@ -2,7 +2,6 @@ from PyQt5.QtWidgets import  QDialog, QWidget, QVBoxLayout, QHBoxLayout, QFormLa
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 import autobrightness
-import os
 
 class SettingsWindow(QDialog):
     def __init__(self, lang):
@@ -38,9 +37,6 @@ class SettingsWindow(QDialog):
         form = QFormLayout()
 
         self.languageCombo = QComboBox()
-        for dirname in os.listdir( os.path.join(autobrightness.ROOT_DIR, "locales") ):
-            if os.path.isdir( os.path.join(autobrightness.ROOT_DIR, "locales", dirname) ):
-                self.languageCombo.addItem(dirname)
         form.addRow(_('Language:'), self.languageCombo)
 
         frame = self._frame()
