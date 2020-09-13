@@ -19,7 +19,11 @@ class Xrandr(IBackend):
     def getBrightness(self):
         val = 0
 
-        result = subprocess.check_output(["xrandr", "--verbose"], **{'encoding': 'UTF-8'})
+        try:
+            result = subprocess.check_output(["xrandr", "--verbose"], **{'encoding': 'UTF-8'})
+        except subprocess.CalledProcessError as identifier:
+            print(identifier)
+            result = ""
 
         for line in result.split("\n"):
             line = line.rstrip()

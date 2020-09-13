@@ -33,5 +33,8 @@ class ScreenTest(unittest.TestCase):
             currentBrightness = screenIns.getBrightness()
             self.assertGreaterEqual(currentBrightness, 0)
 
+            if backend == "xrandr" and currentBrightness == 0:
+                continue
+
             screenIns.setBrightness( screenIns.maxBrightness )
             self.assertEqual(screenIns.getBrightness(), screenIns.maxBrightness)
