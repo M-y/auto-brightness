@@ -107,12 +107,19 @@ jobs:
         pip install .
         pyinstaller --add-data 'autobrightness\locales;autobrightness\locales' --add-data 'autobrightness\backend;autobrightness\backend' --add-data 'autobrightness\icon.png;autobrightness' --hidden-import=pkg_resources.py2_warn --icon icon.ico --windowed --onefile --name autobrightness autobrightness\__main__.py
         Compress-Archive -Path dist\autobrightness.exe,README.md -DestinationPath autobrightness_${{ github.event.release.tag_name }}-windows.zip
+        pyinstaller --add-data 'autobrightness\locales;autobrightness\locales' --add-data 'autobrightness\backend;autobrightness\backend' --add-data 'autobrightness\icon.png;autobrightness' --hidden-import=pkg_resources.py2_warn --icon icon.ico --onefile --name autobrightness autobrightness\__main__.py
+        Compress-Archive -Path dist\autobrightness.exe,README.md -DestinationPath autobrightness_${{ github.event.release.tag_name }}-windows_debug.zip
       
     - uses: actions/upload-artifact@master
       name: Upload exe artifact
       with:
         name: exe
         path: autobrightness*-windows.zip
+    - uses: actions/upload-artifact@master
+      name: Upload exe debug artifact
+      with:
+        name: exe
+        path: autobrightness*-windows_debug.zip
   
   build-macos:
     runs-on: macos-10.15
@@ -164,6 +171,13 @@ jobs:
         with:
           args: exe/autobrightness*-windows.zip
       
+      - uses: skx/github-action-publish-binaries@master
+        name: Upload exe debug
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: exe/autobrightness*-windows_debug.zip
+          
       - uses: skx/github-action-publish-binaries@master
         name: Upload macos
         env:
