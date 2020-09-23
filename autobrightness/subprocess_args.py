@@ -41,7 +41,7 @@ def get_codepage():
         shell = True,
         env = os.environ
     )
-    cp = re.search("Active code page: (.*?)$", cp.decode())
+    cp = re.search(": (.*?)$", cp.decode())
     cp = cp.group(1)
 
     return "cp" + cp.rstrip()
