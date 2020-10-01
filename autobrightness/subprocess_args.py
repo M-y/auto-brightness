@@ -34,7 +34,7 @@ def get_codepage():
     si = subprocess.STARTUPINFO()
     si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
     cp = subprocess.check_output(
-        "chcp",
+        "chcp 65001",
         stdin = subprocess.PIPE,
         stderr = subprocess.PIPE,
         startupinfo = si,
