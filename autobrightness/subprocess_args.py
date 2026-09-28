@@ -39,9 +39,11 @@ def get_codepage():
         stderr = subprocess.PIPE,
         startupinfo = si,
         shell = True,
-        env = os.environ
+        env = os.environ,
+        timeout = 5
     )
-    cp = re.search(": (.*?)$", cp.decode())
-    cp = cp.group(1)
+    match = re.search(rb"(\d+)\s*$", cp)
+    if match is None:
+        raise ValueError("Could not determine active Windows code page")
 
-    return "cp" + cp.rstrip()
+    return "cp" + match.group(1).decode("ascii")
